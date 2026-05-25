@@ -36,6 +36,8 @@
     }
     </script>
 
+    <script>if(localStorage.getItem('theme')==='dark'||(!localStorage.getItem('theme')&&matchMedia('(prefers-color-scheme:dark)').matches))document.documentElement.classList.add('dark')</script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
@@ -54,12 +56,12 @@
                 <a href="#projects" class="text-neutral-500 dark:text-neutral-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-300">Projects</a>
                 <a href="#photography" class="text-neutral-500 dark:text-neutral-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-300">Gallery</a>
                 <a href="contact.html" class="text-neutral-500 dark:text-neutral-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-300">Contact</a>
-                <button id="themeToggle" class="w-8 h-8 rounded-full bg-neutral-100 dark:bg-neutral-800 flex items-center justify-center hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-colors duration-300" aria-label="Toggle theme">
+                <button type="button" id="themeToggle" class="w-8 h-8 rounded-full bg-neutral-100 dark:bg-neutral-800 flex items-center justify-center hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-colors duration-300" aria-label="Toggle theme">
                     <svg class="w-4 h-4 text-neutral-500 dark:text-neutral-400 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
                     <svg class="w-4 h-4 text-neutral-500 dark:text-neutral-400 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
                 </button>
             </div>
-            <button class="md:hidden text-neutral-800 dark:text-white w-10 h-10 flex items-center justify-center rounded-full bg-neutral-100 dark:bg-neutral-800 z-50" id="menuBtn" aria-label="Toggle Menu" aria-expanded="false" aria-controls="mobileMenu">
+            <button type="button" class="md:hidden text-neutral-800 dark:text-white w-10 h-10 flex items-center justify-center rounded-full bg-neutral-100 dark:bg-neutral-800 z-50" id="menuBtn" aria-label="Toggle Menu" aria-expanded="false" aria-controls="mobileMenu">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" id="menuIcon">
                     <path id="line1" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6h16"></path>
                     <path id="line2" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 12h16"></path>
@@ -72,6 +74,11 @@
                 <a href="#projects" class="mobile-link py-4 rounded-2xl hover:bg-neutral-100 dark:hover:bg-neutral-800 px-6 flex items-center justify-center transition-colors duration-300 text-neutral-700 dark:text-neutral-300">Projects</a>
                 <a href="#photography" class="mobile-link py-4 rounded-2xl hover:bg-neutral-100 dark:hover:bg-neutral-800 px-6 flex items-center justify-center transition-colors duration-300 text-neutral-700 dark:text-neutral-300">Gallery</a>
                 <a href="contact.html" class="mobile-link py-4 rounded-2xl bg-indigo-50 dark:bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border border-indigo-200 dark:border-indigo-500/20 px-6 flex items-center justify-center transition-colors duration-300">Contact</a>
+                <button type="button" id="themeToggleMobile" class="py-4 rounded-2xl hover:bg-neutral-100 dark:hover:bg-neutral-800 px-6 flex items-center justify-center gap-3 transition-colors duration-300 text-neutral-700 dark:text-neutral-300 w-full" aria-label="Toggle theme">
+                    <svg class="w-4 h-4 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+                    <svg class="w-4 h-4 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+                    <span class="text-xs tracking-[0.2em]">Toggle Theme</span>
+                </button>
             </div>
         </nav>
     </div>
@@ -296,18 +303,14 @@
     <script>
       (function () {
         const html = document.documentElement;
-        const toggle = document.getElementById('themeToggle');
 
-        if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-          html.classList.add('dark');
+        function toggleTheme() {
+          html.classList.toggle('dark');
+          localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
         }
 
-        if (toggle) {
-          toggle.addEventListener('click', () => {
-            html.classList.toggle('dark');
-            localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
-          });
-        }
+        document.getElementById('themeToggle')?.addEventListener('click', toggleTheme);
+        document.getElementById('themeToggleMobile')?.addEventListener('click', toggleTheme);
       })();
     </script>
 </body>
