@@ -3,74 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <title>Tomas Gorjux | Facebook Clone</title>
-    
-    <!-- Open Graph Meta Tags -->
+
     <meta property="og:title" content="Polished Facebook Clone">
     <meta property="og:description" content="A functional and polished Facebook UI clone built with Tailwind CSS.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://tomasgorjux.net/Facebook%20Clone/index.html">
-    <meta property="og:image" content="https://tomasgorjux.net/Assets/facebook-clone-preview.png"> <!-- Replace with an actual preview image URL -->
-    
-        <!-- Twitter Card Meta Tags -->
-    
-        <meta name="twitter:card" content="summary_large_image">
-    
-        <meta name="twitter:title" content="Polished Facebook Clone">
-    
-        <meta name="twitter:description" content="A functional and polished Facebook UI clone built with Tailwind CSS.">
-    
-        <meta name="twitter:image" content="https://tomasgorjux.net/Assets/facebook-clone-preview.png"> <!-- Replace with an actual preview image URL -->
-    
-    
-    
-        <!-- Schema.org JSON-LD for WebPage -->
-    
-        <script type="application/ld+json">
-    
-        {
-    
-          "@context": "https://schema.org",
-    
-          "@type": "WebPage",
-    
-          "name": "Polished Facebook Clone",
-    
-          "url": "https://tomasgorjux.net/Facebook%20Clone/index.html",
-    
-          "description": "A static, responsive UI clone of Facebook built with Tailwind CSS and JavaScript, demonstrating modern frontend development skills."
-    
-        }
-    
-        </script>
-    
-        
-    
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%2250%%22 x=%2250%%22 dominant-baseline=%22central%22 text-anchor=%22middle%22 fill=%22white%22 font-family=%22sans-serif%22 font-weight=%22900%22 font-size=%2275%22>TG</text></svg>">
+    <meta property="og:url" content="https://tomasgorjux.net/facebook-clone/index.html">
+    <meta property="og:image" content="https://tomasgorjux.net/assets/scr-20260218-tznk.png">
 
-    <style>
-        body { background-color: #f0f2f5; }
-        .hide-scrollbar::-webkit-scrollbar { display: none; }
-        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-        .fb-transition { transition: all 0.2s cubic-bezier(0.075, 0.82, 0.165, 1); will-change: transform, opacity, background-color, color, border-color, box-shadow; }
-        .bottom-nav { box-shadow: 0 -2px 5px rgba(0,0,0,0.1); will-change: box-shadow; }
-        #createPostModal.hidden { display: none; }
-        .liked { color: #0866ff; font-weight: 700; }
-        .no-scroll { overflow: hidden; }
-        #createPostModal > div:first-of-type { /* Targeting the modal content div */
-            transition: transform 0.3s ease-out, opacity 0.3s ease-out;
-            will-change: transform, opacity;
-        }
-    </style>
-    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" media="print" onload="this.media='all'">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Polished Facebook Clone">
+    <meta name="twitter:description" content="A functional and polished Facebook UI clone built with Tailwind CSS.">
+    <meta name="twitter:image" content="https://tomasgorjux.net/assets/scr-20260218-tznk.png">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Polished Facebook Clone",
+      "url": "https://tomasgorjux.net/facebook-clone/index.html",
+      "description": "A static, responsive UI clone of Facebook built with Tailwind CSS and JavaScript, demonstrating modern frontend development skills."
+    }
+    </script>
+
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%2250%%22 x=%2250%%22 dominant-baseline=%22central%22 text-anchor=%22middle%22 fill=%22white%22 font-family=%22sans-serif%22 font-weight=%22900%22 font-size=%2275%22>TG</text></svg>">
 </head>
 <body class="font-sans text-[#1c1e21]">
 
-    <!-- Header -->
     <header class="bg-white shadow-md h-14 flex items-center justify-between px-2 sm:px-4 sticky top-0 z-50 will-change-transform">
-        <!-- Left Nav -->
         <div class="flex items-center gap-2">
             <a href="#" class="text-[#1877f2] text-[32px] w-10 h-10 flex items-center justify-center rounded-full cursor-pointer active:scale-95 fb-transition will-change-transform" aria-label="Facebook home">
                 <i class="fab fa-facebook"></i>
@@ -84,7 +44,6 @@
             </button>
         </div>
 
-        <!-- Center Nav -->
         <nav class="hidden lg:flex items-center gap-2 h-full">
             <a href="#" class="px-8 xl:px-10 border-b-[3px] border-[#0866ff] text-[#0866ff] h-full flex items-center cursor-pointer will-change-border-color" aria-label="Home">
                 <i class="fas fa-home text-2xl"></i>
@@ -100,7 +59,6 @@
             </a>
         </nav>
 
-        <!-- Right Nav -->
         <div class="flex items-center gap-2">
             <button class="hidden sm:flex bg-[#e4e6eb] hover:bg-[#d8dadf] active:scale-95 w-10 h-10 rounded-full items-center justify-center fb-transition will-change-transform,background-color border border-transparent hover:border-gray-300" aria-label="Menu options">
                 <i class="fas fa-th"></i>
@@ -117,8 +75,7 @@
             </button>
         </div>
     </header>
-    
-    <!-- Bottom Nav for Mobile -->
+
     <nav class="lg:hidden fixed bottom-0 left-0 right-0 bg-white h-14 flex items-center justify-around z-50 bottom-nav will-change-transform" data-aos="fade-up">
         <a href="#" class="text-2xl text-[#0866ff] will-change-color" aria-label="Home"><i class="fas fa-home"></i></a>
         <a href="#" class="text-2xl text-gray-600 will-change-color" aria-label="Friends"><i class="fas fa-users"></i></a>
@@ -128,8 +85,7 @@
     </nav>
 
     <div class="flex justify-center min-h-[calc(100vh-56px)] pb-14 lg:pb-0">
-        
-        <!-- Left Sidebar -->
+
         <aside class="hidden xl:flex flex-col w-[360px] p-2 overflow-y-auto hide-scrollbar fixed top-14 left-0 h-[calc(100vh-56px)] will-change-transform" data-aos="fade-right">
             <nav>
                 <ul class="space-y-0.5">
@@ -179,7 +135,7 @@
                     </li>
                 </ul>
             </div>
-            <a href="https://tomas.gorjux.net" target="_blank" rel="noopener noreferrer" 
+            <a href="https://tomas.gorjux.net" target="_blank" rel="noopener noreferrer"
                class="group block p-3 mt-auto bg-white hover:bg-gray-100 rounded-lg cursor-pointer fb-transition will-change-transform,box-shadow hover:shadow-md active:scale-[0.98]">
                 <div class="flex items-center gap-3">
                     <i class="fas fa-user-circle text-blue-500 text-3xl w-9 h-9 flex items-center justify-center shrink-0"></i>
@@ -192,9 +148,7 @@
             </a>
         </aside>
 
-        <!-- Main Content -->
         <main class="w-full max-w-[680px] lg:max-w-[720px] xl:max-w-[680px] mx-auto p-2 sm:p-4">
-            <!-- Stories -->
             <section class="mb-5" data-aos="fade-up">
                 <div class="flex -mx-1 hide-scrollbar" style="overflow-x: auto;">
                     <div class="flex px-1">
@@ -211,7 +165,6 @@
                                 </div>
                             </div>
                         </div>
-                         <!-- Other Stories -->
                         <div class="w-[110px] sm:w-[122px] flex-shrink-0 px-1">
                             <div class="h-[200px] rounded-xl relative overflow-hidden shadow-md hover:shadow-lg cursor-pointer group fb-transition will-change-transform,box-shadow">
                                 <img src="https://i.pravatar.cc/300?u=friend1" class="w-full h-full object-cover group-hover:scale-105 fb-transition will-change-transform brightness-90">
@@ -240,7 +193,6 @@
                 </div>
             </section>
 
-            <!-- Create Post -->
             <section class="bg-white rounded-xl shadow-lg border border-gray-200 p-3 mb-4" data-aos="fade-up" data-aos-delay="100">
                 <div class="flex gap-2 mb-3">
                     <img src="https://i.pravatar.cc/100?u=tomas" class="w-10 h-10 rounded-full">
@@ -261,7 +213,6 @@
                 </div>
             </section>
 
-            <!-- Post Feed -->
             <div class="space-y-4">
                 <article class="bg-white rounded-xl shadow-lg border border-gray-200" data-aos="fade-up" data-aos-delay="200">
                     <div class="p-3">
@@ -333,10 +284,8 @@
                     </div>
                 </article>
             </div>
-
         </main>
 
-        <!-- Right Sidebar -->
         <aside class="hidden lg:flex flex-col w-[360px] p-4 overflow-y-auto hide-scrollbar fixed top-14 right-0 h-[calc(100vh-56px)]" data-aos="fade-left">
             <section data-aos="fade-left">
                 <h3 class="text-[#65676b] font-semibold text-[17px] mb-2">Sponsored</h3>
@@ -442,7 +391,6 @@
         </aside>
     </div>
 
-    <!-- Create Post Modal -->
     <div id="createPostModal" class="hidden fixed inset-0 bg-black bg-opacity-60 z-50 flex items-center justify-center" role="dialog" aria-modal="true">
         <div class="bg-white rounded-lg shadow-xl w-full max-w-md mx-4">
             <div class="flex items-center justify-between p-4 border-b">
@@ -464,8 +412,6 @@
         </div>
     </div>
 
-        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
-        <script src="./facebook.js" defer></script>
-
-    </body>
+    <script type="module" src="/src/scripts/facebook.js"></script>
+</body>
 </html>

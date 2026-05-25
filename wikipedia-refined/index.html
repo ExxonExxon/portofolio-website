@@ -4,100 +4,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="An exhaustive technical documentation of modern web structures, protocols, and UX design, presented in a Wikipedia-like format.">
-    
+    <title>Tomas Gorjux | WikiClone</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Playfair+Display:wght@700&display=swap">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <title>Tomas Gorjux | WikiClone</title>
-    
-    <!-- Open Graph Meta Tags -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+
     <meta property="og:title" content="Tomas Gorjux | WikiClone: The Modern Website">
     <meta property="og:description" content="An exhaustive technical documentation of modern web structures, protocols, and UX design, presented in a Wikipedia-like format.">
     <meta property="og:type" content="article">
-    <meta property="og:url" content="https://tomasgorjux.net/Wikipedia%20Refined/index.html">
-    <meta property="og:image" content="https://tomasgorjux.net/Assets/wikipedia-refined-preview.png"> <!-- Replace with an actual preview image URL -->
-    
-            <!-- Twitter Card Meta Tags -->
-            <meta name="twitter:card" content="summary_large_image">
-            <meta name="twitter:title" content="Tomas Gorjux | WikiClone: The Modern Website">
-            <meta name="twitter:description" content="An exhaustive technical documentation of modern web structures, protocols, and UX design, presented in a Wikipedia-like format.">
-            <meta name="twitter:image" content="https://tomasgorjux.net/Assets/wikipedia-refined-preview.png"> <!-- Replace with an actual preview image URL -->    
-                    <!-- Schema.org JSON-LD for Article -->    
-                <script type="application/ld+json">
-                {
-                  "@context": "https://schema.org",
-                  "@type": "Article",
-                  "headline": "The Modern Website: An exhaustive technical documentation",
-                  "image": "https://tomasgorjux.net/Assets/wikipedia-refined-preview.png", 
-                  "datePublished": "2026-02-18T00:00:00Z", 
-                  "dateModified": "2026-02-18T00:00:00Z", 
-                  "author": {
-                    "@type": "Person",
-                    "name": "Tomas Gorjux",
-                    "url": "https://tomasgorjux.net/"
-                  },
-                  "publisher": {
-                    "@type": "Organization",
-                    "name": "WikiLight Foundation", 
-                    "logo": {
-                      "@type": "ImageObject",
-                      "url": "https://tomasgorjux.net/Assets/tg-logo.png" 
-                    }
-                  },
-                  "description": "A comprehensive overview of web structures, governing protocols, and the psychological impact of UX-driven design in 2026, presented in a refined Wikipedia style."
-                }
-                </script>    
-              <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%2250%%22 x=%2250%%22 dominant-baseline=%22central%22 text-anchor=%22middle%22 fill=%22white%22 font-family=%22sans-serif%22 font-weight=%22900%22 font-size=%2275%22>TG</text></svg>">
+    <meta property="og:url" content="https://tomasgorjux.net/wikipedia-refined/index.html">
+    <meta property="og:image" content="https://tomasgorjux.net/assets/scr-20260218-tzlk.png">
 
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Playfair+Display:wght@700&display=swap');
-        
-        body { font-family: 'Inter', sans-serif; }
-        .serif { font-family: 'Playfair Display', serif; }
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Tomas Gorjux | WikiClone: The Modern Website">
+    <meta name="twitter:description" content="An exhaustive technical documentation of modern web structures, protocols, and UX design, presented in a Wikipedia-like format.">
+    <meta name="twitter:image" content="https://tomasgorjux.net/assets/scr-20260218-tzlk.png">
 
-        ::-webkit-scrollbar { width: 4px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: #3f3f46; border-radius: 10px; }
-        
-        html { scroll-behavior: smooth; scroll-padding-top: 6rem; }
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "The Modern Website: An exhaustive technical documentation",
+      "image": "https://tomasgorjux.net/assets/scr-20260218-tzlk.png",
+      "datePublished": "2026-02-18T00:00:00Z",
+      "dateModified": "2026-02-18T00:00:00Z",
+      "author": {
+        "@type": "Person",
+        "name": "Tomas Gorjux",
+        "url": "https://tomasgorjux.net/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "WikiLight Foundation",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://tomasgorjux.net/assets/scr-20260218-tzlk.png"
+        }
+      },
+      "description": "A comprehensive overview of web structures, governing protocols, and the psychological impact of UX-driven design in 2026, presented in a refined Wikipedia style."
+    }
+    </script>
 
-        .nav-link {
-            position: relative;
-            transition: all 0.2s ease;
-            padding: 8px 12px; /* Add padding */
-            border-radius: 6px; /* Slightly round corners */
-        }
-        .nav-link:hover {
-            color: #ffffff;
-            transform: translateX(4px);
-            background-color: rgba(255, 255, 255, 0.05); /* Subtle background tint */
-        }
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            left: 4px; /* Adjust position relative to new padding */
-            top: 50%;
-            width: 0px;
-            height: 0px;
-            background: #4f46e5;
-            border-radius: 50%;
-            transform: translateY(-50%);
-            transition: all 0.2s ease;
-        }
-        .nav-link:hover::after { width: 6px; height: 6px; left: -8px; }
-
-        /* Mobile Sidebar Overlay */
-        #sidebar-overlay {
-            display: none;
-        }
-        body.sidebar-open #sidebar-overlay {
-            display: block;
-        }
-        body.sidebar-open aside {
-            transform: translateX(0);
-        }
-    </style>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%2250%%22 x=%2250%%22 dominant-baseline=%22central%22 text-anchor=%22middle%22 fill=%22white%22 font-family=%22sans-serif%22 font-weight=%22900%22 font-size=%2275%22>TG</text></svg>">
 </head>
 <body class="bg-black text-zinc-400 antialiased selection:bg-indigo-500/30 overflow-x-hidden">
 
@@ -116,7 +66,7 @@
     <div id="sidebar-overlay" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 md:hidden"></div>
 
     <div class="flex min-h-screen">
-        
+
         <aside id="main-sidebar" class="fixed inset-y-0 left-0 z-50 w-64 bg-black border-r border-white/5 transition-transform duration-300 transform -translate-x-full md:translate-x-0 md:sticky md:flex md:flex-col md:w-56 h-screen overflow-y-auto" role="navigation">
             <div class="p-6 flex items-center justify-between md:block">
                 <div>
@@ -131,7 +81,7 @@
                     </svg>
                 </button>
             </div>
-            
+
             <nav class="flex-1 px-6 space-y-6 mt-4">
                 <div>
                     <p class="text-[9px] font-black text-zinc-600 uppercase tracking-[0.2em] mb-4">Core Knowledge</p>
@@ -145,22 +95,26 @@
                 </div>
             </nav>
 
-            <a href="../index.html" target="_blank" rel="noopener noreferrer" 
+            <a href="../index.html" target="_blank" rel="noopener noreferrer"
                class="block p-3 m-2 mt-auto bg-zinc-900/50 hover:bg-zinc-800 border border-white/5 rounded-xl transition-all duration-300 cursor-pointer group active:scale-[0.98]">
                 <div class="flex items-center gap-3">
-                    <i class="fas fa-user-circle text-indigo-400 text-3xl shrink-0"></i> <!-- Example icon -->
+                    <svg class="w-10 h-10 shrink-0 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A9 9 0 0112 15a9 9 0 016.879 2.804M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                    </svg>
                     <div class="min-w-0">
                         <p class="text-[9px] text-indigo-400 uppercase tracking-widest font-bold">Contributor</p>
                         <p class="text-sm text-white font-bold truncate block group-hover:underline">Tomas Gorjux</p>
                     </div>
-                    <i class="fas fa-external-link-alt text-zinc-500 text-sm ml-auto opacity-0 group-hover:opacity-100 transition-opacity"></i> <!-- Icon on hover -->
+                    <svg class="w-4 h-4 text-zinc-500 ml-auto opacity-0 group-hover:opacity-100 transition-opacity shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                    </svg>
                 </div>
             </a>
         </aside>
 
         <main class="flex-1 bg-zinc-900 px-6 py-32 md:py-16 md:px-12 lg:px-24">
             <div class="max-w-4xl mx-auto">
-                
+
                 <header class="mb-16">
                     <h1 class="serif text-4xl md:text-6xl text-white mb-6 leading-tight">The Modern Website</h1>
                     <p class="text-zinc-300 max-w-xl text-sm leading-relaxed">
@@ -225,7 +179,7 @@
                         <h2 class="text-xs font-black text-white uppercase tracking-[0.3em]">03 / Performance</h2>
                     </div>
                     <p class="text-zinc-300 mb-8 text-sm md:text-base">Performance is the foundation of UX. A delay of 100ms in load time can result in a 7% drop in conversions.</p>
-                    
+
                     <div class="overflow-x-auto">
                         <table class="w-full text-left text-sm border-separate border-spacing-y-2 min-w-[500px]">
                             <thead>
@@ -263,7 +217,7 @@
                     </div>
                     <div class="prose prose-invert max-w-none">
                         <p class="text-zinc-300 leading-relaxed text-sm md:text-base">
-                            Search Engine Optimization (SEO) has evolved into AIO (Artificial Intelligence Optimization). Websites must now be structured for both human readers and large language model (LLM) crawlers. 
+                            Search Engine Optimization (SEO) has evolved into AIO (Artificial Intelligence Optimization). Websites must now be structured for both human readers and large language model (LLM) crawlers.
                         </p>
                         <ul class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6 list-none p-0">
                             <li class="flex items-center gap-3 bg-white/5 p-4 rounded-xl border border-white/5">
@@ -298,7 +252,7 @@
 
                 <footer class="mt-40 pb-12 border-t border-white/5">
                     <div class="flex flex-col md:flex-row justify-between items-center py-8 gap-4">
-                        <div class="text-[10px] font-black text-zinc-600 uppercase tracking-[0.2em]">© 2026 WikiLight Foundation</div>
+                        <div class="text-[10px] font-black text-zinc-600 uppercase tracking-[0.2em]">&copy; 2026 WikiLight Foundation</div>
                         <div class="flex gap-8 text-[10px] font-black text-zinc-600 uppercase tracking-widest">
                             <a href="#" class="hover:text-white transition">Index</a>
                             <a href="#" class="hover:text-white transition">Archives</a>
@@ -310,29 +264,6 @@
         </main>
     </div>
 
-    <script>
-        const body = document.body;
-        const menuOpen = document.getElementById('menu-open');
-        const menuClose = document.getElementById('menu-close');
-        const overlay = document.getElementById('sidebar-overlay');
-        const navLinks = document.querySelectorAll('.nav-link-mobile');
-
-        function toggleSidebar() {
-            const isSidebarOpen = body.classList.toggle('sidebar-open');
-            menuOpen.setAttribute('aria-expanded', isSidebarOpen);
-        }
-
-        menuOpen.addEventListener('click', toggleSidebar);
-        menuClose.addEventListener('click', toggleSidebar);
-        overlay.addEventListener('click', toggleSidebar);
-
-        // Close sidebar when a link is clicked
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                body.classList.remove('sidebar-open');
-            });
-        });
-    </script>
-
+    <script type="module" src="/src/scripts/wikipedia.js"></script>
 </body>
 </html>

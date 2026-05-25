@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background-color: #030303;
+  -webkit-font-smoothing: antialiased;
+}
+
+.hero-gradient {
+  background: radial-gradient(circle at 50% 50%, rgba(99, 102, 241, 0.12) 0%, transparent 50%);
+  contain: content;
+}
+
+.input-field {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease-out;
+  will-change: border-color, box-shadow;
+}
+.input-field:focus {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: #6366f1;
+  outline: none;
+  box-shadow: 0 0 20px rgba(99, 102, 241, 0.1);
+}
+
+#mobileMenu {
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(-10px);
+  opacity: 0;
+  pointer-events: none;
+  clip-path: circle(0% at 90% 10%);
+  will-change: transform, opacity, clip-path;
+}
+#mobileMenu.active {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+  clip-path: circle(150% at 90% 10%);
+}
+
+#menuIcon path {
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+.custom-scroll::-webkit-scrollbar { width: 4px; }
+.custom-scroll::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }

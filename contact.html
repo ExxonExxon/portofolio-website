@@ -5,21 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Contact Tomas Gorjux for professional web development and photography services in Australia.">
     <title>Tomas Gorjux | Contact Me</title>
-    
-    <!-- Open Graph Meta Tags -->
+
     <meta property="og:title" content="Tomas Gorjux | Contact Me">
     <meta property="og:description" content="Contact Tomas Gorjux for professional web development and photography services in Australia.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://tomasgorjux.net/contact.html">
-    <meta property="og:image" content="https://tomasgorjux.net/Assets/preview.png"> <!-- Replace with an actual preview image URL -->
-    
-    <!-- Twitter Card Meta Tags -->
+    <meta property="og:image" content="https://tomasgorjux.net/assets/scr-20260218-tzib.jpeg">
+
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Tomas Gorjux | Contact Me">
     <meta name="twitter:description" content="Contact Tomas Gorjux for professional web development and photography services in Australia.">
-    <meta name="twitter:image" content="https://tomasgorjux.net/Assets/preview.png"> <!-- Replace with an actual preview image URL -->
+    <meta name="twitter:image" content="https://tomasgorjux.net/assets/scr-20260218-tzib.jpeg">
 
-    <!-- Schema.org JSON-LD for ContactPage -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -43,66 +40,15 @@
       }
     }
     </script>
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="dns-prefetch" href="https://unpkg.com">
     <link rel="dns-prefetch" href="https://formspree.io">
 
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;400;600;800&display=swap">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;400;600;800&display=swap&font-display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-    
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" media="print" onload="this.media='all'">
-    
+
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%2250%%22 x=%2250%%22 dominant-baseline=%22central%22 text-anchor=%22middle%22 fill=%22white%22 font-family=%22sans-serif%22 font-weight=%22900%22 font-size=%2275%22>TG</text></svg>">
-    
-    <style>
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #030303; -webkit-font-smoothing: antialiased; }
-        .glass-nav {
-            background: rgba(15, 15, 15, 0.6);
-            backdrop-filter: blur(20px) saturate(180%);
-            -webkit-backdrop-filter: blur(20px) saturate(180%);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            transform: translateZ(0);
-        }
-        .input-field {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease-out;
-            will-change: border-color, box-shadow;
-        }
-        .input-field:focus {
-            background: rgba(255, 255, 255, 0.05);
-            border-color: #6366f1;
-            outline: none;
-            box-shadow: 0 0 20px rgba(99, 102, 241, 0.1);
-        }
-        .hero-gradient {
-            background: radial-gradient(circle at 50% 50%, rgba(99, 102, 241, 0.12) 0%, transparent 50%);
-            contain: content;
-        }
-        #mobileMenu {
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            transform: translateY(-10px);
-            opacity: 0;
-            pointer-events: none;
-            clip-path: circle(0% at 90% 10%);
-            will-change: transform, opacity, clip-path;
-        }
-        #mobileMenu.active {
-            transform: translateY(0);
-            opacity: 1;
-            pointer-events: auto;
-            clip-path: circle(150% at 90% 10%);
-        }
-        .custom-scroll::-webkit-scrollbar { width: 4px; }
-        .custom-scroll::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
-        /* Mobile Menu Icon Transition */
-        #menuIcon path {
-            transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
-        }
-    </style>
 </head>
 <body class="text-zinc-400 antialiased">
 
@@ -143,7 +89,7 @@
 
     <main class="container mx-auto px-6 max-w-6xl pb-20 sm:pb-32">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-20">
-            
+
             <div class="bg-zinc-900/20 border border-zinc-800 p-8 md:p-12 rounded-[2.5rem]" data-aos="fade-up">
                 <form action="https://formspree.io/f/mnjbaeag" method="POST" class="space-y-6">
                     <div class="px-4 py-3 rounded-xl bg-indigo-500/10 border border-indigo-500/20 mb-8">
@@ -154,22 +100,22 @@
 
                     <div class="space-y-2">
                         <label for="name" class="text-[10px] uppercase tracking-widest text-zinc-600 ml-1 font-semibold">What should I call you?</label>
-                        <input type="text" id="name" name="name" required aria-required="true" 
-                            placeholder="e.g. John Doe" 
+                        <input type="text" id="name" name="name" required aria-required="true"
+                            placeholder="e.g. John Doe"
                             class="input-field w-full px-6 py-4 rounded-2xl text-white">
                     </div>
 
                     <div class="space-y-2">
                         <label for="email" class="text-[10px] uppercase tracking-widest text-zinc-600 ml-1 font-semibold">Your Email Address</label>
                         <input type="email" id="email" name="email" required aria-required="true"
-                            placeholder="yourname@example.com" 
+                            placeholder="yourname@example.com"
                             class="input-field w-full px-6 py-4 rounded-2xl text-white">
                     </div>
 
                     <div class="space-y-2">
                         <label for="message" class="text-[10px] uppercase tracking-widest text-zinc-600 ml-1 font-semibold">How can I help?</label>
                         <textarea id="message" rows="5" name="message" required aria-required="true"
-                                placeholder="I'd love to hear about your project goals and timeline..." 
+                                placeholder="I'd love to hear about your project goals and timeline..."
                                 class="input-field w-full px-6 py-4 rounded-2xl text-white resize-none"></textarea>
                     </div>
 
@@ -213,7 +159,7 @@
         <div class="container mx-auto px-6 max-w-6xl">
             <div class="flex flex-col md:flex-row justify-between items-center space-y-8 md:space-y-0">
                 <div class="text-sm text-zinc-500">
-                    &copy; 2024 Tomas Gorjux. All Rights Reserved.
+                    &copy; 2026 Tomas Gorjux. All Rights Reserved.
                 </div>
                 <div class="flex space-x-6">
                     <a href="https://www.instagram.com/tomas.gorjux/" target="_blank" rel="noopener noreferrer" class="text-zinc-500 hover:text-white transition-colors duration-300">
@@ -236,7 +182,6 @@
         </div>
     </footer>
 
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
-    <script src="./contact.js" defer></script>
+    <script type="module" src="/src/scripts/contact.js"></script>
 </body>
 </html>
