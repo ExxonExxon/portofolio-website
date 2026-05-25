@@ -3,47 +3,19 @@
 @tailwind utilities;
 
 body {
-  background-color: #030303;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
-}
-
-.glass-nav {
-  background: rgba(15, 15, 15, 0.7);
-  backdrop-filter: blur(24px) saturate(180%);
-  -webkit-backdrop-filter: blur(24px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  transform: translate3d(0,0,0);
-  will-change: transform;
-}
-
-.photo-card img, .project-card img { will-change: transform; backface-visibility: hidden; }
-
-.project-card, .photo-card {
-  transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
-  will-change: transform, box-shadow;
-}
-.project-card:hover, .photo-card:hover {
-  transform: translateY(-8px) scale(1.01);
-  box-shadow: 0 15px 30px rgba(0,0,0,0.3);
-}
-.project-card a div img, .photo-card img {
-  transition: transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
-  will-change: transform;
-}
-.project-card a:hover div img, .photo-card:hover img {
-  transform: scale(1.08);
 }
 
 .typewriter-cursor { display: inline-block; width: 3px; background-color: #6366f1; margin-left: 4px; animation: blink 0.8s steps(2, start) infinite; height: 1em; vertical-align: middle; }
 @keyframes blink { to { visibility: hidden; } }
 
-.hero-gradient { background: radial-gradient(circle at 50% 50%, rgba(99, 102, 241, 0.08) 0%, transparent 70%); contain: content; }
-.aspect-photo { aspect-ratio: 4/5; }
-.aspect-wide { aspect-ratio: 3/2; }
+.card { transition: transform 0.3s ease-out, box-shadow 0.3s ease-out; }
+.card:hover { transform: translateY(-4px); box-shadow: 0 20px 60px rgba(0,0,0,0.08); }
+.dark .card:hover { box-shadow: 0 20px 60px rgba(0,0,0,0.4); }
 
-.custom-scroll::-webkit-scrollbar { width: 4px; }
-.custom-scroll::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
+.photo-card img { will-change: transform; backface-visibility: hidden; }
+.photo-card:hover img { transform: scale(1.05); }
 
 #mobileMenu {
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
@@ -55,11 +27,13 @@ body {
 }
 #mobileMenu.active { transform: translateY(0); opacity: 1; pointer-events: auto; clip-path: circle(150% at 90% 10%); }
 
-.about-card { background: linear-gradient(145deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0) 100%); height: 100%; transition: transform 0.3s ease-out, box-shadow 0.3s ease-out; will-change: transform, box-shadow; }
-.about-card:hover { transform: translateY(-5px) scale(1.01); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
+#menuIcon path {
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
 
-[data-aos] { pointer-events: none; }
-[data-aos].aos-animate { pointer-events: auto; }
+#universalModal.flex {
+  display: flex !important;
+}
 
 .sr-only {
   position: absolute;
@@ -73,14 +47,5 @@ body {
   border-width: 0;
 }
 
-#menuIcon path {
-  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
-}
-
-#universalModal.flex {
-  display: flex !important;
-}
-
-@media (max-width: 768px) {
-  .hero-text { font-size: 3.5rem; line-height: 1.1; }
-}
+[data-aos] { pointer-events: none; }
+[data-aos].aos-animate { pointer-events: auto; }

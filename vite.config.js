@@ -11,9 +11,7 @@ export default defineConfig({
       input: {
         main: resolve(__dirname, 'index.html'),
         contact: resolve(__dirname, 'contact.html'),
-        facebook: resolve(__dirname, 'facebook-clone/index.html'),
-        spotify: resolve(__dirname, 'spotify-clone/index.html'),
-        wikipedia: resolve(__dirname, 'wikipedia-refined/index.html'),
+
       },
     },
     cssMinify: true,

@@ -3,13 +3,11 @@ export default {
   content: [
     './index.html',
     './contact.html',
-    './facebook-clone/**/*.html',
-    './spotify-clone/**/*.html',
-    './wikipedia-refined/**/*.html',
     './src/**/*.{js,ts}',
   ],
   theme: {
     extend: {},
   },
+  darkMode: 'class',
   plugins: [],
 }
