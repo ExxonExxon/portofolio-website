@@ -76,9 +76,9 @@
         </nav>
     </div>
 
-    <main class="px-4 sm:px-6 lg:px-10 pt-28 pb-12 max-w-[1600px] mx-auto">
+    <main class="max-w-[90rem] mx-auto px-5 sm:px-8 lg:px-10 pt-28 pb-12">
 
-        <section id="hero" class="card bg-white dark:bg-neutral-900 rounded-[3rem] p-8 sm:p-16 lg:p-20 mb-6 border border-neutral-200 dark:border-neutral-800 shadow-sm text-center" data-aos="fade-up" data-aos-duration="1000">
+        <section id="hero" class="card bg-white dark:bg-neutral-900 rounded-[2.5rem] p-8 sm:p-14 lg:p-16 mb-8 border border-neutral-200 dark:border-neutral-800 shadow-sm text-center" data-aos="fade-up" data-aos-duration="1000">
             <h1 class="text-5xl sm:text-6xl md:text-8xl font-extrabold text-neutral-900 dark:text-white leading-[1.1] tracking-tighter mb-8 min-h-[2.2em] md:min-h-[1.1em]">
                 I am <br><span id="typewriter" class="text-indigo-500"></span><span class="typewriter-cursor" aria-hidden="true">&nbsp;</span>
             </h1>
@@ -90,29 +90,19 @@
             </a>
         </section>
 
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <figure class="md:row-span-2 photo-card card bg-white dark:bg-neutral-900 rounded-[3rem] overflow-hidden border border-neutral-200 dark:border-neutral-800 shadow-sm cursor-pointer relative group"
-                        data-aos="zoom-in" data-name="Cape Barren Goose" data-settings="Nikon D3100 • 105mm • f/5.6" data-desc="Beautiful Cape Barren Goose wandering around at Wilsons Prom here in Australia." onclick="openModal(this)">
-                        <img loading="lazy" decoding="async" src="/assets/photography-images/dsc_0012-bird-phillip-island-large.webp" alt="Cape Barren Goose" class="w-full h-full object-cover transition-all duration-700 group-hover:scale-105">
-                        <div class="absolute inset-0 bg-black/30 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
-                            <p class="text-white text-[11px] font-bold tracking-[0.3em] uppercase border border-white/30 px-6 py-3 rounded-full">View Story</p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+            <section id="about" class="md:row-span-2 card bg-white dark:bg-neutral-900 rounded-[2.5rem] p-7 lg:p-9 border border-neutral-200 dark:border-neutral-800 shadow-sm" data-aos="fade-up">
+                <h2 class="text-4xl md:text-5xl font-extrabold text-neutral-900 dark:text-white tracking-tighter mb-6 leading-tight">About Me</h2>
+                <p class="text-neutral-500 dark:text-neutral-400 text-base font-light leading-relaxed mb-8">
+                    My name is Tomas Gorjux, originally from Europe and currently residing in Australia. I specialise in creating websites for businesses and individuals, driven by a lifelong passion for coding and web design.
+                </p>
+
+                <div class="space-y-4">
+                    <div class="flex gap-4 items-start p-4 rounded-2xl bg-indigo-50 dark:bg-indigo-500/5 border border-indigo-100 dark:border-indigo-500/10">
+                        <div class="w-10 h-10 bg-indigo-100 dark:bg-indigo-500/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                            <svg class="w-5 h-5 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
                         </div>
-                    </figure>
-                    <figure class="photo-card card bg-white dark:bg-neutral-900 rounded-[3rem] overflow-hidden border border-neutral-200 dark:border-neutral-800 shadow-sm cursor-pointer relative group"
-                        data-aos="zoom-in" data-name="Seagull" data-settings="Nikon D3100 • 85mm • f/7.1" data-desc="Seagull flying through the sky at Venus Bay." onclick="openModal(this)">
-                        <img loading="lazy" decoding="async" src="/assets/photography-images/dsc_0095-wilsn-prom-large.webp" alt="Seagull" class="w-full h-64 object-cover transition-all duration-700 group-hover:scale-105">
-                        <div class="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
-                            <p class="text-white text-[11px] font-bold tracking-[0.3em] uppercase border border-white/30 px-6 py-3 rounded-full">View Story</p>
-                        </div>
-                    </figure>
-                    <figure class="photo-card card bg-white dark:bg-neutral-900 rounded-[3rem] overflow-hidden border border-neutral-200 dark:border-neutral-800 shadow-sm cursor-pointer relative group"
-                        data-aos="zoom-in" data-name="Pink Flower" data-settings="Nikon D3100 • 105mm • f/7.1" data-desc="Beautiful sharp, vivid flower in the middle of the bush in Melbourne." onclick="openModal(this)">
-                        <img loading="lazy" decoding="async" src="/assets/photography-images/dsc_0108-flower-large.webp" alt="Pink Flower" class="w-full h-64 object-cover transition-all duration-700 group-hover:scale-105">
-                        <div class="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
-                            <p class="text-white text-[11px] font-bold tracking-[0.3em] uppercase border border-white/30 px-6 py-3 rounded-full">View Story</p>
-                        </div>
-                    </figure>
-                </div>
                         <div>
                             <h3 class="text-neutral-900 dark:text-white font-bold text-sm mb-1">Development</h3>
                             <p class="text-neutral-400 dark:text-neutral-500 text-sm font-light">Clean, scalable code with performance as the main priority.</p>
@@ -146,7 +136,7 @@
                 </div>
             </section>
 
-            <section id="skills" class="md:col-span-2 card bg-white dark:bg-neutral-900 rounded-[3rem] p-8 lg:p-10 border border-neutral-200 dark:border-neutral-800 shadow-sm" data-aos="fade-up">
+            <section id="skills" class="md:col-span-2 card bg-white dark:bg-neutral-900 rounded-[2.5rem] p-7 lg:p-9 border border-neutral-200 dark:border-neutral-800 shadow-sm" data-aos="fade-up">
                 <span class="text-xs uppercase tracking-[0.4em] text-neutral-400 dark:text-neutral-500 mb-3 font-bold block">Expertise</span>
                 <h2 class="text-3xl md:text-4xl font-extrabold text-neutral-900 dark:text-white tracking-tighter mb-8">My Skills.</h2>
                 <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
@@ -169,7 +159,7 @@
                 </div>
             </section>
 
-            <section id="projects" class="md:col-span-2 card bg-white dark:bg-neutral-900 rounded-[3rem] p-8 lg:p-10 border border-neutral-200 dark:border-neutral-800 shadow-sm" data-aos="fade-up">
+            <section id="projects" class="md:col-span-2 card bg-white dark:bg-neutral-900 rounded-[2.5rem] p-7 lg:p-9 border border-neutral-200 dark:border-neutral-800 shadow-sm" data-aos="fade-up">
                 <span class="text-xs uppercase tracking-[0.4em] text-neutral-400 dark:text-neutral-500 mb-3 font-bold block">Selected Work</span>
                 <h2 class="text-3xl md:text-4xl font-extrabold text-neutral-900 dark:text-white tracking-tighter mb-8">Projects.</h2>
                 <div class="group flex items-center justify-between p-5 rounded-2xl bg-neutral-50 dark:bg-neutral-800/50 border border-neutral-200 dark:border-neutral-800 hover:border-indigo-300 dark:hover:border-indigo-500/30 transition-all duration-300">
@@ -188,24 +178,24 @@
                     <span class="text-xs uppercase tracking-[0.4em] text-neutral-400 dark:text-neutral-500 mb-3 font-bold block">Visual Gallery</span>
                     <h2 class="text-3xl md:text-4xl font-extrabold text-neutral-900 dark:text-white tracking-tighter">Photography.</h2>
                 </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <figure class="photo-card card bg-white dark:bg-neutral-900 rounded-[3rem] overflow-hidden border border-neutral-200 dark:border-neutral-800 shadow-sm cursor-pointer relative group"
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+                    <figure class="photo-card card bg-white dark:bg-neutral-900 rounded-[2.5rem] overflow-hidden border border-neutral-200 dark:border-neutral-800 shadow-sm cursor-pointer relative group"
                         data-aos="zoom-in" data-name="Cape Barren Goose" data-settings="Nikon D3100 • 105mm • f/5.6" data-desc="Beautiful Cape Barren Goose wandering around at Wilsons Prom here in Australia." onclick="openModal(this)">
-                        <img loading="lazy" decoding="async" src="/assets/photography-images/dsc_0012-bird-phillip-island-large.webp" alt="Cape Barren Goose" class="w-full h-80 object-cover transition-all duration-700 group-hover:scale-105">
+                        <img loading="lazy" decoding="async" src="/assets/photography-images/dsc_0012-bird-phillip-island-large.webp" alt="Cape Barren Goose" class="w-full h-96 object-cover transition-all duration-700 group-hover:scale-105">
                         <div class="absolute inset-0 bg-black/30 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
                             <p class="text-white text-[11px] font-bold tracking-[0.3em] uppercase border border-white/30 px-6 py-3 rounded-full">View Story</p>
                         </div>
                     </figure>
-                    <figure class="photo-card card bg-white dark:bg-neutral-900 rounded-[3rem] overflow-hidden border border-neutral-200 dark:border-neutral-800 shadow-sm cursor-pointer relative group"
+                    <figure class="photo-card card bg-white dark:bg-neutral-900 rounded-[2.5rem] overflow-hidden border border-neutral-200 dark:border-neutral-800 shadow-sm cursor-pointer relative group"
                         data-aos="zoom-in" data-name="Seagull" data-settings="Nikon D3100 • 85mm • f/7.1" data-desc="Seagull flying through the sky at Venus Bay." onclick="openModal(this)">
-                        <img loading="lazy" decoding="async" src="/assets/photography-images/dsc_0095-wilsn-prom-large.webp" alt="Seagull" class="w-full h-80 object-cover transition-all duration-700 group-hover:scale-105">
+                        <img loading="lazy" decoding="async" src="/assets/photography-images/dsc_0095-wilsn-prom-large.webp" alt="Seagull" class="w-full h-96 object-cover transition-all duration-700 group-hover:scale-105">
                         <div class="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
                             <p class="text-white text-[11px] font-bold tracking-[0.3em] uppercase border border-white/30 px-6 py-3 rounded-full">View Story</p>
                         </div>
                     </figure>
-                    <figure class="photo-card card bg-white dark:bg-neutral-900 rounded-[3rem] overflow-hidden border border-neutral-200 dark:border-neutral-800 shadow-sm cursor-pointer relative group"
+                    <figure class="photo-card card bg-white dark:bg-neutral-900 rounded-[2.5rem] overflow-hidden border border-neutral-200 dark:border-neutral-800 shadow-sm cursor-pointer relative group"
                         data-aos="zoom-in" data-name="Pink Flower" data-settings="Nikon D3100 • 105mm • f/7.1" data-desc="Beautiful sharp, vivid flower in the middle of the bush in Melbourne." onclick="openModal(this)">
-                        <img loading="lazy" decoding="async" src="/assets/photography-images/dsc_0108-flower-large.webp" alt="Pink Flower" class="w-full h-80 object-cover transition-all duration-700 group-hover:scale-105">
+                        <img loading="lazy" decoding="async" src="/assets/photography-images/dsc_0108-flower-large.webp" alt="Pink Flower" class="w-full h-96 object-cover transition-all duration-700 group-hover:scale-105">
                         <div class="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
                             <p class="text-white text-[11px] font-bold tracking-[0.3em] uppercase border border-white/30 px-6 py-3 rounded-full">View Story</p>
                         </div>
