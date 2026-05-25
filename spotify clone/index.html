@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A modern Spotify UI clone, demonstrating responsive design and interactive elements with Tailwind CSS and JavaScript.">
+    <title>Tomas Gorjux | Spotify Clone</title>
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Tomas Gorjux | Spotify Clone">
+    <meta property="og:description" content="A modern Spotify UI clone, demonstrating responsive design and interactive elements with Tailwind CSS and JavaScript.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://tomasgorjux.net/Spotify%20Clone/index.html">
+    <meta property="og:image" content="https://tomasgorjux.net/Assets/spotify-clone-preview.png"> <!-- Replace with an actual preview image URL -->
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Tomas Gorjux | Spotify Clone">
+    <meta name="twitter:description" content="A modern Spotify UI clone, demonstrating responsive design and interactive elements with Tailwind CSS and JavaScript.">
+    <meta name="twitter:image" content="https://tomasgorjux.net/Assets/spotify-clone-preview.png"> <!-- Replace with an actual preview image URL -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Spotify UI Clone by Tomas Gorjux",
+      "url": "https://tomasgorjux.net/Spotify%20Clone/index.html",
+      "description": "An interactive and responsive recreation of the Spotify user interface, built using Tailwind CSS and vanilla JavaScript."
+    }
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%2250%%22 x=%2250%%22 dominant-baseline=%22central%22 text-anchor=%22middle%22 fill=%22white%22 font-family=%22sans-serif%22 font-weight=%22900%22 font-size=%2275%22>TG</text></svg>">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;600;700;900&display=swap');
+        
+        body { 
+            background-color: #000; 
+            color: #fff; 
+            font-family: 'Figtree', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .spotify-gradient { 
+            background: linear-gradient(to bottom, #222222 0%, #121212 100%); 
+        }
+
+        /* Better Scrollbars */
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 10px; }
+        
+        /* Mobile Sidebar Logic */
+        #mobile-sidebar { 
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); 
+            box-shadow: 20px 0 50px rgba(0,0,0,0.8);
+        }
+        
+        @media (min-width: 1024px) {
+            #mobile-sidebar { box-shadow: none; }
+        }
+
+        .sidebar-open { transform: translateX(0) !important; }
+
+        /* Smooth UI details */
+        .play-btn-shadow { box-shadow: 0 8px 24px rgba(0,0,0,0.5); }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        
+        .album-card:hover .album-img { transform: scale(1.04); }
+        .album-img { transition: transform 0.4s ease; }
+    </style>
+</head>
+<body class="flex flex-col h-screen overflow-hidden select-none">
+
+    <div id="sidebar-overlay" class="fixed inset-0 bg-black/80 z-40 hidden lg:hidden backdrop-blur-sm"></div>
+    
+    <div class="flex flex-1 overflow-hidden p-1 sm:p-2 gap-2 relative">
+        
+        <aside id="mobile-sidebar" class="fixed inset-y-0 left-0 w-[280px] sm:w-80 bg-black z-50 p-2 flex flex-col gap-2 -translate-x-full lg:relative lg:translate-x-0 lg:flex lg:bg-transparent">
+            
+            <nav class="bg-[#121212] rounded-xl p-4 space-y-4">
+                <div class="flex items-center justify-between lg:hidden">
+                    <span class="font-bold text-white">Navigation</span>
+                    <button id="close-sidebar" class="p-2 text-zinc-400" aria-label="Close sidebar menu"><i data-lucide="x"></i></button>
+                </div>
+                <div class="flex items-center gap-4 text-white cursor-pointer font-bold hover:text-green-500 transition-colors">
+                    <i data-lucide="home"></i> Home
+                </div>
+                <div class="flex items-center gap-4 text-zinc-400 hover:text-white transition-colors cursor-pointer font-bold" onclick="document.getElementById('main-search-input').focus(); if(window.innerWidth < 1024) toggleMenu();">
+                    <i data-lucide="search"></i> Search
+                </div>
+            </nav>
+            
+            <div class="flex-1 bg-[#121212] rounded-xl p-2 flex flex-col overflow-hidden">
+                <header class="flex items-center justify-between text-zinc-400 p-3 mb-2">
+                    <div class="flex items-center gap-2 font-bold hover:text-white cursor-pointer transition-colors">
+                        <i data-lucide="library" class="w-6 h-6"></i> 
+                        <span class="hidden sm:inline">Your Library</span>
+                    </div>
+                    <i data-lucide="plus" class="cursor-pointer hover:bg-zinc-800 rounded-full p-1.5 w-8 h-8"></i>
+                </header>
+                
+                <div class="flex gap-2 px-3 mb-4 overflow-x-auto no-scrollbar">
+                    <button class="bg-zinc-800 hover:bg-zinc-700 text-white text-xs font-semibold px-3 py-1.5 rounded-full whitespace-nowrap">Playlists</button>
+                    <button class="bg-zinc-800 hover:bg-zinc-700 text-white text-xs font-semibold px-3 py-1.5 rounded-full whitespace-nowrap">Artists</button>
+                    <button class="bg-zinc-800 hover:bg-zinc-700 text-white text-xs font-semibold px-3 py-1.5 rounded-full whitespace-nowrap">Albums</button>
+                </div>
+
+                <ul id="playlist-container" class="space-y-1 overflow-y-auto custom-scrollbar flex-1 px-1">
+                </ul>
+
+                <a href="https://tomas.gorjux.net" target="_blank" rel="noopener noreferrer" 
+                   class="block p-3 m-1 mt-auto bg-[#181818] hover:bg-[#282828] rounded-xl transition-all duration-300 cursor-pointer group active:scale-[0.98] border border-transparent hover:border-white/10">
+                    <div class="flex items-center gap-3">
+                        <i data-lucide="user" class="w-10 h-10 flex items-center justify-center text-green-400 rounded-full bg-zinc-700 shadow-lg p-2 shrink-0"></i>
+                        <div class="min-w-0">
+                            <p class="text-[9px] text-green-400 uppercase tracking-widest font-bold">Developer</p>
+                            <p class="text-sm text-white font-bold truncate block group-hover:underline">Tomas Gorjux</p>
+                        </div>
+                        <i data-lucide="external-link" class="w-4 h-4 text-zinc-400 ml-auto opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                    </div>
+                </a>
+            </div>
+        </aside>
+
+        <main class="flex-1 bg-[#121212] rounded-xl overflow-y-auto spotify-gradient relative custom-scrollbar flex flex-col">
+            <header class="sticky top-0 bg-[#121212]/80 backdrop-blur-xl p-3 sm:p-4 flex justify-between items-center z-30 border-b border-white/5">
+                <div class="flex gap-3 items-center flex-1">
+                    <button id="menu-btn" class="lg:hidden p-2 bg-black/60 rounded-full text-white" aria-label="Open sidebar menu" aria-expanded="false" aria-controls="mobile-sidebar"><i data-lucide="menu" class="w-5 h-5"></i></button>
+                    
+                    <div class="hidden sm:flex gap-2">
+                        <button class="bg-black/40 p-1.5 rounded-full text-zinc-400 hover:text-white" aria-label="Previous song"><i data-lucide="chevron-left"></i></button>
+                        <button class="bg-black/40 p-1.5 rounded-full text-zinc-400 hover:text-white" aria-label="Next song"><i data-lucide="chevron-right"></i></button>
+                    </div>
+
+                    <div class="relative flex-1 max-w-md group">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i data-lucide="search" class="w-4 h-4 text-zinc-400 group-focus-within:text-white"></i>
+                        </div>
+                        <input type="text" id="main-search-input" 
+                            placeholder="What's on your mind?" 
+                            class="w-full bg-[#242424] hover:bg-[#2a2a2a] focus:bg-[#2a2a2a] border border-transparent focus:border-zinc-500 rounded-full py-2 sm:py-2.5 pl-10 pr-10 text-xs sm:text-sm outline-none transition-all">
+                        <button id="clear-search" class="absolute inset-y-0 right-0 pr-3 flex items-center text-zinc-400 hover:text-white hidden">
+                            <i data-lucide="circle-x" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-2 sm:gap-4 ml-2">
+                    <button class="hidden md:block bg-white text-black px-5 py-2 rounded-full text-sm font-bold hover:scale-105 transition">Upgrade</button>
+                    <button class="bg-black p-2 rounded-full border border-white/10 hover:border-zinc-500 transition"><i data-lucide="user" class="w-5 h-5 text-white"></i></button>
+                </div>
+            </header>
+
+            <section class="p-4 sm:p-8">
+                <div class="flex items-center justify-between mb-6">
+                    <h1 id="greeting" class="text-2xl sm:text-3xl font-black tracking-tight">Good evening</h1>
+                    <div id="search-count" class="text-[10px] font-bold text-green-500 uppercase tracking-widest hidden">Filtering...</div>
+                </div>
+                
+                <ul id="album-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-3 sm:gap-6">
+                </ul>
+            </section>
+        </main>
+    </div>
+
+    <footer class="h-20 sm:h-24 bg-black px-3 sm:px-4 flex items-center justify-between z-50">
+        <div class="flex items-center gap-3 w-auto sm:w-1/3 min-w-0">
+            <img id="player-art" src="https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?w=120&h=120&fit=crop" 
+                class="w-10 h-10 sm:w-14 sm:h-14 rounded-md shadow-lg object-cover flex-shrink-0">
+            <div class="truncate pr-2">
+                <p id="player-title" class="text-xs sm:text-sm font-bold text-white hover:underline cursor-pointer truncate">Select a song</p>
+                <p id="player-artist" class="text-[10px] sm:text-xs text-zinc-400 hover:text-white cursor-pointer truncate">Various Artists</p>
+            </div>
+            <button class="text-zinc-400 hover:text-green-500 transition-colors hidden sm:block">
+                <i data-lucide="heart" class="w-5 h-5"></i>
+            </button>
+        </div>
+
+        <div class="flex flex-col items-center flex-1 max-w-[50%] sm:max-w-[40%] gap-1 sm:gap-2">
+            <div class="flex items-center gap-4 sm:gap-6">
+                <button class="text-zinc-500 hover:text-white hidden sm:block" aria-label="Shuffle songs"><i data-lucide="shuffle" class="w-4 h-4"></i></button>
+                <button class="text-zinc-300 hover:text-white" aria-label="Previous track"><i data-lucide="skip-back" class="w-5 h-5 sm:w-6 sm:h-6 fill-current"></i></button>
+                <button id="master-play" class="bg-white text-black p-2 sm:p-2.5 rounded-full hover:scale-110 active:scale-95 transition play-btn-shadow" aria-label="Play current song">
+                    <i data-lucide="play" id="master-icon" class="w-5 h-5 sm:w-6 sm:h-6 fill-current"></i>
+                </button>
+                <button class="text-zinc-300 hover:text-white" aria-label="Next track"><i data-lucide="skip-forward" class="w-5 h-5 sm:w-6 sm:h-6 fill-current"></i></button>
+                <button class="text-zinc-500 hover:text-white hidden sm:block" aria-label="Repeat current song"><i data-lucide="repeat" class="w-4 h-4"></i></button>
+            </div>
+            <div class="flex items-center gap-2 w-full max-w-md">
+                <span class="text-[9px] sm:text-[10px] text-zinc-500 font-bold min-w-[25px] text-right">1:24</span>
+                <div class="h-1 flex-1 bg-zinc-800 rounded-full cursor-pointer group relative">
+                    <div class="h-full bg-white group-hover:bg-green-500 w-1/3 rounded-full transition-colors"></div>
+                    <div class="absolute top-1/2 left-1/3 -translate-y-1/2 w-3 h-3 bg-white rounded-full opacity-0 group-hover:opacity-100 shadow-xl"></div>
+                </div>
+                <span class="text-[9px] sm:text-[10px] text-zinc-500 font-bold min-w-[25px]">3:45</span>
+            </div>
+        </div>
+
+        <div class="hidden lg:flex items-center justify-end gap-4 w-1/3">
+            <button class="text-zinc-400 hover:text-white" aria-label="Open song queue"><i data-lucide="list-music" class="w-4 h-4"></i></button>
+            <div class="flex items-center gap-2 group w-24">
+                <i data-lucide="volume-2" class="w-4 h-4 text-zinc-400 group-hover:text-white" aria-label="Volume control"></i>
+                <div class="h-1 flex-1 bg-zinc-800 rounded-full overflow-hidden">
+                    <div class="h-full bg-white group-hover:bg-green-500 w-2/3"></div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        /**
+         * 1. DATA CONFIGURATION
+         */
+        const LIBRARY_DATA = [
+            { name: "Lofi Beats", type: "Playlist", author: "Tomas", img: "https://images.unsplash.com/photo-1516280440614-37939bbacd81?w=150&h=150&fit=crop" },
+            { name: "Gym Hype", type: "Playlist", author: "Spotify", img: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=150&h=150&fit=crop" },
+            { name: "Coding Focus", type: "Album", author: "Deep Focus", img: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=150&h=150&fit=crop" },
+            { name: "The Weeknd", type: "Artist", author: "Verified", img: "https://images.unsplash.com/photo-1493225255756-d9584f8606e9?w=150&h=150&fit=crop" },
+            { name: "Tame Impala", type: "Artist", author: "Verified", img: "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=150&h=150&fit=crop" }
+        ];
+
+        const ALBUM_DATA = [
+            { id: 1, title: "Midnight City", artist: "M83", img: "Songs Photos/Midnight_city.jpeg" },
+            { id: 2, title: "Starboy", artist: "The Weeknd", img: "Songs Photos/The_Weeknd_-_Starboy.png" },
+            { id: 3, title: "After Hours", artist: "The Weeknd", img: "Songs Photos/The_Weeknd_-_After_Hours.png" },
+            { id: 4, title: "Currents", artist: "Tame Impala", img: "Songs Photos/Tame_Impala_-_Currents.png" },
+            { id: 5, title: "Plastic Beach", artist: "Gorillaz", img: "Songs Photos/plastic beach.jpeg" },
+            { id: 6, title: "Runner", artist: "Djo", img: "Songs Photos/djo runner.jpg" },
+            { id: 7, title: "Levitating", artist: "Dua Lipa", img: "Songs Photos/levitating dua lipa.png" },
+            { id: 8, title: "Beat It", artist: "Michael Jackson", img: "Songs Photos/Beat_It.jpg" }
+        ];
+
+        // UI Selectors
+        const searchInput = document.getElementById('main-search-input');
+        const clearBtn = document.getElementById('clear-search');
+        const albumGrid = document.getElementById('album-grid');
+        const playlistContainer = document.getElementById('playlist-container');
+        const masterIcon = document.getElementById('master-icon');
+        const masterPlayBtn = document.getElementById('master-play');
+        let isPlaying = false; // Track play state
+
+        const updateIcons = () => lucide.createIcons();
+
+        /** Populate Library */
+        function initLibrary() {
+            playlistContainer.innerHTML = LIBRARY_DATA.map(item => `
+                <li class="flex items-center gap-3 hover:bg-zinc-800/50 p-2 rounded-lg cursor-pointer group transition-all duration-200">
+                    <img src="${item.img}" class="w-10 h-10 sm:w-12 sm:h-12 ${item.type === 'Artist' ? 'rounded-full' : 'rounded-md'} object-cover shadow-lg group-hover:scale-105 transition" alt="${item.name} ${item.type}">
+                    <div class="min-w-0">
+                        <p class="text-xs sm:text-sm font-semibold truncate text-zinc-200 group-hover:text-white">${item.name}</p>
+                        <p class="text-[10px] sm:text-xs text-zinc-500 font-medium">${item.type} • ${item.author}</p>
+                    </div>
+                </li>
+            `).join('');
+        }
+
+        /** Render Main Grid */
+        function renderContent(filter = "") {
+            const results = ALBUM_DATA.filter(a => 
+                a.title.toLowerCase().includes(filter.toLowerCase()) || 
+                a.artist.toLowerCase().includes(filter.toLowerCase())
+            );
+
+            document.getElementById('search-count').classList.toggle('hidden', filter === "");
+            clearBtn.classList.toggle('hidden', filter === "");
+            
+            albumGrid.innerHTML = results.map(album => `
+                <li class="album-card group bg-[#181818] p-3 sm:p-4 rounded-xl hover:bg-[#282828] transition-all duration-300 cursor-pointer relative" 
+                     onclick="playSong('${album.title}', '${album.artist}', '${album.img}')">
+                    <figure class="block">
+                        <div class="relative mb-3 sm:mb-4 aspect-square overflow-hidden rounded-lg shadow-xl">
+                            <img src="${album.img}" class="album-img absolute inset-0 w-full h-full object-cover" alt="${album.title} by ${album.artist}">
+                            <button class="absolute bottom-2 right-2 bg-green-500 text-black p-2.5 sm:p-3.5 rounded-full opacity-0 translate-y-4 lg:group-hover:opacity-100 lg:group-hover:translate-y-0 transition-all duration-300 play-btn-shadow hover:scale-105 active:scale-95" aria-label="Play ${album.title}">
+                                <i data-lucide="play" class="fill-current w-5 h-5 sm:w-6 sm:h-6"></i>
+                            </button>
+                        </div>
+                        <figcaption>
+                            <h3 class="font-bold truncate text-xs sm:text-sm text-white">${album.title}</h3>
+                            <p class="text-[10px] sm:text-xs text-zinc-400 mt-1 sm:mt-2 font-semibold">${album.artist}</p>
+                        </figcaption>
+                    </figure>
+                </li>
+            `).join('');
+            
+            updateIcons();
+        }
+
+        /** Player Logic */
+        function playSong(title, artist, img) {
+            document.getElementById('player-title').innerText = title;
+            document.getElementById('player-artist').innerText = artist;
+            const playerArt = document.getElementById('player-art');
+            playerArt.src = img;
+            playerArt.alt = `Album art for ${title} by ${artist}`;
+            masterIcon.setAttribute('data-lucide', 'pause');
+            masterPlayBtn.setAttribute('aria-label', 'Pause current song');
+            updateIcons();
+        }
+
+        masterPlayBtn.addEventListener('click', () => {
+            if (isPlaying) {
+                masterIcon.setAttribute('data-lucide', 'play');
+                masterPlayBtn.setAttribute('aria-label', 'Play current song');
+                isPlaying = false;
+            } else {
+                // If no song is selected, perhaps do nothing or play a default
+                // For now, assume a song is selected if the button is clicked.
+                masterIcon.setAttribute('data-lucide', 'pause');
+                masterPlayBtn.setAttribute('aria-label', 'Pause current song');
+                isPlaying = true;
+            }
+            updateIcons();
+        });
+
+        // Search Events
+        searchInput.oninput = (e) => renderContent(e.target.value);
+        clearBtn.onclick = () => { searchInput.value = ""; renderContent(""); };
+
+        // Sidebar Toggle Mobile Logic
+        const menuBtn = document.getElementById('menu-btn');
+        const sidebar = document.getElementById('mobile-sidebar');
+        const overlay = document.getElementById('sidebar-overlay');
+        const closeSidebar = document.getElementById('close-sidebar');
+
+        const toggleMenu = () => {
+            const isSidebarOpen = sidebar.classList.toggle('sidebar-open');
+            overlay.classList.toggle('hidden');
+            menuBtn.setAttribute('aria-expanded', isSidebarOpen);
+        };
+
+        menuBtn.onclick = toggleMenu;
+        closeSidebar.onclick = toggleMenu;
+        overlay.onclick = toggleMenu;
+
+        // Auto Greeting
+        const hour = new Date().getHours();
+        document.getElementById('greeting').innerText = hour < 12 ? "Good morning" : hour < 18 ? "Good afternoon" : "Good evening";
+
+        initLibrary();
+        renderContent();
+    </script>
+</body>
+</html>

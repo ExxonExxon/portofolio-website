@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="An exhaustive technical documentation of modern web structures, protocols, and UX design, presented in a Wikipedia-like format.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Playfair+Display:wght@700&display=swap">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Tomas Gorjux | WikiClone</title>
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Tomas Gorjux | WikiClone: The Modern Website">
+    <meta property="og:description" content="An exhaustive technical documentation of modern web structures, protocols, and UX design, presented in a Wikipedia-like format.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://tomasgorjux.net/Wikipedia%20Refined/index.html">
+    <meta property="og:image" content="https://tomasgorjux.net/Assets/wikipedia-refined-preview.png"> <!-- Replace with an actual preview image URL -->
+    
+            <!-- Twitter Card Meta Tags -->
+            <meta name="twitter:card" content="summary_large_image">
+            <meta name="twitter:title" content="Tomas Gorjux | WikiClone: The Modern Website">
+            <meta name="twitter:description" content="An exhaustive technical documentation of modern web structures, protocols, and UX design, presented in a Wikipedia-like format.">
+            <meta name="twitter:image" content="https://tomasgorjux.net/Assets/wikipedia-refined-preview.png"> <!-- Replace with an actual preview image URL -->    
+                    <!-- Schema.org JSON-LD for Article -->    
+                <script type="application/ld+json">
+                {
+                  "@context": "https://schema.org",
+                  "@type": "Article",
+                  "headline": "The Modern Website: An exhaustive technical documentation",
+                  "image": "https://tomasgorjux.net/Assets/wikipedia-refined-preview.png", 
+                  "datePublished": "2026-02-18T00:00:00Z", 
+                  "dateModified": "2026-02-18T00:00:00Z", 
+                  "author": {
+                    "@type": "Person",
+                    "name": "Tomas Gorjux",
+                    "url": "https://tomasgorjux.net/"
+                  },
+                  "publisher": {
+                    "@type": "Organization",
+                    "name": "WikiLight Foundation", 
+                    "logo": {
+                      "@type": "ImageObject",
+                      "url": "https://tomasgorjux.net/Assets/tg-logo.png" 
+                    }
+                  },
+                  "description": "A comprehensive overview of web structures, governing protocols, and the psychological impact of UX-driven design in 2026, presented in a refined Wikipedia style."
+                }
+                </script>    
+              <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%2250%%22 x=%2250%%22 dominant-baseline=%22central%22 text-anchor=%22middle%22 fill=%22white%22 font-family=%22sans-serif%22 font-weight=%22900%22 font-size=%2275%22>TG</text></svg>">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Playfair+Display:wght@700&display=swap');
+        
+        body { font-family: 'Inter', sans-serif; }
+        .serif { font-family: 'Playfair Display', serif; }
+
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #3f3f46; border-radius: 10px; }
+        
+        html { scroll-behavior: smooth; scroll-padding-top: 6rem; }
+
+        .nav-link {
+            position: relative;
+            transition: all 0.2s ease;
+            padding: 8px 12px; /* Add padding */
+            border-radius: 6px; /* Slightly round corners */
+        }
+        .nav-link:hover {
+            color: #ffffff;
+            transform: translateX(4px);
+            background-color: rgba(255, 255, 255, 0.05); /* Subtle background tint */
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            left: 4px; /* Adjust position relative to new padding */
+            top: 50%;
+            width: 0px;
+            height: 0px;
+            background: #4f46e5;
+            border-radius: 50%;
+            transform: translateY(-50%);
+            transition: all 0.2s ease;
+        }
+        .nav-link:hover::after { width: 6px; height: 6px; left: -8px; }
+
+        /* Mobile Sidebar Overlay */
+        #sidebar-overlay {
+            display: none;
+        }
+        body.sidebar-open #sidebar-overlay {
+            display: block;
+        }
+        body.sidebar-open aside {
+            transform: translateX(0);
+        }
+    </style>
+</head>
+<body class="bg-black text-zinc-400 antialiased selection:bg-indigo-500/30 overflow-x-hidden">
+
+    <header class="md:hidden fixed top-0 left-0 right-0 h-16 bg-black border-b border-white/5 z-40 flex items-center justify-between px-6">
+        <div class="flex items-center gap-2">
+            <h1 class="text-xs font-black text-white tracking-tighter uppercase">WikiClone</h1>
+            <span class="text-[8px] text-zinc-600 font-bold tracking-widest">v2.0.67</span>
+        </div>
+        <button id="menu-open" class="p-2 text-white" aria-label="Open sidebar menu" aria-expanded="false" aria-controls="main-sidebar">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+            </svg>
+        </button>
+    </header>
+
+    <div id="sidebar-overlay" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 md:hidden"></div>
+
+    <div class="flex min-h-screen">
+        
+        <aside id="main-sidebar" class="fixed inset-y-0 left-0 z-50 w-64 bg-black border-r border-white/5 transition-transform duration-300 transform -translate-x-full md:translate-x-0 md:sticky md:flex md:flex-col md:w-56 h-screen overflow-y-auto" role="navigation">
+            <div class="p-6 flex items-center justify-between md:block">
+                <div>
+                    <div class="flex items-center gap-2 mb-1">
+                        <h1 class="text-sm font-black text-white tracking-tighter uppercase">WikiClone</h1>
+                    </div>
+                    <p class="text-[10px] text-zinc-500 font-medium tracking-widest">v2.0.67</p>
+                </div>
+                <button id="menu-close" class="md:hidden text-zinc-500" aria-label="Close sidebar menu">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+            
+            <nav class="flex-1 px-6 space-y-6 mt-4">
+                <div>
+                    <p class="text-[9px] font-black text-zinc-600 uppercase tracking-[0.2em] mb-4">Core Knowledge</p>
+                    <ul class="space-y-3">
+                        <li><a href="#definition" class="nav-link-mobile nav-link block text-xs font-medium">01. Definition</a></li>
+                        <li><a href="#architecture" class="nav-link-mobile nav-link block text-xs font-medium">02. Architecture</a></li>
+                        <li><a href="#performance" class="nav-link-mobile nav-link block text-xs font-medium">03. Performance</a></li>
+                        <li><a href="#seo" class="nav-link-mobile nav-link block text-xs font-medium">04. Search Systems</a></li>
+                        <li><a href="#security" class="nav-link-mobile nav-link block text-xs font-medium">05. Cyber Security</a></li>
+                    </ul>
+                </div>
+            </nav>
+
+            <a href="../index.html" target="_blank" rel="noopener noreferrer" 
+               class="block p-3 m-2 mt-auto bg-zinc-900/50 hover:bg-zinc-800 border border-white/5 rounded-xl transition-all duration-300 cursor-pointer group active:scale-[0.98]">
+                <div class="flex items-center gap-3">
+                    <i class="fas fa-user-circle text-indigo-400 text-3xl shrink-0"></i> <!-- Example icon -->
+                    <div class="min-w-0">
+                        <p class="text-[9px] text-indigo-400 uppercase tracking-widest font-bold">Contributor</p>
+                        <p class="text-sm text-white font-bold truncate block group-hover:underline">Tomas Gorjux</p>
+                    </div>
+                    <i class="fas fa-external-link-alt text-zinc-500 text-sm ml-auto opacity-0 group-hover:opacity-100 transition-opacity"></i> <!-- Icon on hover -->
+                </div>
+            </a>
+        </aside>
+
+        <main class="flex-1 bg-zinc-900 px-6 py-32 md:py-16 md:px-12 lg:px-24">
+            <div class="max-w-4xl mx-auto">
+                
+                <header class="mb-16">
+                    <h1 class="serif text-4xl md:text-6xl text-white mb-6 leading-tight">The Modern Website</h1>
+                    <p class="text-zinc-300 max-w-xl text-sm leading-relaxed">
+                        An exhaustive technical documentation of web structures, the protocols that govern them, and the psychological impact of UX-driven design in 2026.
+                    </p>
+                </header>
+
+                <section id="definition" class="mb-24">
+                    <div class="flex items-center gap-4 mb-6">
+                        <span class="h-px flex-1 bg-zinc-800"></span>
+                        <h2 class="text-xs font-black text-white uppercase tracking-[0.3em]">01 / Definition</h2>
+                    </div>
+                    <p class="text-zinc-300 text-base md:text-lg leading-relaxed mb-8">
+                        A website is no longer just a "page"; it is a distributed software application. By 2026, the distinction between a native OS application and a web-based interface has nearly vanished due to <span class="text-indigo-400">WebAssembly (WASM)</span> and the proliferation of <span class="text-white">Progressive Web Apps (PWAs)</span>.
+                    </p>
+                </section>
+
+                <section id="architecture" class="mb-24">
+                    <div class="flex items-center gap-4 mb-6">
+                        <span class="h-px flex-1 bg-zinc-800"></span>
+                        <h2 class="text-xs font-black text-white uppercase tracking-[0.3em]">02 / Architecture</h2>
+                    </div>
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                        <div>
+                            <h3 class="text-white font-bold mb-4">The Triad of the Web</h3>
+                            <div class="space-y-4">
+                                <div class="p-4 border border-zinc-700/50 rounded-xl bg-zinc-900/40">
+                                    <p class="text-indigo-400 font-bold text-xs mb-1">Structure (HTML5)</p>
+                                    <p class="text-xs text-zinc-500">The semantic backbone of the document, ensuring accessibility for screen readers and search bots.</p>
+                                </div>
+                                <div class="p-4 border border-zinc-700/50 rounded-xl bg-zinc-900/40">
+                                    <p class="text-indigo-400 font-bold text-xs mb-1">Presentation (CSS4)</p>
+                                    <p class="text-xs text-zinc-500">Utilizing container queries, subgrid, and hardware-accelerated animations for fluid UX.</p>
+                                </div>
+                                <div class="p-4 border border-zinc-700/50 rounded-xl bg-zinc-900/40">
+                                    <p class="text-indigo-400 font-bold text-xs mb-1">Logic (JavaScript/TS)</p>
+                                    <p class="text-xs text-zinc-500">Reactive frameworks that manage state and bridge the gap between user intent and server data.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-zinc-900/40 border border-zinc-700/50 p-6 md:p-8 rounded-3xl">
+                            <h4 class="text-white font-black text-[10px] uppercase tracking-widest mb-6">Server-Side vs Client-Side</h4>
+                            <div class="space-y-8">
+                                <div class="relative pl-6 border-l-2 border-zinc-800">
+                                    <div class="absolute -left-[5px] top-0 w-2 h-2 bg-indigo-500 rounded-full"></div>
+                                    <p class="text-white text-xs font-bold mb-1">SSR (Server Side Rendering)</p>
+                                    <p class="text-[11px] text-zinc-500">Faster initial load, better SEO, higher server cost.</p>
+                                </div>
+                                <div class="relative pl-6 border-l-2 border-zinc-800">
+                                    <div class="absolute -left-[5px] top-0 w-2 h-2 bg-zinc-600 rounded-full"></div>
+                                    <p class="text-white text-xs font-bold mb-1">CSR (Client Side Rendering)</p>
+                                    <p class="text-[11px] text-zinc-500">Smooth navigation, reduced server load, slower first paint.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="performance" class="mb-24">
+                    <div class="flex items-center gap-4 mb-6">
+                        <span class="h-px flex-1 bg-zinc-800"></span>
+                        <h2 class="text-xs font-black text-white uppercase tracking-[0.3em]">03 / Performance</h2>
+                    </div>
+                    <p class="text-zinc-300 mb-8 text-sm md:text-base">Performance is the foundation of UX. A delay of 100ms in load time can result in a 7% drop in conversions.</p>
+                    
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-sm border-separate border-spacing-y-2 min-w-[500px]">
+                            <thead>
+                                <tr class="text-zinc-600 text-[10px] font-black uppercase tracking-widest">
+                                    <th class="px-4">Metric</th>
+                                    <th class="px-4">Description</th>
+                                    <th class="px-4 text-right">Target</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="bg-black/30 text-zinc-300">
+                                    <td class="px-4 py-4 rounded-l-xl border-l border-white/5 font-bold">LCP</td>
+                                    <td class="px-4 py-4 text-xs text-zinc-500">Largest Contentful Paint</td>
+                                    <td class="px-4 py-4 rounded-r-xl border-r border-white/5 text-right font-mono text-emerald-500">&lt; 1.2s</td>
+                                </tr>
+                                <tr class="bg-black/30 text-zinc-300">
+                                    <td class="px-4 py-4 rounded-l-xl border-l border-white/5 font-bold">FID</td>
+                                    <td class="px-4 py-4 text-xs text-zinc-500">First Input Delay</td>
+                                    <td class="px-4 py-4 rounded-r-xl border-r border-white/5 text-right font-mono text-emerald-500">&lt; 10ms</td>
+                                </tr>
+                                <tr class="bg-black/30 text-zinc-300">
+                                    <td class="px-4 py-4 rounded-l-xl border-l border-white/5 font-bold">CLS</td>
+                                    <td class="px-4 py-4 text-xs text-zinc-500">Cumulative Layout Shift</td>
+                                    <td class="px-4 py-4 rounded-r-xl border-r border-white/5 text-right font-mono text-emerald-500">&lt; 0.05</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <section id="seo" class="mb-24">
+                    <div class="flex items-center gap-4 mb-6">
+                        <span class="h-px flex-1 bg-zinc-800"></span>
+                        <h2 class="text-xs font-black text-white uppercase tracking-[0.3em]">04 / Search Systems</h2>
+                    </div>
+                    <div class="prose prose-invert max-w-none">
+                        <p class="text-zinc-300 leading-relaxed text-sm md:text-base">
+                            Search Engine Optimization (SEO) has evolved into AIO (Artificial Intelligence Optimization). Websites must now be structured for both human readers and large language model (LLM) crawlers. 
+                        </p>
+                        <ul class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6 list-none p-0">
+                            <li class="flex items-center gap-3 bg-white/5 p-4 rounded-xl border border-white/5">
+                                <span class="w-2 h-2 bg-indigo-500 rounded-full"></span>
+                                <span class="text-xs font-bold text-white">JSON-LD Structured Data</span>
+                            </li>
+                            <li class="flex items-center gap-3 bg-white/5 p-4 rounded-xl border border-white/5">
+                                <span class="w-2 h-2 bg-indigo-500 rounded-full"></span>
+                                <span class="text-xs font-bold text-white">Semantic Header Hierarchy</span>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section id="security" class="mb-24">
+                    <div class="flex items-center gap-4 mb-6">
+                        <span class="h-px flex-1 bg-zinc-800"></span>
+                        <h2 class="text-xs font-black text-white uppercase tracking-[0.3em]">05 / Cyber Security</h2>
+                    </div>
+                    <div class="p-6 md:p-8 bg-gradient-to-br from-indigo-950/20 to-black border border-indigo-500/10 rounded-3xl">
+                        <h4 class="text-white font-bold mb-4">Encryption & Protection</h4>
+                        <p class="text-xs md:text-sm text-zinc-300 leading-relaxed mb-6">
+                            Modern websites utilize TLS 1.3 for data in transit and Content Security Policies (CSP) to prevent cross-site scripting (XSS) attacks. Security is no longer an add-on; it is an architectural requirement.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="text-[9px] font-black bg-zinc-800 text-zinc-400 px-3 py-1 rounded-full uppercase">HSTS</span>
+                            <span class="text-[9px] font-black bg-zinc-800 text-zinc-400 px-3 py-1 rounded-full uppercase">CORS</span>
+                            <span class="text-[9px] font-black bg-zinc-800 text-zinc-400 px-3 py-1 rounded-full uppercase">2FA-WebAuthn</span>
+                        </div>
+                    </div>
+                </section>
+
+                <footer class="mt-40 pb-12 border-t border-white/5">
+                    <div class="flex flex-col md:flex-row justify-between items-center py-8 gap-4">
+                        <div class="text-[10px] font-black text-zinc-600 uppercase tracking-[0.2em]">© 2026 WikiLight Foundation</div>
+                        <div class="flex gap-8 text-[10px] font-black text-zinc-600 uppercase tracking-widest">
+                            <a href="#" class="hover:text-white transition">Index</a>
+                            <a href="#" class="hover:text-white transition">Archives</a>
+                            <a href="#" class="hover:text-white transition">Contact</a>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        const body = document.body;
+        const menuOpen = document.getElementById('menu-open');
+        const menuClose = document.getElementById('menu-close');
+        const overlay = document.getElementById('sidebar-overlay');
+        const navLinks = document.querySelectorAll('.nav-link-mobile');
+
+        function toggleSidebar() {
+            const isSidebarOpen = body.classList.toggle('sidebar-open');
+            menuOpen.setAttribute('aria-expanded', isSidebarOpen);
+        }
+
+        menuOpen.addEventListener('click', toggleSidebar);
+        menuClose.addEventListener('click', toggleSidebar);
+        overlay.addEventListener('click', toggleSidebar);
+
+        // Close sidebar when a link is clicked
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                body.classList.remove('sidebar-open');
+            });
+        });
+    </script>
+
+</body>
+</html>
