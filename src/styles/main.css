@@ -1,51 +1,38 @@
 @tailwind base;
-@tailwind components;
 @tailwind utilities;
 
+/* Base */
 body {
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
 }
 
-.typewriter-cursor { display: inline-block; width: 3px; background-color: #6366f1; margin-left: 4px; animation: blink 0.8s steps(2, start) infinite; height: 1em; vertical-align: middle; }
-@keyframes blink { to { visibility: hidden; } }
-
-.card { transition: transform 0.3s ease-out, box-shadow 0.3s ease-out; }
-.card:hover { transform: translateY(-4px); box-shadow: 0 20px 60px rgba(0,0,0,0.08); }
-.dark .card:hover { box-shadow: 0 20px 60px rgba(0,0,0,0.4); }
-
-.photo-card img { will-change: transform; backface-visibility: hidden; }
-.photo-card:hover img { transform: scale(1.05); }
-
-#mobileMenu {
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  transform: translateY(-10px);
-  opacity: 0;
-  pointer-events: none;
-  clip-path: circle(0% at 90% 10%);
-  will-change: transform, opacity, clip-path;
+/* Typography — Typewriter Cursor */
+.typewriter-cursor {
+  display: inline-block;
+  width: 3px;
+  background-color: #6366f1;
+  margin-left: 4px;
+  animation: blink 0.8s steps(2, start) infinite;
+  height: 1em;
+  vertical-align: middle;
 }
-#mobileMenu.active { transform: translateY(0); opacity: 1; pointer-events: auto; clip-path: circle(150% at 90% 10%); }
-
-#menuIcon path {
-  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+@keyframes blink {
+  to {
+    visibility: hidden;
+  }
 }
 
+/* Photo Cards */
+.photo-card img {
+  will-change: transform;
+  backface-visibility: hidden;
+}
+.photo-card:hover img {
+  transform: scale(1.05);
+}
+
+/* Modal */
 #universalModal.flex {
   display: flex !important;
 }
-
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border-width: 0;
-}
-
-[data-aos] { pointer-events: none; }
-[data-aos].aos-animate { pointer-events: auto; }

@@ -1,22 +1,22 @@
-import '../styles/wikipedia.css'
+import "../styles/wikipedia.css";
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
   const body = document.body;
-  const menuOpen = document.getElementById('menu-open');
-  const menuClose = document.getElementById('menu-close');
-  const overlay = document.getElementById('sidebar-overlay');
-  const navLinks = document.querySelectorAll('.nav-link-mobile');
+  const menuOpen = document.getElementById("menu-open");
+  const menuClose = document.getElementById("menu-close");
+  const overlay = document.getElementById("sidebar-overlay");
+  const navLinks = document.querySelectorAll(".nav-link-mobile");
 
   function toggleSidebar() {
-    const isOpen = body.classList.toggle('sidebar-open');
-    menuOpen.setAttribute('aria-expanded', isOpen);
+    const isOpen = body.classList.toggle("sidebar-open");
+    menuOpen.setAttribute("aria-expanded", isOpen);
   }
 
-  menuOpen.addEventListener('click', toggleSidebar);
-  menuClose.addEventListener('click', toggleSidebar);
-  overlay.addEventListener('click', toggleSidebar);
+  menuOpen.addEventListener("click", toggleSidebar);
+  menuClose.addEventListener("click", toggleSidebar);
+  overlay.addEventListener("click", toggleSidebar);
 
-  navLinks.forEach(link => {
-    link.addEventListener('click', () => body.classList.remove('sidebar-open'));
+  navLinks.forEach((link) => {
+    link.addEventListener("click", () => body.classList.remove("sidebar-open"));
   });
 });

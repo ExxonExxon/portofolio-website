@@ -19,6 +19,7 @@ No lint/typecheck step — `build` is the only verification.
 ## Multi-page structure
 
 Two HTML entry points defined in `vite.config.js`:
+
 - `index.html` → entry `src/scripts/main.js`
 - `contact.html` → entry `src/scripts/contact.js`
 

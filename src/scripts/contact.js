@@ -1,7 +1,10 @@
-import '../styles/contact.css'
-import AOS from 'aos'
-import 'aos/dist/aos.css'
-import { initMobileMenu } from './nav.js'
+import "../styles/shared.css";
+import "../styles/contact.css";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { initMobileMenu } from "./nav.js";
+import { initThemeToggle } from "./theme.js";
 
-AOS.init({ duration: 800, once: true, disable: 'mobile' })
-initMobileMenu()
+AOS.init({ duration: 800, once: true, disable: "mobile" });
+initMobileMenu();
+initThemeToggle();

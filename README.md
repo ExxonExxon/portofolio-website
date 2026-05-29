@@ -26,15 +26,15 @@
 
 ## Tech Stack
 
-| Tool | Purpose |
-|---|---|
-| [Vite](https://vite.dev) | Build tool & dev server |
-| [Tailwind CSS](https://tailwindcss.com) | Utility-first styling |
-| [PostCSS](https://postcss.org) + [Autoprefixer](https://github.com/postcss/autoprefixer) | CSS processing |
-| [AOS](https://michalsnik.github.io/aos/) | Scroll animations |
-| [Font Awesome](https://fontawesome.com) | Icons (main & Facebook pages) |
-| [Lucide](https://lucide.dev) | Icons (Spotify page) |
-| [Formspree](https://formspree.io) | Contact form backend |
+| Tool                                                                                     | Purpose                       |
+| ---------------------------------------------------------------------------------------- | ----------------------------- |
+| [Vite](https://vite.dev)                                                                 | Build tool & dev server       |
+| [Tailwind CSS](https://tailwindcss.com)                                                  | Utility-first styling         |
+| [PostCSS](https://postcss.org) + [Autoprefixer](https://github.com/postcss/autoprefixer) | CSS processing                |
+| [AOS](https://michalsnik.github.io/aos/)                                                 | Scroll animations             |
+| [Font Awesome](https://fontawesome.com)                                                  | Icons (main & Facebook pages) |
+| [Lucide](https://lucide.dev)                                                             | Icons (Spotify page)          |
+| [Formspree](https://formspree.io)                                                        | Contact form backend          |
 
 ## Getting Started
 
