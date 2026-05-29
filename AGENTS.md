@@ -4,7 +4,8 @@ Personal portfolio site for Tomas Gorjux at `tomas.gorjux.net`.
 
 ## Stack
 
-Vite 8 + Tailwind 3.4 + vanilla JS (ESM). No TypeScript, no testing, no linter.
+Vite 8 + vanilla CSS + vanilla JS (ESM). No TypeScript, no testing, no linter.
+**Tailwind removed May 2026 — now uses pure CSS with custom properties.**
 
 ## Commands
 
@@ -12,9 +13,8 @@ Vite 8 + Tailwind 3.4 + vanilla JS (ESM). No TypeScript, no testing, no linter.
 npm run dev      # dev server on port 3000
 npm run build    # outputs to dist/
 npm run preview  # preview the built site
+npm run format   # prettier across all files
 ```
-
-No lint/typecheck step — `build` is the only verification.
 
 ## Multi-page structure
 
@@ -23,17 +23,24 @@ Two HTML entry points defined in `vite.config.js`:
 - `index.html` → entry `src/scripts/main.js`
 - `contact.html` → entry `src/scripts/contact.js`
 
-Both share `nav.js` for mobile menu. Each page has its own CSS in `src/styles/`.
+Both share `nav.js` + `theme.js` for mobile menu and dark mode.
+Each page has its own CSS in `src/styles/{main,contact}.css`.
 
-## Sub-projects (UI clones)
+Shared CSS architecture:
+- `src/styles/variables.css` — CSS custom properties (colors, shadows, transitions)
+- `src/styles/components.css` — all component classes (nav, cards, buttons, forms, modal, footer, etc.)
 
-HTML files in `dist/spotify-clone/`, `dist/facebook-clone/`, `dist/wikipedia-refined/` — **not tracked in source**. Their JS/CSS entry points are under `src/scripts/{spotify,facebook,wikipedia}.js` and `src/styles/{spotify,facebook,wikipedia}.css`. Vite picks them up via rollup code splitting from the `dist/` HTML files.
+## HTML Partials
 
-To rebuild everything including clones: `npm run build`.
+Nav and footer are extracted into `src/partials/` and injected at build time via
+a custom Vite plugin in `vite.config.js`. Use `<!-- @partial nav -->` and
+`<!-- @partial footer -->` placeholders.
 
 ## Dark mode
 
-Uses Tailwind `darkMode: 'class'` strategy. Theme persisted in `localStorage.theme` (`'dark'` | `'light'`). Falls back to `prefers-color-scheme: dark`. The inline `<script>` in `<head>` applies the class before paint to avoid flash.
+Uses `.dark` class on `<html>` (applied by inline `<script>` in `<head>` before
+paint to avoid flash). The `.dark` class switches CSS custom properties in
+`variables.css`. Login persisted in `localStorage.theme`.
 
 ## Contact form
 
@@ -47,10 +54,9 @@ Submits to Formspree (`https://formspree.io/f/mnjbaeag`). No backend code in rep
 
 ## Notable conventions
 
-- Font Awesome (free) via `@fortawesome/fontawesome-free` npm dependency for main/facebook pages
-- Lucide icons via `lucide` npm dep for Spotify page
+- Font Awesome (free) via `@fortawesome/fontawesome-free` npm dependency
 - AOS (Animate On Scroll) library used throughout
-- Cards use custom `.card` hover lift effect in CSS
-- Mobile menu uses clip-path animation pattern (repeated in both CSS files)
-- No Tailwind `@apply` used — all utility classes inline
-- No `<style>` imports in JS entry — just CSS file imports
+- Cards use `.card` class with hover lift effect in CSS
+- Mobile menu uses clip-path animation pattern
+- CSS custom properties handle all theming — dark mode is automatic via variable switching
+- Component classes named following BEM-inspired convention (`.card`, `.btn--cta`, `.feature-card--dev`, etc.)

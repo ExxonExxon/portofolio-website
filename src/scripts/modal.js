@@ -31,23 +31,24 @@ export function initPhotoModal() {
     modalDesc.textContent = desc;
     modalSettings.textContent = settings;
 
-    modal.classList.remove("hidden");
-    modal.classList.add("flex");
-    setTimeout(() => {
-      modalContent.classList.remove("scale-95", "opacity-0");
-      modalContent.classList.add("scale-100", "opacity-100");
-    }, DURATION.MODAL_OPEN);
+    modal.classList.add("is-open");
+
+    /* Trigger the enter animation on next frame */
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        modalContent.classList.add("is-visible");
+      });
+    });
 
     originalOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
   }
 
   function closeModal() {
-    modalContent.classList.remove("scale-100", "opacity-100");
-    modalContent.classList.add("scale-95", "opacity-0");
+    modalContent.classList.remove("is-visible");
+
     setTimeout(() => {
-      modal.classList.add("hidden");
-      modal.classList.remove("flex");
+      modal.classList.remove("is-open");
       document.body.style.overflow = originalOverflow || "";
     }, DURATION.MODAL_CLOSE);
   }
@@ -65,7 +66,7 @@ export function initPhotoModal() {
 
   /* Close on Escape key */
   document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && !modal.classList.contains("hidden")) {
+    if (e.key === "Escape" && modal.classList.contains("is-open")) {
       closeModal();
     }
   });

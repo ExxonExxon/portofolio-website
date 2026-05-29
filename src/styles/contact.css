@@ -1,13 +1,5 @@
-@tailwind base;
-@tailwind utilities;
+/* ─── Input Focus Override ─── */
 
-/* Base */
-body {
-  -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
-}
-
-/* Input Focus */
 input:focus,
 textarea:focus {
   outline: none;

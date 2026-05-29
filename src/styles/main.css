@@ -1,13 +1,5 @@
-@tailwind base;
-@tailwind utilities;
+/* ─── Typewriter Cursor ─── */
 
-/* Base */
-body {
-  -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
-}
-
-/* Typography — Typewriter Cursor */
 .typewriter-cursor {
   display: inline-block;
   width: 3px;
@@ -17,22 +9,9 @@ body {
   height: 1em;
   vertical-align: middle;
 }
+
 @keyframes blink {
   to {
     visibility: hidden;
   }
-}
-
-/* Photo Cards */
-.photo-card img {
-  will-change: transform;
-  backface-visibility: hidden;
-}
-.photo-card:hover img {
-  transform: scale(1.05);
-}
-
-/* Modal */
-#universalModal.flex {
-  display: flex !important;
 }

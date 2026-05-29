@@ -1,4 +1,5 @@
-import "../styles/shared.css";
+import "../styles/variables.css";
+import "../styles/components.css";
 import "../styles/contact.css";
 import AOS from "aos";
 import "aos/dist/aos.css";

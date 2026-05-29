@@ -7,11 +7,11 @@
       name="description"
       content="Tomas Gorjux - Professional Web Developer and Photographer based in Australia."
     />
-    <title>Tomas Gorjux | Developer & Photographer</title>
+    <title>Tomas Gorjux | Developer &amp; Photographer</title>
 
     <meta
       property="og:title"
-      content="Tomas Gorjux | Developer & Photographer"
+      content="Tomas Gorjux | Developer &amp; Photographer"
     />
     <meta
       property="og:description"
@@ -27,7 +27,7 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta
       name="twitter:title"
-      content="Tomas Gorjux | Developer & Photographer"
+      content="Tomas Gorjux | Developer &amp; Photographer"
     />
     <meta
       name="twitter:description"
@@ -87,73 +87,47 @@
       href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%2250%%22 x=%2250%%22 dominant-baseline=%22central%22 text-anchor=%22middle%22 fill=%22white%22 font-family=%22sans-serif%22 font-weight=%22900%22 font-size=%2275%22>TG</text></svg>"
     />
   </head>
-  <body
-    class="bg-stone-50 text-neutral-800 antialiased transition-colors duration-300 dark:bg-neutral-950 dark:text-neutral-300"
-  >
+  <body class="page">
     <!-- @partial nav -->
 
     <!-- Main Content -->
-    <main class="mx-auto max-w-[90rem] px-5 pb-12 pt-28 sm:px-8 lg:px-10">
+    <main class="container page-content">
       <!-- Hero Section -->
       <section
         id="hero"
-        class="card mb-8 p-8 text-center sm:p-14 lg:p-16"
+        class="card hero-card"
         data-aos="fade-up"
         data-aos-duration="1000"
       >
-        <h1
-          class="mb-8 min-h-[2.2em] text-5xl font-extrabold leading-[1.1] tracking-tighter text-neutral-900 dark:text-white sm:text-6xl md:min-h-[1.1em] md:text-8xl"
-        >
-          I am <br /><span id="typewriter" class="text-indigo-500"></span
+        <h1 class="hero-heading">
+          I am <br /><span id="typewriter" class="typewriter-accent"></span
           ><span class="typewriter-cursor" aria-hidden="true">&nbsp;</span>
         </h1>
-        <p
-          class="mx-auto mb-12 max-w-2xl text-lg font-light leading-relaxed text-neutral-500 dark:text-neutral-400 sm:text-xl md:text-2xl"
-        >
+        <p class="hero-subtitle">
           Making perfect websites blazing fast for cheap.
         </p>
-        <a
-          href="contact.html"
-          class="inline-flex transform items-center rounded-full bg-neutral-900 px-10 py-5 text-sm font-bold uppercase tracking-widest text-white shadow-lg transition-all duration-300 will-change-transform hover:scale-105 hover:bg-indigo-600 hover:text-white active:scale-95 dark:bg-white dark:text-neutral-900 dark:hover:bg-indigo-600 dark:hover:text-white"
-        >
-          Get In Touch
-        </a>
+        <a href="contact.html" class="btn btn--cta"> Get In Touch </a>
       </section>
 
-      <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
+      <div class="content-grid">
         <!-- About Section -->
         <section
           id="about"
-          class="card p-7 md:row-span-2 lg:p-9"
+          class="card content-card md:row-span-2"
           data-aos="fade-up"
         >
-          <h2
-            class="mb-6 text-4xl font-extrabold leading-tight tracking-tighter text-neutral-900 dark:text-white md:text-5xl"
-          >
-            About Me
-          </h2>
-          <p
-            class="mb-8 text-base font-light leading-relaxed text-neutral-500 dark:text-neutral-400"
-          >
+          <h2 class="about-heading">About Me</h2>
+          <p class="about-text">
             My name is Tomas Gorjux, originally from Europe and currently
             residing in Australia. I specialise in creating websites for
             businesses and individuals, driven by a lifelong passion for coding
             and web design.
           </p>
 
-          <div class="space-y-4">
-            <div
-              class="flex items-start gap-4 rounded-2xl border border-indigo-100 bg-indigo-50 p-4 dark:border-indigo-500/10 dark:bg-indigo-500/5"
-            >
-              <div
-                class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-indigo-100 dark:bg-indigo-500/10"
-              >
-                <svg
-                  class="h-5 w-5 text-indigo-500"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
+          <div class="about-feature-list">
+            <div class="feature-card feature-card--dev">
+              <div class="feature-icon feature-icon--dev">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path
                     stroke-linecap="round"
                     stroke-linejoin="round"
@@ -163,30 +137,16 @@
                 </svg>
               </div>
               <div>
-                <h3
-                  class="mb-1 text-sm font-bold text-neutral-900 dark:text-white"
-                >
-                  Development
-                </h3>
-                <p
-                  class="text-sm font-light text-neutral-400 dark:text-neutral-500"
-                >
+                <h3 class="feature-title">Development</h3>
+                <p class="feature-desc">
                   Clean, scalable code with performance as the main priority.
                 </p>
               </div>
             </div>
-            <div
-              class="flex items-start gap-4 rounded-2xl border border-emerald-100 bg-emerald-50 p-4 dark:border-emerald-500/10 dark:bg-emerald-500/5"
-            >
-              <div
-                class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-emerald-100 dark:bg-emerald-500/10"
-              >
-                <svg
-                  class="h-5 w-5 text-emerald-500"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
+
+            <div class="feature-card feature-card--efficiency">
+              <div class="feature-icon feature-icon--efficiency">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path
                     stroke-linecap="round"
                     stroke-linejoin="round"
@@ -196,30 +156,16 @@
                 </svg>
               </div>
               <div>
-                <h3
-                  class="mb-1 text-sm font-bold text-neutral-900 dark:text-white"
-                >
-                  Efficiency
-                </h3>
-                <p
-                  class="text-sm font-light text-neutral-400 dark:text-neutral-500"
-                >
+                <h3 class="feature-title">Efficiency</h3>
+                <p class="feature-desc">
                   Optimized workflows ensure your site is delivered fast.
                 </p>
               </div>
             </div>
-            <div
-              class="flex items-start gap-4 rounded-2xl border border-orange-100 bg-orange-50 p-4 dark:border-orange-500/10 dark:bg-orange-500/5"
-            >
-              <div
-                class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-orange-100 dark:bg-orange-500/10"
-              >
-                <svg
-                  class="h-5 w-5 text-orange-500"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
+
+            <div class="feature-card feature-card--simplicity">
+              <div class="feature-icon feature-icon--simplicity">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path
                     stroke-linecap="round"
                     stroke-linejoin="round"
@@ -229,33 +175,27 @@
                 </svg>
               </div>
               <div>
-                <h3
-                  class="mb-1 text-sm font-bold text-neutral-900 dark:text-white"
-                >
-                  Simplicity
-                </h3>
-                <p
-                  class="text-sm font-light text-neutral-400 dark:text-neutral-500"
-                >
+                <h3 class="feature-title">Simplicity</h3>
+                <p class="feature-desc">
                   Removing the noise to focus on what matters most.
                 </p>
               </div>
             </div>
           </div>
 
-          <div
-            class="mt-8 border-t border-neutral-200 pt-6 dark:border-neutral-800"
-          >
-            <a
-              href="contact.html"
-              class="group inline-flex transform items-center rounded-full bg-indigo-600 px-6 py-3 text-xs font-bold uppercase tracking-widest text-white transition-all duration-300 hover:bg-indigo-700 active:scale-95"
-            >
+          <div class="section-divider">
+            <a href="contact.html" class="btn btn--about">
               Contact Me
               <svg
-                class="ml-2 h-3.5 w-3.5 transform transition-transform duration-300 group-hover:translate-x-1"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
+                style="
+                  width: 0.875rem;
+                  height: 0.875rem;
+                  margin-left: 0.5rem;
+                  transition: transform 300ms;
+                "
               >
                 <path
                   stroke-linecap="round"
@@ -271,55 +211,27 @@
         <!-- Skills Section -->
         <section
           id="skills"
-          class="card p-7 md:col-span-2 lg:p-9"
+          class="card content-card content-grid__wide"
           data-aos="fade-up"
         >
           <span class="section-label">Expertise</span>
           <h2 class="section-heading">My Skills.</h2>
-          <div class="grid grid-cols-2 gap-4 sm:grid-cols-4">
-            <div
-              class="group flex flex-col items-center rounded-2xl border border-neutral-200 bg-neutral-50 p-5 transition-colors duration-300 hover:border-orange-300 dark:border-neutral-800 dark:bg-neutral-800/50 dark:hover:border-orange-500/30"
-            >
-              <i
-                class="fab fa-html5 mb-3 text-3xl text-orange-400 transition-transform duration-300 group-hover:scale-110"
-              ></i>
-              <span
-                class="text-xs font-bold text-neutral-700 dark:text-neutral-300"
-                >HTML5 / CSS3</span
-              >
+          <div class="skills-grid">
+            <div class="skill-card skill-card--html">
+              <i class="fab fa-html5"></i>
+              <span class="skill-card__name">HTML5 / CSS3</span>
             </div>
-            <div
-              class="group flex flex-col items-center rounded-2xl border border-neutral-200 bg-neutral-50 p-5 transition-colors duration-300 hover:border-yellow-300 dark:border-neutral-800 dark:bg-neutral-800/50 dark:hover:border-yellow-500/30"
-            >
-              <i
-                class="fab fa-js-square mb-3 text-3xl text-yellow-400 transition-transform duration-300 group-hover:scale-110"
-              ></i>
-              <span
-                class="text-xs font-bold text-neutral-700 dark:text-neutral-300"
-                >JavaScript</span
-              >
+            <div class="skill-card skill-card--js">
+              <i class="fab fa-js-square"></i>
+              <span class="skill-card__name">JavaScript</span>
             </div>
-            <div
-              class="group flex flex-col items-center rounded-2xl border border-neutral-200 bg-neutral-50 p-5 transition-colors duration-300 hover:border-blue-300 dark:border-neutral-800 dark:bg-neutral-800/50 dark:hover:border-blue-500/30"
-            >
-              <i
-                class="fas fa-camera mb-3 text-3xl text-blue-400 transition-transform duration-300 group-hover:scale-110"
-              ></i>
-              <span
-                class="text-xs font-bold text-neutral-700 dark:text-neutral-300"
-                >Photography</span
-              >
+            <div class="skill-card skill-card--photo">
+              <i class="fas fa-camera"></i>
+              <span class="skill-card__name">Photography</span>
             </div>
-            <div
-              class="group flex flex-col items-center rounded-2xl border border-neutral-200 bg-neutral-50 p-5 transition-colors duration-300 hover:border-cyan-300 dark:border-neutral-800 dark:bg-neutral-800/50 dark:hover:border-cyan-500/30"
-            >
-              <i
-                class="fas fa-paint-brush mb-3 text-3xl text-cyan-400 transition-transform duration-300 group-hover:scale-110"
-              ></i>
-              <span
-                class="text-xs font-bold text-neutral-700 dark:text-neutral-300"
-                >Tailwind CSS</span
-              >
+            <div class="skill-card skill-card--tailwind">
+              <i class="fas fa-paint-brush"></i>
+              <span class="skill-card__name">Tailwind CSS</span>
             </div>
           </div>
         </section>
@@ -327,21 +239,15 @@
         <!-- Projects Section -->
         <section
           id="projects"
-          class="card p-7 md:col-span-2 lg:p-9"
+          class="card content-card content-grid__wide"
           data-aos="fade-up"
         >
           <span class="section-label">Selected Work</span>
           <h2 class="section-heading">Projects.</h2>
-          <div
-            class="group flex items-center justify-between rounded-2xl border border-neutral-200 bg-neutral-50 p-5 transition-all duration-300 hover:border-indigo-300 dark:border-neutral-800 dark:bg-neutral-800/50 dark:hover:border-indigo-500/30"
-          >
+          <div class="project-card">
             <div>
-              <h3 class="font-bold text-neutral-900 dark:text-white">
-                GA Veterinary
-              </h3>
-              <p
-                class="mt-1 text-sm font-light text-neutral-400 dark:text-neutral-500"
-              >
+              <h3 class="project-card__title">GA Veterinary</h3>
+              <p class="project-card__desc">
                 Wildlife medical device manufacturer website.
               </p>
             </div>
@@ -349,7 +255,7 @@
               href="https://ga-veterinary.com/"
               target="_blank"
               rel="noopener noreferrer"
-              class="ml-6 whitespace-nowrap text-sm font-bold text-indigo-500 transition-colors duration-300 hover:text-indigo-700 dark:text-indigo-400 dark:hover:text-indigo-300"
+              class="project-card__link"
             >
               GA Veterinary &nbsp;→
             </a>
@@ -357,18 +263,14 @@
         </section>
 
         <!-- Photography Gallery -->
-        <section id="photography" class="md:col-span-3" data-aos="fade-up">
-          <div class="mb-8">
+        <section id="photography" class="content-grid__full" data-aos="fade-up">
+          <div class="gallery-heading">
             <span class="section-label">Visual Gallery</span>
-            <h2
-              class="text-3xl font-extrabold tracking-tighter text-neutral-900 dark:text-white md:text-4xl"
-            >
-              Photography.
-            </h2>
+            <h2>Photography.</h2>
           </div>
-          <div class="grid grid-cols-1 gap-5 md:grid-cols-3">
+          <div class="gallery-grid">
             <figure
-              class="photo-card card group relative cursor-pointer overflow-hidden"
+              class="photo-card card"
               data-aos="zoom-in"
               data-name="Cape Barren Goose"
               data-settings="Nikon D3100 • 105mm • f/5.6"
@@ -379,16 +281,13 @@
                 decoding="async"
                 src="/assets/photography-images/dsc_0012-bird-phillip-island-large.webp"
                 alt="Cape Barren Goose"
-                class="h-96 w-full object-cover transition-all duration-700 group-hover:scale-105"
               />
-              <div
-                class="absolute inset-0 flex flex-col items-center justify-center bg-black/30 opacity-0 transition-all duration-300 group-hover:opacity-100"
-              >
-                <p class="photo-btn">View Story</p>
+              <div class="photo-card__overlay">
+                <p>View Story</p>
               </div>
             </figure>
             <figure
-              class="photo-card card group relative cursor-pointer overflow-hidden"
+              class="photo-card card"
               data-aos="zoom-in"
               data-name="Seagull"
               data-settings="Nikon D3100 • 85mm • f/7.1"
@@ -399,16 +298,13 @@
                 decoding="async"
                 src="/assets/photography-images/dsc_0095-wilsn-prom-large.webp"
                 alt="Seagull"
-                class="h-96 w-full object-cover transition-all duration-700 group-hover:scale-105"
               />
-              <div
-                class="absolute inset-0 flex items-center justify-center bg-black/30 opacity-0 transition-all duration-300 group-hover:opacity-100"
-              >
-                <p class="photo-btn">View Story</p>
+              <div class="photo-card__overlay">
+                <p>View Story</p>
               </div>
             </figure>
             <figure
-              class="photo-card card group relative cursor-pointer overflow-hidden"
+              class="photo-card card"
               data-aos="zoom-in"
               data-name="Pink Flower"
               data-settings="Nikon D3100 • 105mm • f/7.1"
@@ -419,12 +315,9 @@
                 decoding="async"
                 src="/assets/photography-images/dsc_0108-flower-large.webp"
                 alt="Pink Flower"
-                class="h-96 w-full object-cover transition-all duration-700 group-hover:scale-105"
               />
-              <div
-                class="absolute inset-0 flex items-center justify-center bg-black/30 opacity-0 transition-all duration-300 group-hover:opacity-100"
-              >
-                <p class="photo-btn">View Story</p>
+              <div class="photo-card__overlay">
+                <p>View Story</p>
               </div>
             </figure>
           </div>
@@ -432,32 +325,18 @@
       </div>
     </main>
 
-    <!-- Photo Modal Overlay -->
+    <!-- Photo Modal -->
     <div
       id="universalModal"
-      class="fixed inset-0 z-[100] hidden items-center justify-center overflow-hidden p-4 md:p-12"
+      class="modal-overlay"
       aria-hidden="true"
       role="dialog"
       aria-modal="true"
     >
-      <div
-        class="absolute inset-0 bg-black/95 backdrop-blur-2xl"
-        id="modalBackdrop"
-      ></div>
-      <div
-        class="relative flex h-[90vh] w-full max-w-6xl scale-95 flex-col overflow-hidden rounded-5xl border border-white/5 bg-zinc-950 opacity-0 shadow-2xl transition-all duration-300 ease-out md:h-[80vh] md:flex-row"
-        id="modalContent"
-      >
-        <button
-          class="absolute right-6 top-6 z-20 text-white/50 transition-colors hover:text-white"
-          id="modalCloseBtn"
-        >
-          <svg
-            class="h-8 w-8"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
+      <div id="modalBackdrop" class="modal-backdrop"></div>
+      <div id="modalContent" class="modal-content">
+        <button id="modalCloseBtn" class="modal-close-btn">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path
               stroke-linecap="round"
               stroke-linejoin="round"
@@ -467,40 +346,18 @@
           </svg>
         </button>
 
-        <div class="relative h-1/2 w-full bg-black md:h-full md:w-2/3">
-          <img
-            id="modalImage"
-            src=""
-            alt="Gallery Image"
-            class="h-full w-full object-contain"
-          />
+        <div class="modal-image-area">
+          <img id="modalImage" src="" alt="Gallery Image" />
         </div>
 
-        <div
-          class="flex h-1/2 w-full flex-col justify-center border-l border-white/5 bg-zinc-900/20 p-8 md:h-full md:w-1/3 md:p-12"
-        >
-          <span
-            class="mb-4 text-xs font-bold uppercase tracking-widest text-indigo-400"
-            id="modalCategory"
-            >Photography</span
-          >
-          <h3
-            class="mb-6 text-3xl font-extrabold leading-tight text-white md:text-4xl"
-            id="modalTitle"
-          >
-            Title
-          </h3>
-          <div class="space-y-6 font-light text-zinc-400">
-            <p id="modalDesc">Description goes here.</p>
-            <div class="border-t border-white/5 pt-6">
-              <p
-                class="mb-2 text-xs font-bold uppercase tracking-widest text-zinc-500"
-              >
-                Settings
-              </p>
-              <p class="font-mono text-sm text-white" id="modalSettings">
-                ISO 100
-              </p>
+        <div class="modal-info-panel">
+          <span class="modal-category" id="modalCategory">Photography</span>
+          <h3 class="modal-title" id="modalTitle">Title</h3>
+          <div class="space-y-6">
+            <p class="modal-desc" id="modalDesc">Description goes here.</p>
+            <div class="modal-settings-divider">
+              <p class="modal-settings-label">Settings</p>
+              <p class="modal-settings-value" id="modalSettings">ISO 100</p>
             </div>
           </div>
         </div>

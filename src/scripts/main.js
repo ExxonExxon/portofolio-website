@@ -1,4 +1,5 @@
-import "../styles/shared.css";
+import "../styles/variables.css";
+import "../styles/components.css";
 import "../styles/main.css";
 import "aos/dist/aos.css";
 import "@fortawesome/fontawesome-free/css/all.css";
