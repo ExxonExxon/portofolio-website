@@ -1,6 +1,0 @@
-/* ─── Input Focus Override ─── */
-
-input:focus,
-textarea:focus {
-  outline: none;
-}
