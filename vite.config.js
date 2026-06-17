@@ -3,8 +3,14 @@ import { resolve } from "path";
 import { readFileSync } from "fs";
 
 const partials = {
-  nav: readFileSync(resolve(import.meta.dirname, "src/partials/nav.html"), "utf-8").trim(),
-  footer: readFileSync(resolve(import.meta.dirname, "src/partials/footer.html"), "utf-8").trim(),
+  nav: readFileSync(
+    resolve(import.meta.dirname, "src/partials/nav.html"),
+    "utf-8",
+  ).trim(),
+  footer: readFileSync(
+    resolve(import.meta.dirname, "src/partials/footer.html"),
+    "utf-8",
+  ).trim(),
 };
 
 export default defineConfig({

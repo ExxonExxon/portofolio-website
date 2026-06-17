@@ -6,6 +6,6 @@ import "aos/dist/aos.css";
 import { initMobileMenu } from "./nav.js";
 import { initThemeToggle } from "./theme.js";
 
-AOS.init({ duration: 800, once: true, disable: "mobile" });
+AOS.init({ once: true, offset: 80, duration: 600, easing: "ease-out-cubic", disable: "mobile" });
 initMobileMenu();
 initThemeToggle();

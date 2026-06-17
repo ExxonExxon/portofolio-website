@@ -27,6 +27,7 @@ Both share `nav.js` + `theme.js` for mobile menu and dark mode.
 Each page has its own CSS in `src/styles/{main,contact}.css`.
 
 Shared CSS architecture:
+
 - `src/styles/variables.css` — CSS custom properties (colors, shadows, transitions)
 - `src/styles/components.css` — all component classes (nav, cards, buttons, forms, modal, footer, etc.)
 
