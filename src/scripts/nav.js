@@ -1,5 +1,14 @@
 import { DOM } from "./constants.js";
 
+export function initActiveNav() {
+  const current = window.location.pathname;
+  document.querySelectorAll(".nav-link").forEach((link) => {
+    if (link.getAttribute("href") === current) {
+      link.classList.add("nav-link--active");
+    }
+  });
+}
+
 /**
  * Initialises the mobile navigation menu with hamburger animation
  * and click-outside-to-close behaviour.

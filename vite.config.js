@@ -22,7 +22,8 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: resolve(import.meta.dirname, "index.html"),
-        contact: resolve(import.meta.dirname, "contact.html"),
+        photography: resolve(import.meta.dirname, "photography/index.html"),
+        contact: resolve(import.meta.dirname, "contact/index.html"),
       },
     },
     cssMinify: true,

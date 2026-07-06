@@ -18,13 +18,17 @@ npm run format   # prettier across all files
 
 ## Multi-page structure
 
-Two HTML entry points defined in `vite.config.js`:
+Three HTML entry points defined in `vite.config.js`:
 
 - `index.html` → entry `src/scripts/main.js`
-- `contact.html` → entry `src/scripts/contact.js`
+- `photography/index.html` → entry `src/scripts/photography.js` — served at `/photography/`
+- `contact/index.html` → entry `src/scripts/contact.js` — served at `/contact/`
 
-Both share `nav.js` + `theme.js` for mobile menu and dark mode.
-Each page has its own CSS in `src/styles/{main,contact}.css`.
+All share `nav.js` + `theme.js` for mobile menu and dark mode.
+Each page has its own CSS in `src/styles/{main,photography,contact}.css`.
+
+Clean URLs are achieved via directory-based pages (e.g. `photography/index.html`).
+Netlify redirects handle `.html` → clean URL redirects.
 
 Shared CSS architecture:
 
@@ -42,6 +46,19 @@ a custom Vite plugin in `vite.config.js`. Use `<!-- @partial nav -->` and
 Uses `.dark` class on `<html>` (applied by inline `<script>` in `<head>` before
 paint to avoid flash). The `.dark` class switches CSS custom properties in
 `variables.css`. Login persisted in `localStorage.theme`.
+
+## Photography page (`photography/index.html`)
+
+Masonry-style gallery with year grouping. Photos are defined as a JS array in
+`src/scripts/photography.js` — each entry needs `src`, `alt`, and `year`. The
+page renders year sections automatically, sorted newest-first.
+
+To add a photo:
+1. Drop the `.webp` in `assets/photography-images/`
+2. Add one line to the `photos` array in `photography.js`
+
+Uses CSS `column-count` for the waterfall layout; no JS layout calculations.
+Images use native `loading="lazy"` + `decoding="async"`.
 
 ## Contact form
 

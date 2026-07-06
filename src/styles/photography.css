@@ -1,0 +1,155 @@
+/* ─── Photography Gallery ─── */
+
+.gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.gallery-section {
+  width: 100%;
+}
+
+.gallery-year {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.4em;
+  color: var(--color-text-muted);
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.gallery-masonry {
+  column-count: 1;
+  column-gap: 1.25rem;
+}
+
+@media (min-width: 640px) {
+  .gallery-masonry {
+    column-count: 2;
+  }
+}
+
+@media (min-width: 1024px) {
+  .gallery-masonry {
+    column-count: 3;
+  }
+}
+
+.gallery-item {
+  break-inside: avoid;
+  margin-bottom: 1.25rem;
+  border-radius: 1rem;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.gallery-item img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* ─── Photo Preview Modal ─── */
+
+.photo-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.photo-modal--open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.photo-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.photo-modal__prev,
+.photo-modal__next {
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  opacity: 0.5;
+  transition: opacity 0.2s;
+  padding: 1rem;
+}
+
+.photo-modal__prev:hover,
+.photo-modal__next:hover {
+  opacity: 1;
+}
+
+.photo-modal__prev {
+  left: 0.5rem;
+}
+
+.photo-modal__next {
+  right: 0.5rem;
+}
+
+@media (min-width: 768px) {
+  .photo-modal__prev {
+    left: 1.5rem;
+  }
+
+  .photo-modal__next {
+    right: 1.5rem;
+  }
+}
+
+.photo-modal__content {
+  position: relative;
+  max-width: 90vw;
+  max-height: 90vh;
+}
+
+.photo-modal__img {
+  display: block;
+  max-width: 100%;
+  max-height: 90vh;
+  border-radius: 0.75rem;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+}
+
+.photo-modal__close {
+  position: absolute;
+  top: -2.75rem;
+  right: -0.25rem;
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.2s;
+  padding: 0.25rem;
+}
+
+.photo-modal__close:hover {
+  opacity: 1;
+}
+
+/* ─── CTA Card ─── */
+
+.cta-card {
+  margin-top: 1rem;
+}
