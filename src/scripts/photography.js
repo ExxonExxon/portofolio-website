@@ -8,7 +8,7 @@ import { initThemeToggle } from "./theme.js";
 
 /*
  * To add a new photo:
- *   1. Drop the .webp file in assets/photography-images/
+ *   1. Drop the .webp file in public/assets/photography-images/
  *   2. Add one line to the array below with the filename and year
  */
 
