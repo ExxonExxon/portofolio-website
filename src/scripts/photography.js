@@ -13,20 +13,20 @@ import { initThemeToggle } from "./theme.js";
  */
 
 const photos = [
-  // ── 2025 ──
-  { src: "/assets/photography-images/Sun_Looking_Down.webp", alt: "Sun looking down through the trees", year: 2025 },
-  { src: "/assets/photography-images/Trail_Tree_Framing.webp", alt: "Tree framing a trail", year: 2025 },
-  { src: "/assets/photography-images/Trail_Behind_Leaves.webp", alt: "Trail seen through leaves", year: 2025 },
-  { src: "/assets/photography-images/Weird_Looking_Tree.webp", alt: "Weird looking tree", year: 2025 },
-  { src: "/assets/photography-images/A_Trail_(sky_clipping).webp", alt: "A trail through the bush", year: 2025 },
-  { src: "/assets/photography-images/Landscape_of_rocks.webp", alt: "Rocky landscape", year: 2025 },
-  { src: "/assets/photography-images/Wallaby_(Could_have_been_closer).webp", alt: "Wallaby in the wild", year: 2025 },
-  { src: "/assets/photography-images/Greta_rocks_(right_face_dark).webp", alt: "Greta at the rocks", year: 2025 },
-  { src: "/assets/photography-images/Greta_sus_(jacket_clipping).webp", alt: "Greta in a jacket", year: 2025 },
-  { src: "/assets/photography-images/Highway_Of_Fenceposts.webp", alt: "Highway fence posts", year: 2025 },
-  { src: "/assets/photography-images/Motorbike_(DSC_0048).webp", alt: "Motorbike parked", year: 2025 },
-  { src: "/assets/photography-images/Bird_On_Telephone_(DSC_0043).webp", alt: "Bird on a telephone wire", year: 2025 },
-  { src: "/assets/photography-images/dsc_0012 bird phillip island large.webp", alt: "Bird at Phillip Island", year: 2025 },
+  // ── 2026 ──
+  { src: "/assets/photography-images/Sun_Looking_Down.webp", alt: "Sun looking down through the trees", year: 2026 },
+  { src: "/assets/photography-images/Trail_Tree_Framing.webp", alt: "Tree framing a trail", year: 2026 },
+  { src: "/assets/photography-images/Trail_Behind_Leaves.webp", alt: "Trail seen through leaves", year: 2026 },
+  { src: "/assets/photography-images/Weird_Looking_Tree.webp", alt: "Weird looking tree", year: 2026 },
+  { src: "/assets/photography-images/A_Trail_(sky_clipping).webp", alt: "A trail through the bush", year: 2026 },
+  { src: "/assets/photography-images/Landscape_of_rocks.webp", alt: "Rocky landscape", year: 2026 },
+  { src: "/assets/photography-images/Wallaby_(Could_have_been_closer).webp", alt: "Wallaby in the wild", year: 2026 },
+  { src: "/assets/photography-images/Greta_rocks_(right_face_dark).webp", alt: "Greta at the rocks", year: 2026 },
+  { src: "/assets/photography-images/Greta_sus_(jacket_clipping).webp", alt: "Greta in a jacket", year: 2026 },
+  { src: "/assets/photography-images/Highway_Of_Fenceposts.webp", alt: "Highway fence posts", year: 2026 },
+  { src: "/assets/photography-images/Motorbike_(DSC_0048).webp", alt: "Motorbike parked", year: 2026 },
+  { src: "/assets/photography-images/Bird_On_Telephone_(DSC_0043).webp", alt: "Bird on a telephone wire", year: 2026 },
+  { src: "/assets/photography-images/dsc_0012 bird phillip island large.webp", alt: "Bird at Phillip Island", year: 2026 },
 ];
 
 function initGallery() {

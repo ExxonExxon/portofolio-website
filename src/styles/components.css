@@ -543,7 +543,7 @@
   color: var(--color-accent-text-muted);
 }
 
-/* ─── Photography Gallery (masonry base — overridable per page) ─── */
+/* ─── Photography Gallery (masonry base - overridable per page) ─── */
 
 .gallery-masonry {
   column-count: 1;
