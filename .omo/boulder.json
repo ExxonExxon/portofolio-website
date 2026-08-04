@@ -1,0 +1,14 @@
+{
+  "schema_version": 2,
+  "active_work_id": "projects-page",
+  "works": {
+    "projects-page": {
+      "work_id": "projects-page",
+      "active_plan": ".omo/plans/projects-page.md",
+      "plan_name": "projects-page",
+      "session_ids": [],
+      "status": "completed",
+      "worktree_path": null
+    }
+  }
+}

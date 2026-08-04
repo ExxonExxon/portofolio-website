@@ -1,0 +1,62 @@
+Task 11: Document projects page in AGENTS.md
+Date: 2026-08-04T18:40:12+10:00
+
+--- VERIFICATION ---
+grep -c projects/index.html       -> 2 (expect >= 1)
+grep -c Four HTML entry points  -> 1 (expect >= 1)
+grep -ci add a project          -> 1 (expect >= 1)
+grep -c projects                 -> 7 (expect >= 4)
+
+--- DIFF ---
+diff --git a/AGENTS.md b/AGENTS.md
+index 4db915c..ef67630 100644
+--- a/AGENTS.md
++++ b/AGENTS.md
+@@ -5,7 +5,8 @@ Personal portfolio site for Tomas Gorjux at `tomas.gorjux.net`.
+ ## Stack
+ 
+ Vite 8 + vanilla CSS + vanilla JS (ESM). No TypeScript, no testing, no linter.
+-**Tailwind removed May 2026 — now uses pure CSS with custom properties.**
++**Tailwind removed May 2026 — now uses pure CSS with custom properties.** # User Edit - Is there benefits?
++
+ 
+ ## Commands
+ 
+@@ -18,14 +19,15 @@ npm run format   # prettier across all files
+ 
+ ## Multi-page structure
+ 
+-Three HTML entry points defined in `vite.config.js`:
++Four HTML entry points defined in `vite.config.js`:
+ 
+ - `index.html` → entry `src/scripts/main.js`
+ - `photography/index.html` → entry `src/scripts/photography.js` — served at `/photography/`
+ - `contact/index.html` → entry `src/scripts/contact.js` — served at `/contact/`
++- `projects/index.html` → entry `src/scripts/projects.js` — served at `/projects/`
+ 
+ All share `nav.js` + `theme.js` for mobile menu and dark mode.
+-Each page has its own CSS in `src/styles/{main,photography,contact}.css`.
++Each page has its own CSS in `src/styles/{main,photography,contact,projects}.css`.
+ 
+ Clean URLs are achieved via directory-based pages (e.g. `photography/index.html`).
+ Netlify redirects handle `.html` → clean URL redirects.
+@@ -60,6 +62,19 @@ To add a photo:
+ Uses CSS `column-count` for the waterfall layout; no JS layout calculations.
+ Images use native `loading="lazy"` + `decoding="async"`.
+ 
++## Projects page (`projects/index.html`)
++
++Year-grouped project cards. Projects are defined as a JS array in
++`src/scripts/projects.js` — each entry needs `name`, `description`, `url`,
++and `year`. The page renders year-grouped cards, newest year first.
++
++To add a project:
++1. Add one line to the `projects` array in `projects.js` with the project's
++   `name`, `description`, `url`, and `year`. No other file needs to change.
++
++Note: Tradsiee is featured on the home page (`index.html`); new projects
++appear only on `/projects/`.
++
+ ## Contact form
+ 
+ Submits to Formspree (`https://formspree.io/f/mnjbaeag`). No backend code in repo.

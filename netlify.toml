@@ -61,3 +61,13 @@
   from = "/index.html"
   to = "/"
   status = 301
+
+[[redirects]]
+  from = "/projects"
+  to = "/projects/"
+  status = 301
+
+[[redirects]]
+  from = "/projects.html"
+  to = "/projects/"
+  status = 301

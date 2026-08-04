@@ -1,0 +1,41 @@
+TASK: Create src/styles/projects.css (year-grouped projects page stylesheet)
+STATUS: DONE
+
+FINAL FILE: src/styles/projects.css
+────────────────────────────────────────
+/* ─── Projects page — year-grouped project list ─── */
+
+.projects-section {
+  margin-bottom: 3rem;
+}
+
+.projects-year {
+  margin: 0 0 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--color-border);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.4em;
+  color: var(--color-text-muted);
+}
+
+.projects-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+────────────────────────────────────────
+
+NOTE: letter-spacing adjusted from spec's 0.25em to 0.4em to exactly mirror
+.gallery-year in src/styles/photography.css (font-size 0.75rem, weight 700,
+uppercase, 0.4em letter-spacing, muted color, 1.5rem mb, 0.75rem pb, 1px border).
+
+VERIFICATION 1: grep -c "projects-year\|projects-stack\|projects-section" src/styles/projects.css
+→ 3 (>= 3) PASS
+
+VERIFICATION 2: npm run build (exit code 0)
+→ PASS: vite v8.1.4, 19 modules transformed, built in 139ms
+
+MUST-NOT violations: none — no .project-feature/.section/.link-arrow rules,
+no imports, no other files touched.

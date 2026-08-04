@@ -24,6 +24,7 @@ export default defineConfig({
         main: resolve(import.meta.dirname, "index.html"),
         photography: resolve(import.meta.dirname, "photography/index.html"),
         contact: resolve(import.meta.dirname, "contact/index.html"),
+        projects: resolve(import.meta.dirname, "projects/index.html"),
       },
     },
     cssMinify: true,

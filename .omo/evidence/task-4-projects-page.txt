@@ -1,0 +1,151 @@
+TASK 4 — Projects page (projects/index.html)
+=============================================
+
+STATUS: PASS
+
+FILE: /home/tomas/Documents/Projects/portofolio-website/projects/index.html
+
+VERIFICATION OUTPUT
+-------------------
+1. grep -c "tomasgorjux.net/projects/"  -> 4   (required >= 3) PASS
+2. grep -c "BreadcrumbList"             -> 1   (required >= 1) PASS
+3. grep -c "@partial"                   -> 2   (required >= 2) PASS
+4. npm run build                        -> exit 0 (vite v8.1.4, built in 145ms) PASS
+
+  Note: projects/index.html not yet registered in vite.config.js, so it is
+  intentionally absent from dist/ output — expected, build still succeeds.
+
+FINAL FILE CONTENT
+------------------
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Projects by Tomas Gorjux — Tradsiee and more, built from scratch."
+    />
+    <title>Tomas Gorjux | Projects</title>
+    <link rel="canonical" href="https://tomasgorjux.net/projects/" />
+    <meta property="og:locale" content="en_AU" />
+    <meta property="og:site_name" content="Tomas Gorjux" />
+    <meta name="author" content="Tomas Gorjux" />
+
+    <meta property="og:title" content="Tomas Gorjux | Projects" />
+    <meta
+      property="og:description"
+      content="Projects by Tomas Gorjux — Tradsiee and more, built from scratch."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://tomasgorjux.net/projects/" />
+    <meta
+      property="og:image"
+      content="https://tomasgorjux.net/assets/scr-20260218-tzib.webp"
+    />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Tomas Gorjux | Projects" />
+    <meta
+      name="twitter:description"
+      content="Projects by Tomas Gorjux — Tradsiee and more, built from scratch."
+    />
+    <meta
+      name="twitter:image"
+      content="https://tomasgorjux.net/assets/scr-20260218-tzib.webp"
+    />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        "name": "Projects by Tomas Gorjux",
+        "url": "https://tomasgorjux.net/projects/",
+        "description": "Projects by Tomas Gorjux — Tradsiee and more, built from scratch.",
+        "inLanguage": "en-AU",
+        "isPartOf": {
+          "@id": "https://tomasgorjux.net/"
+        }
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://tomasgorjux.net/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Projects",
+            "item": "https://tomasgorjux.net/projects/"
+          }
+        ]
+      }
+    </script>
+
+    <script>
+      if (
+        localStorage.getItem("theme") === "dark" ||
+        (!localStorage.getItem("theme") &&
+          matchMedia("(prefers-color-scheme:dark)").matches)
+      )
+        document.documentElement.classList.add("dark");
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+      media="print"
+      onload="this.media = 'all'"
+    />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+  </head>
+  <body class="page">
+    <!-- @partial nav -->
+
+    <main class="container page-content">
+      <section
+        class="card hero-card"
+        data-aos="fade-up"
+        data-aos-duration="1000"
+      >
+        <h1 class="hero-heading hero-heading--compact">
+          <span class="text-accent">Projects.</span>
+        </h1>
+        <p class="hero-subtitle" style="max-width: 36rem">
+          Everything I've built, from scratch — design, product, and code.
+        </p>
+      </section>
+
+      <div id="projects" class="projects"></div>
+    </main>
+
+    <!-- @partial footer -->
+
+    <script type="module" src="/src/scripts/projects.js"></script>
+  </body>
+</html>
+
+CONSTRAINTS RESPECTED
+---------------------
+- No photo lightbox modal, gallery classes, or CTA card (photography-page features)
+- No hardcoded project cards — rendered from JS into #projects
+- No other files touched

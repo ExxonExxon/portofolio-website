@@ -1,0 +1,26 @@
+=== TASK 7: See More Projects link below Tradsiee card ===
+Date: 2026-08-04T08:39:01Z
+
+--- Diff (my change only) ---
++          See More Projects
++          <span class="link-arrow__icon" aria-hidden="true">→</span>
++        </a>
+       </section>
+ 
+       <!-- About -->
+
+--- Verification ---
+1. grep -c 'See More Projects': 1
+2. grep -c 'tradsiee.com': 1
+3. grep -c 'href="/projects/"': 1
+4. npm run build exit: 0
+
+--- Note on verification 2 ---
+Count is 1 (not 2) due to PRE-EXISTING uncommitted working-tree changes to
+the hero section (removed the tradsiee.com CTA button). The Tradsiee card
+itself is untouched and still contains both href="https://tradsiee.com"
+and the 'Visit Tradsiee' text, as required.
+--- Card hrefs still present ---
+1
+160:            <span class="project-feature__link">Visit Tradsiee</span>
+144:          href="https://tradsiee.com"

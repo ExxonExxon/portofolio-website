@@ -1,0 +1,113 @@
+import "../styles/variables.css";
+import "../styles/components.css";
+import "../styles/projects.css";
+import "@fortawesome/fontawesome-free/css/all.css";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { initMobileMenu, initActiveNav } from "./nav.js";
+import { initThemeToggle } from "./theme.js";
+
+/*
+ * To add a project:
+ *   1. Add one line to the array below with the project's name, description,
+ *      url, and year. The page renders year-grouped cards, newest first.
+ */
+
+const projects = [
+  { name: "Tradsiee", description: "Video lead generation for Tradies\nEngineered for speed and efficiency over fancy features", url: "https://tradsiee.com", year: 2026 },
+];
+
+function initProjects() {
+  const container = document.getElementById("projects");
+  if (!container) return;
+
+  const groups = {};
+  for (const project of projects) {
+    if (!groups[project.year]) groups[project.year] = [];
+    groups[project.year].push(project);
+  }
+
+  const years = Object.keys(groups).sort((a, b) => Number(b) - Number(a));
+
+  for (const year of years) {
+    const section = document.createElement("section");
+    section.className = "projects-section";
+
+    const heading = document.createElement("h2");
+    heading.className = "projects-year";
+    heading.textContent = year;
+    section.appendChild(heading);
+
+    const stack = document.createElement("div");
+    stack.className = "projects-stack";
+
+    for (const project of groups[year]) {
+      const card = document.createElement("a");
+      card.className = "project-feature";
+      card.href = project.url;
+      card.target = "_blank";
+      card.rel = "noopener noreferrer";
+
+      const top = document.createElement("div");
+      top.className = "project-feature__top";
+
+      const text = document.createElement("div");
+      const title = document.createElement("h2");
+      title.className = "project-feature__title";
+      title.textContent = project.name;
+      text.appendChild(title);
+
+      const desc = document.createElement("p");
+      desc.className = "project-feature__desc";
+      // Split description on \n into text nodes + <br>
+      const lines = project.description.split("\n");
+      lines.forEach((line, i) => {
+        if (i > 0) desc.appendChild(document.createElement("br"));
+        desc.appendChild(document.createTextNode(line));
+      });
+      text.appendChild(desc);
+
+      top.appendChild(text);
+
+      const arrow = document.createElement("span");
+      arrow.className = "project-feature__arrow";
+      arrow.setAttribute("aria-hidden", "true");
+      arrow.textContent = "→";
+      top.appendChild(arrow);
+
+      card.appendChild(top);
+
+      const meta = document.createElement("div");
+      meta.className = "project-feature__meta";
+      const link = document.createElement("span");
+      link.className = "project-feature__link";
+      link.textContent = `Visit ${project.name}`;
+      meta.appendChild(link);
+      card.appendChild(meta);
+
+      stack.appendChild(card);
+    }
+
+    section.appendChild(stack);
+    container.appendChild(section);
+  }
+}
+
+initProjects();
+
+initActiveNav();
+
+AOS.init({
+  once: true,
+  offset: 80,
+  duration: 600,
+  easing: "ease-out-cubic",
+  disable: "mobile",
+});
+
+initMobileMenu();
+initThemeToggle();
+
+=== VERIFICATION ===
+grep -c "name\|description\|url\|year" src/scripts/projects.js → 15 (>= 4) PASS
+npm run build → exit 0, built in 147ms PASS

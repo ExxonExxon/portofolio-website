@@ -1,0 +1,45 @@
+TASK 6: Add "Projects" nav link to nav.html and footer.html
+=============================================================
+Date: 2026-08-04
+
+CHANGES
+-------
+1. src/partials/nav.html — desktop `.nav-links-desktop` block:
+   + <a href="/projects/" class="nav-link">Projects</a>
+   inserted between Home and Photography (line 7).
+
+2. src/partials/nav.html — mobile `.mobile-menu` block:
+   + <a href="/projects/" class="mobile-link">Projects</a>
+   inserted between Home and Photography (line 108). Plain mobile-link,
+   no accent class (Contact retains --accent).
+
+3. src/partials/footer.html — "Explore" column `.footer-links` list:
+   + <li><a href="/projects/" class="footer-link nav-link">Projects
+       <span class="footer-link__arrow">→</span></a></li>
+   placed after Home (line 22), matching the multi-line li pattern.
+   NOTE: The instruction said "insert after Photography" but the stated
+   final order "Home, Projects, Photography" takes precedence — inserting
+   after Photography would have produced "Home, Photography, Projects"
+   and broken cross-menu consistency. Resulting order: Home, Projects,
+   Photography, Contact.
+
+DIFFS
+-----
+src/partials/nav.html:
+  line 7:  + <a href="/projects/" class="nav-link">Projects</a>
+  line 108:+ <a href="/projects/" class="mobile-link">Projects</a>
+
+src/partials/footer.html:
+  line 22:+ <a href="/projects/" class="footer-link nav-link"
+           >Projects<span class="footer-link__arrow">→</span></a>
+
+VERIFICATION
+------------
+1. grep -c 'href="/projects/"' src/partials/nav.html  -> 2 (PASS, >=2)
+2. grep -c 'href="/projects/"' src/partials/footer.html -> 1 (PASS, >=1)
+3. npm run build -> exit 0 (PASS; dist/projects/index.html emitted)
+4. nav.html desktop order (grep -n 'class="nav-link">'):
+   6: Home, 7: Projects, 8: Photography, 9: Contact  (PASS)
+
+Build output confirmed dist/projects/index.html exists, so the
+/projects/ href target is real.
