@@ -15,7 +15,18 @@ import { initThemeToggle } from "./theme.js";
 
 const projects = [
   { name: "Tradsiee", description: "Video lead generation for Tradies\nEngineered for speed and efficiency over fancy features", url: "https://tradsiee.com", year: 2026, image: "/assets/tradsiee.webp" },
-  { name: "Adam Beaumont Tiling", description: "Melbourne tiler running his business on Tradsiee\nBathroom renovations across the eastern suburbs since 1993", url: "https://adambeaumonttiling.com.au", year: 2026, image: "/assets/adam-beaumont-tiling.webp" },
+  {
+    name: "Adam Beaumont Tiling",
+    description: "Melbourne tiler running his business on Tradsiee\nBathroom renovations across the eastern suburbs since 1993",
+    url: "https://adambeaumonttiling.com.au",
+    year: 2026,
+    image: "/assets/adam-beaumont-tiling.webp",
+    testimonial: {
+      quote: "Tomas created a fantastic and modern website for my small business. His communication and attention to detail made this a seamless process. I highly recommend him.",
+      author: "Adam Beaumont",
+      business: "Adam Beaumont Tiling",
+    },
+  },
 ];
 
 function initProjects() {
@@ -89,6 +100,30 @@ function initProjects() {
       top.appendChild(arrow);
 
       card.appendChild(top);
+
+      if (project.testimonial) {
+        const figure = document.createElement("figure");
+        figure.className = "project-feature__testimonial";
+
+        const blockquote = document.createElement("blockquote");
+        const quote = document.createElement("p");
+        quote.textContent = project.testimonial.quote;
+        blockquote.appendChild(quote);
+        figure.appendChild(blockquote);
+
+        const figcaption = document.createElement("figcaption");
+        const author = document.createElement("strong");
+        author.textContent = project.testimonial.author;
+        figcaption.appendChild(author);
+        if (project.testimonial.business) {
+          const business = document.createElement("span");
+          business.textContent = project.testimonial.business;
+          figcaption.appendChild(business);
+        }
+        figure.appendChild(figcaption);
+
+        card.appendChild(figure);
+      }
 
       stack.appendChild(card);
     }
