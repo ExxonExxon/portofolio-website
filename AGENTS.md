@@ -56,7 +56,7 @@ Masonry-style gallery with year grouping. Photos are defined as a JS array in
 page renders year sections automatically, sorted newest-first.
 
 To add a photo:
-1. Drop the `.webp` in `assets/photography-images/`
+1. Drop the `.webp` in `public/assets/photography-images/`
 2. Add one line to the `photos` array in `photography.js`
 
 ### Photo Renamer dev tool
@@ -92,7 +92,7 @@ Submits to Formspree (`https://formspree.io/f/mnjbaeag`). No backend code in rep
 ## Assets
 
 - `public/` — served as static root by Vite
-- `assets/photography-images/` — photography gallery images (not under `public/`; referenced from `index.html` via `/assets/...`)
+- `public/assets/photography-images/` — photography gallery images (under `public/` so Vite copies them to `dist/`; referenced from JS via `/assets/photography-images/...`)
 - Photography images are WebP for performance
 
 ## Notable conventions
