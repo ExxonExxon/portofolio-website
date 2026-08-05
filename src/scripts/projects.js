@@ -14,8 +14,8 @@ import { initThemeToggle } from "./theme.js";
  */
 
 const projects = [
-  { name: "Tradsiee", description: "Video lead generation for Tradies\nEngineered for speed and efficiency over fancy features", url: "https://tradsiee.com", year: 2026 },
-  { name: "Adam Beaumont Tiling", description: "Melbourne tiler running his business on Tradsiee\nBathroom renovations across the eastern suburbs since 1993", url: "https://adambeaumonttiling.com.au", year: 2026 },
+  { name: "Tradsiee", description: "Video lead generation for Tradies\nEngineered for speed and efficiency over fancy features", url: "https://tradsiee.com", year: 2026, image: "/assets/tradsiee.webp" },
+  { name: "Adam Beaumont Tiling", description: "Melbourne tiler running his business on Tradsiee\nBathroom renovations across the eastern suburbs since 1993", url: "https://adambeaumonttiling.com.au", year: 2026, image: "/assets/adam-beaumont-tiling.webp" },
 ];
 
 function initProjects() {
@@ -49,6 +49,18 @@ function initProjects() {
       card.target = "_blank";
       card.rel = "noopener noreferrer";
 
+      if (project.image) {
+        const media = document.createElement("div");
+        media.className = "project-feature__media";
+        const img = document.createElement("img");
+        img.src = project.image;
+        img.alt = project.name;
+        img.loading = "lazy";
+        img.decoding = "async";
+        media.appendChild(img);
+        card.appendChild(media);
+      }
+
       const top = document.createElement("div");
       top.className = "project-feature__top";
 
@@ -77,14 +89,6 @@ function initProjects() {
       top.appendChild(arrow);
 
       card.appendChild(top);
-
-      const meta = document.createElement("div");
-      meta.className = "project-feature__meta";
-      const link = document.createElement("span");
-      link.className = "project-feature__link";
-      link.textContent = `Visit ${project.name}`;
-      meta.appendChild(link);
-      card.appendChild(meta);
 
       stack.appendChild(card);
     }

@@ -1,0 +1,477 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Photo Renamer — dev tool</title>
+    <style>
+      :root {
+        --bg: #0d0d0f;
+        --panel: #17171b;
+        --border: #26262c;
+        --text: #e6e6e9;
+        --muted: #8b8b94;
+        --accent: #6366f1;
+        --ok: #34d399;
+        --err: #f87171;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        font: 14px/1.5 Inter, system-ui, sans-serif;
+      }
+      header {
+        display: flex;
+        align-items: baseline;
+        gap: 12px;
+        padding: 20px 32px;
+        border-bottom: 1px solid var(--border);
+      }
+      header h1 {
+        margin: 0;
+        font-size: 17px;
+      }
+      header .hint {
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .status {
+        margin-left: auto;
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .status.ok {
+        color: var(--ok);
+      }
+      .status.err {
+        color: var(--err);
+      }
+      main {
+        max-width: 1240px;
+        margin: 0 auto;
+        padding: 24px 32px 120px;
+      }
+      .section-title {
+        display: flex;
+        align-items: baseline;
+        gap: 8px;
+        margin: 28px 0 12px;
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--muted);
+      }
+      .section-title:first-child {
+        margin-top: 0;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+        gap: 16px;
+      }
+      .card {
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 12px;
+      }
+      .card.dirty {
+        border-color: var(--accent);
+        box-shadow: 0 0 0 1px var(--accent);
+      }
+      .thumb {
+        aspect-ratio: 4 / 5;
+        border-radius: 8px;
+        overflow: hidden;
+        background: #000;
+        margin-bottom: 10px;
+      }
+      .thumb img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .badges {
+        display: flex;
+        gap: 6px;
+        margin-bottom: 8px;
+      }
+      .badge {
+        font-size: 10px;
+        padding: 2px 8px;
+        border-radius: 999px;
+        border: 1px solid var(--border);
+        color: var(--muted);
+      }
+      .badge--home {
+        color: var(--accent);
+        border-color: var(--accent);
+      }
+      label {
+        display: block;
+        margin: 10px 0 4px;
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--muted);
+      }
+      input[type="text"],
+      input[type="number"] {
+        width: 100%;
+        background: #101013;
+        border: 1px solid var(--border);
+        color: var(--text);
+        border-radius: 8px;
+        padding: 8px 10px;
+        font-size: 13px;
+      }
+      input:focus {
+        outline: none;
+        border-color: var(--accent);
+      }
+      .preview {
+        margin-top: 4px;
+        font-size: 12px;
+        color: var(--accent);
+        word-break: break-all;
+      }
+      .preview.nochange {
+        color: var(--muted);
+      }
+      .check-row {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin: 6px 0 0;
+      }
+      .check-row input {
+        accent-color: var(--accent);
+      }
+      .check-row span {
+        font-size: 13px;
+      }
+      .empty {
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .toolbar {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(transparent, var(--bg) 35%);
+        padding: 16px 32px 24px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        z-index: 10;
+      }
+      .toolbar-inner {
+        max-width: 1240px;
+        margin: 0 auto;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+      button {
+        background: var(--accent);
+        color: #fff;
+        border: 0;
+        border-radius: 999px;
+        padding: 10px 22px;
+        font-weight: 700;
+        font-size: 13px;
+        cursor: pointer;
+      }
+      button:disabled {
+        opacity: 0.4;
+        cursor: default;
+      }
+      button.secondary {
+        background: transparent;
+        border: 1px solid var(--border);
+        color: var(--text);
+      }
+      .result {
+        font-size: 12px;
+        white-space: pre-wrap;
+        color: var(--muted);
+        max-height: 90px;
+        overflow: auto;
+      }
+      .result .ok {
+        color: var(--ok);
+      }
+      .result .err {
+        color: var(--err);
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Photo Renamer</h1>
+      <span class="hint">dev tool · renames photo files and updates every reference</span>
+      <span id="status" class="status">loading…</span>
+    </header>
+
+    <main>
+      <div class="section-title">Gallery photos <span id="galleryCount"></span></div>
+      <div id="gallery" class="grid"></div>
+
+      <div class="section-title" id="unlistedTitle" style="display: none">
+        Unlisted photos <span id="unlistedCount"></span>
+      </div>
+      <div id="unlisted" class="grid"></div>
+    </main>
+
+    <div class="toolbar">
+      <div class="toolbar-inner">
+        <button id="apply">Apply changes</button>
+        <button id="reset" class="secondary">Reset</button>
+        <span id="readyCount" class="status"></span>
+        <div id="result" class="result"></div>
+      </div>
+    </div>
+
+    <script>
+      const state = { photos: [], unlisted: [] };
+
+      const esc = (s) =>
+        String(s)
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;");
+
+      async function api(path, opts = {}) {
+        const res = await fetch(path, opts);
+        return res.json().catch(() => ({}));
+      }
+
+      // "Sun Looking Down" -> "sun_looking_down.webp"
+      function toSafeName(raw) {
+        const base = String(raw || "")
+          .replace(/\.[a-z0-9]+$/i, "")
+          .trim();
+        if (!base) return "";
+        return (
+          base
+            .toLowerCase()
+            .replace(/[^a-z0-9]+/g, "_")
+            .replace(/^_+|_+$/g, "")
+            .replace(/_+/g, "_") + ".webp"
+        );
+      }
+
+      function humanize(name) {
+        return name
+          .replace(/\.webp$/i, "")
+          .replace(/^dsc_\d+[-_]/i, "")
+          .replace(/[-_]+/g, " ")
+          .replace(/^\w/, (c) => c.toUpperCase());
+      }
+
+      function photoCard(p) {
+        const base = p.name.replace(/\.webp$/i, "");
+        const safe = toSafeName(base);
+        const changed = safe !== "" && safe !== p.name;
+        return `
+        <article class="card${changed ? " dirty" : ""}" data-name="${esc(p.name)}">
+          <div class="thumb"><img src="/assets/photography-images/${esc(p.name)}" alt="" loading="lazy" /></div>
+          <div class="badges">
+            ${p.featured ? '<span class="badge badge--home">home</span>' : ""}
+          </div>
+          <div class="check-row">
+            <input class="inc" type="checkbox" id="inc-${esc(p.name)}" />
+            <span>Include in apply</span>
+          </div>
+          <label>File name</label>
+          <input class="name" type="text" value="${esc(base)}" />
+          <div class="preview${changed ? "" : " nochange"}">→ ${esc(safe || "type a name")}</div>
+          <label>Alt text</label>
+          <input class="alt" type="text" value="${esc(p.alt)}" />
+          <label>Year</label>
+          <input class="year" type="number" value="${p.year}" min="2000" max="2035" />
+        </article>`;
+      }
+
+      function unlistedCard(name) {
+        return `
+        <article class="card" data-unlisted="${esc(name)}">
+          <div class="thumb"><img src="/assets/photography-images/${esc(name)}" alt="" loading="lazy" /></div>
+          <div class="check-row">
+            <input class="add-check" type="checkbox" id="chk-${esc(name)}" />
+            <span>Add to gallery</span>
+          </div>
+          <label>Alt text</label>
+          <input class="add-alt" type="text" value="${esc(humanize(name))}" />
+          <label>Year</label>
+          <input class="add-year" type="number" value="2026" min="2020" max="2035" />
+        </article>`;
+      }
+
+      function refreshCard(card) {
+        const name = card.dataset.name;
+        const base = card.querySelector(".name").value;
+        const safe = toSafeName(base);
+        const alt = card.querySelector(".alt").value;
+        const yearVal = card.querySelector(".year").value.trim();
+        const year = yearVal === "" ? null : Number(yearVal);
+        const photo = state.photos.find((p) => p.name === name) || {};
+        const oldAlt = photo.alt ?? "";
+        const oldYear = Number(photo.year ?? 0);
+        const nameChanged = safe !== "" && safe !== name;
+        const changed =
+          nameChanged || alt !== oldAlt || (year !== null && year !== oldYear);
+        const preview = card.querySelector(".preview");
+        preview.textContent = "→ " + (safe || "type a name");
+        preview.className = "preview" + (nameChanged ? "" : " nochange");
+        card.classList.toggle("dirty", changed);
+        card.querySelector(".inc").checked = true;
+        updateReadyCount();
+      }
+
+      function updateReadyCount() {
+        const n =
+          document.querySelectorAll("#gallery .card .inc:checked").length +
+          document.querySelectorAll("#unlisted .card .add-check:checked").length;
+        document.getElementById("readyCount").textContent = n
+          ? `${n} change${n === 1 ? "" : "s"} ready`
+          : "";
+      }
+
+      function render() {
+        const gallery = document.getElementById("gallery");
+        const unlisted = document.getElementById("unlisted");
+        gallery.innerHTML = state.photos.map(photoCard).join("");
+        unlisted.innerHTML = state.unlisted.length
+          ? state.unlisted.map(unlistedCard).join("")
+          : '<p class="empty">No unlisted photos.</p>';
+        document.getElementById("galleryCount").textContent = state.photos.length
+          ? `(${state.photos.length})`
+          : "";
+        document.getElementById("unlistedCount").textContent = state.unlisted.length
+          ? `(${state.unlisted.length})`
+          : "";
+        document.getElementById("unlistedTitle").style.display = state.unlisted.length
+          ? ""
+          : "none";
+      }
+
+      function setStatus(text, cls) {
+        const el = document.getElementById("status");
+        el.textContent = text;
+        el.className = "status" + (cls ? " " + cls : "");
+      }
+
+      function showResult(text, cls) {
+        const el = document.getElementById("result");
+        el.innerHTML = text;
+        el.className = "result" + (cls ? " " + cls : "");
+      }
+
+      async function load() {
+        setStatus("loading…");
+        const data = await api("/api/photos");
+        if (data.error) {
+          setStatus("error: " + data.error, "err");
+          return;
+        }
+        state.photos = data.photos || [];
+        state.unlisted = data.unlisted || [];
+        render();
+        updateReadyCount();
+        setStatus(
+          `connected · ${state.photos.length} gallery, ${state.unlisted.length} unlisted`,
+          "ok",
+        );
+      }
+
+      async function apply() {
+        const renames = [];
+        for (const card of document.querySelectorAll("#gallery .card")) {
+          if (!card.querySelector(".inc").checked) continue;
+          const name = card.dataset.name;
+          const safe = toSafeName(card.querySelector(".name").value);
+          const alt = card.querySelector(".alt").value.trim();
+          const yearVal = card.querySelector(".year").value.trim();
+          const year = yearVal === "" ? null : Number(yearVal);
+          const photo = state.photos.find((p) => p.name === name) || {};
+          const oldAlt = photo.alt ?? "";
+          const oldYear = Number(photo.year ?? 0);
+          if (!safe) continue;
+          if (safe !== name || alt !== oldAlt || (year !== null && year !== oldYear)) {
+            const entry = { from: name, to: safe, alt, oldAlt };
+            if (year !== null && year !== oldYear) {
+              entry.year = year;
+              entry.oldYear = oldYear;
+            }
+            renames.push(entry);
+          }
+        }
+
+        const adds = [];
+        for (const card of document.querySelectorAll("#unlisted .card")) {
+          if (!card.querySelector(".add-check").checked) continue;
+          adds.push({
+            name: card.dataset.unlisted,
+            alt: card.querySelector(".add-alt").value.trim(),
+            year: Number(card.querySelector(".add-year").value),
+          });
+        }
+
+        if (!renames.length && !adds.length) {
+          showResult("Nothing changed.", "ok");
+          return;
+        }
+
+        const res = await api("/api/rename", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ renames, adds }),
+        });
+
+        if (res.error) {
+          showResult((res.errors || [res.error]).join("\n"), "err");
+          return;
+        }
+
+        const lines = [
+          ...res.renamed.map((r) => "renamed " + r),
+          ...res.added.map((a) => "added " + a),
+          ...res.files.map(
+            (f) => `updated ${f.path}: ${f.renames} rename(s), ${f.adds} add(s)`,
+          ),
+        ];
+        showResult(lines.join("\n"), "ok");
+        await load();
+      }
+
+      document.getElementById("gallery").addEventListener("input", (e) => {
+        const card = e.target.closest(".card");
+        if (card && (e.target.matches(".name") || e.target.matches(".alt") || e.target.matches(".year"))) {
+          refreshCard(card);
+        }
+      });
+
+      document.getElementById("unlisted").addEventListener("change", (e) => {
+        if (e.target.matches(".add-check")) updateReadyCount();
+      });
+
+      document.getElementById("apply").addEventListener("click", apply);
+      document.getElementById("reset").addEventListener("click", () => {
+        showResult("");
+        load();
+      });
+
+      load();
+    </script>
+  </body>
+</html>

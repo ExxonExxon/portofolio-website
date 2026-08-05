@@ -92,23 +92,15 @@
       )
         document.documentElement.classList.add("dark");
     </script>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="dns-prefetch" href="https://formspree.io" />
 
     <link
       rel="preload"
-      as="style"
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      href="/fonts/inter-latin-variable.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
     />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-      rel="stylesheet"
-      media="print"
-      onload="this.media = 'all'"
-    />
-
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="shortcut icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
@@ -118,15 +110,10 @@
     <!-- @partial nav -->
 
     <main class="container page-content">
-      <section
-        class="card hero-card"
-        data-aos="fade-up"
-        data-aos-duration="1000"
-      >
-        <h1 class="hero-heading hero-heading--compact">
-          Let's <span class="text-accent">Talk.</span>
-        </h1>
-        <p class="hero-subtitle" style="max-width: 36rem">
+      <section class="page-hero" data-aos="fade-up" data-aos-duration="1000">
+        <span class="section-label">Contact</span>
+        <h1 class="page-hero__title">Let's talk.</h1>
+        <p class="page-hero__sub">
           Want to work together, ask about a photo, or just say hi? Drop me a
           message and I'll get back to you.
         </p>

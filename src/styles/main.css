@@ -63,67 +63,129 @@
   }
 }
 
-.editorial-grid {
+/* ─── Photography — photo band + editorial ─── */
+
+.photo-strip {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+
+@media (min-width: 768px) {
+  .photo-strip {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.75rem;
+  }
+
+  .photo-tile--offset {
+    margin-top: 2.25rem;
+  }
+}
+
+.photo-strip + .about-grid {
+  margin-top: 3rem;
+}
+
+.photo-tile {
+  display: block;
+  text-decoration: none;
+  border-radius: 0.75rem;
+}
+
+.photo-tile__frame {
+  display: block;
+  aspect-ratio: 4 / 5;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  background-color: var(--color-surface-alt);
+  transition:
+    transform 0.3s ease-out,
+    box-shadow var(--transition-base);
+}
+
+.photo-tile:hover .photo-tile__frame {
+  transform: translateY(-4px) rotate(-1.5deg);
+  box-shadow: var(--shadow-card-hover);
+}
+
+.photo-tile__frame img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease-out;
+}
+
+.photo-tile:hover .photo-tile__frame img {
+  transform: scale(1.05);
+}
+
+.photo-tile__caption {
+  display: block;
+  margin-top: 0.75rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-text-muted);
+}
+
+/* ─── About — editorial bio, no card ─── */
+
+.about-heading {
+  margin: 0 0 2.5rem;
+  max-width: 58rem;
+  font-size: clamp(2.25rem, 5vw, 4rem);
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+}
+
+.about-grid {
   display: grid;
   grid-template-columns: 1fr;
   gap: 2rem;
 }
 
 @media (min-width: 768px) {
-  .editorial-grid {
-    grid-template-columns: 1.1fr 1fr;
+  .about-grid {
+    grid-template-columns: 1fr 1fr;
     column-gap: 4rem;
-    align-items: start;
   }
 }
 
-.editorial-heading {
-  margin: 0;
-  font-size: clamp(1.75rem, 4vw, 3rem);
-  font-weight: 800;
-  line-height: 1.15;
-  letter-spacing: -0.035em;
-  color: var(--color-text-heading);
+.about-grid .about-text {
+  margin: 0 0 1.5rem;
+  font-size: 1.0625rem;
+  line-height: 1.75;
+  color: var(--color-text-soft);
 }
 
-.editorial-body .about-text {
-  margin-bottom: 2rem;
-  font-size: 1rem;
+.about-cta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.5rem;
 }
 
-.editorial-body .skills-inline {
-  margin-bottom: 2rem;
+.about-cta .skills-inline {
+  margin-bottom: 0;
 }
 
 /* ─── Project feature — front-page card additions ─── */
 
 .project-grid .project-feature {
   justify-content: flex-start;
+  gap: 2.5rem;
+  padding: clamp(1.75rem, 4vw, 2.75rem);
 }
 
-.project-feature__media {
-  border-radius: 0.75rem;
-  overflow: hidden;
-}
-
-.project-feature__media img {
-  display: block;
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
-}
-
-.project-feature__role {
-  margin: 0 0 0.75rem;
-  font-size: 0.8125rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--color-accent);
+.project-feature__title {
+  margin-bottom: 1rem;
 }
 
 .project-feature__details {
-  margin: 1.25rem 0 0;
+  margin: 1.75rem 0 0;
   padding: 0;
   list-style: none;
 }

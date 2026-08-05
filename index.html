@@ -94,21 +94,13 @@
         document.documentElement.classList.add("dark");
     </script>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-
     <link
       rel="preload"
-      as="style"
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      href="/fonts/inter-latin-variable.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
     />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-      rel="stylesheet"
-      media="print"
-      onload="this.media = 'all'"
-    />
-
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="shortcut icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
@@ -146,7 +138,7 @@
           >
             <div class="project-feature__media">
               <img
-                src="/assets/tradsiee.jpg"
+                src="/assets/tradsiee.webp"
                 alt="Tradsiee — video lead generation for tradies"
                 loading="lazy"
                 decoding="async"
@@ -155,15 +147,11 @@
             <div class="project-feature__top">
               <div>
                 <h3 class="project-feature__title">Tradsiee</h3>
-                <p class="project-feature__role">Founder · Design & Code</p>
                 <p class="project-feature__desc">
-                  A video lead generation platform built for Australian
-                  tradespeople. Helps tradies spend less time chasing dead-end
-                  quotes and more time on real jobs. Designed, product-managed,
-                  and coded from scratch.
+                  Video lead generation for Australian tradies — less time on
+                  dead-end quotes, more time on the job.
                 </p>
                 <ul class="project-feature__details">
-                  <li>Built for the Australian trades market</li>
                   <li>Real-time video lead system</li>
                   <li>Live at tradsiee.com</li>
                 </ul>
@@ -180,7 +168,7 @@
           >
             <div class="project-feature__media">
               <img
-                src="/assets/adam-beaumont-tiling.jpg"
+                src="/assets/adam-beaumont-tiling.webp"
                 alt="Adam Beaumont Tiling — bathroom renovations in Melbourne's eastern suburbs"
                 loading="lazy"
                 decoding="async"
@@ -189,17 +177,13 @@
             <div class="project-feature__top">
               <div>
                 <h3 class="project-feature__title">Adam Beaumont Tiling</h3>
-                <p class="project-feature__role">Tradsiee customer · Tiling</p>
                 <p class="project-feature__desc">
-                  A Melbourne tiler running his business on Tradsiee. Video
-                  leads straight to his jobs, no time wasted on dead-end
-                  quotes. Bathroom renovations across the eastern suburbs since
-                  1993.
+                  A Melbourne tiler running his business on Tradsiee.
+                  Renovating bathrooms across the eastern suburbs since 1993.
                 </p>
                 <ul class="project-feature__details">
                   <li>Real tradie, real business</li>
                   <li>Running on Tradsiee</li>
-                  <li>Bathroom renovations since 1993</li>
                 </ul>
               </div>
               <span class="project-feature__arrow" aria-hidden="true">→</span>
@@ -208,7 +192,7 @@
         </div>
 
         <div class="section-footer">
-          <a href="/projects/" class="btn btn--ghost">
+          <a href="/projects/" class="btn btn--cta">
             See More Projects
           </a>
         </div>
@@ -220,34 +204,51 @@
           <span class="section-label">About</span>
         </div>
 
-        <div class="editorial-grid">
-          <h2 class="editorial-heading">
-            I talk to the people I build for. Then I build.
-          </h2>
-          <div class="editorial-body">
-            <p class="about-text">
-              My name is Tomas Gorjux, I reside in Melbourne and I am 15. I am
-              originally from Europe and moved here at an early age. I do
-              Photography as my main hobby, you can find some of my pictures
-              here: <a href="/photography/">Gallery</a>.
-            </p>
-            <p class="about-text">
-              I founded Tradsiee as a mission to help tradespeople lose less
-              time on leads. I also make websites, you can find some of my work
-              on the <a href="/#projects">projects section</a>. If you ever have
-              a question or need a website just contact me
-              here: <a href="/contact/">Contact</a>.
-            </p>
+        <h2 class="about-heading">
+          I talk to the people I build for. Then I build.
+        </h2>
 
-            <div class="skills-inline">
-              <span class="skill-pill">Products</span>
-              <span class="skill-pill">Design</span>
-              <span class="skill-pill">Photography</span>
+        <div class="about-grid">
+          <div>
+            <p class="about-text">
+              My name is Tomas Gorjux. I'm 15 years old and I live in
+              Melbourne, Australia. I was born in Lithuania, and my family
+              moved here when I was young. Ever since I was a kid I've
+              enjoyed creating things that help people out, and more recently
+              that's turned into building software and websites.
+            </p>
+            <p class="about-text">
+              Because of that, I founded Tradsiee, a video lead generation
+              platform for Australian tradespeople. Instead of chasing quote
+              requests that never become jobs, tradies get real video leads,
+              so they can assess and quote via video without having to drive
+              out there, less time hunting and more time working. I created
+              Tradsiee after I noticed how much time was being lost from
+              tradies around me.
+            </p>
+          </div>
+          <div>
+            <p class="about-text">
+              I also make websites for people at a lower price, since I want
+              to grow my portfolio. And if a tradie asks for a website, I'll
+              build it and host it for free, as long as they use Tradsiee.
+            </p>
+            <p class="about-text">
+              Aside from building, I have a passion for photography. It's my
+              main hobby, mostly nature, and I've been trying to get into
+              street photography. I'm still learning, and you can see some of
+              my photos in the <a href="/photography/">gallery</a>.
+            </p>
+            <div class="about-cta">
+              <div class="skills-inline">
+                <span class="skill-pill">Products</span>
+                <span class="skill-pill">Design</span>
+                <span class="skill-pill">Photography</span>
+              </div>
+              <a href="/contact/" class="btn btn--cta">
+                Get In Touch
+              </a>
             </div>
-            <a href="/contact/" class="link-arrow">
-              Get In Touch
-              <span class="link-arrow__icon" aria-hidden="true">→</span>
-            </a>
           </div>
         </div>
       </section>
@@ -258,20 +259,79 @@
           <span class="section-label">Photography</span>
         </div>
 
-        <div class="editorial-grid">
-          <h2 class="editorial-heading">
-            Nature and wildlife around Melbourne. Still learning, still
-            shooting.
-          </h2>
-          <div class="editorial-body">
+        <h2 class="about-heading">
+          Nature and wildlife around Melbourne.<br />
+          Still learning, still shooting.
+        </h2>
+
+        <div class="photo-strip">
+          <a href="/photography/#photo-sun-looking-down" class="photo-tile">
+            <div class="photo-tile__frame">
+              <img
+                src="/assets/photography-images/sun_looking_down.webp"
+                alt="Sun peering through the trees"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <span class="photo-tile__caption">Sun peering through the trees</span>
+          </a>
+          <a href="/photography/#photo-wallaby-could-have-been-closer" class="photo-tile photo-tile--offset">
+            <div class="photo-tile__frame">
+              <img
+                src="/assets/photography-images/wallaby_could_have_been_closer.webp"
+                alt="Wallaby that's camouflaging"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <span class="photo-tile__caption">Wallaby that's camouflaging</span>
+          </a>
+          <a href="/photography/#photo-bird-on-telephone-dsc-0043" class="photo-tile">
+            <div class="photo-tile__frame">
+              <img
+                src="/assets/photography-images/Bird_On_Telephone_(DSC_0043).webp"
+                alt="Bird on a telephone wire"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <span class="photo-tile__caption">Bird on a telephone wire</span>
+          </a>
+          <a href="/photography/#photo-highway-of-fenceposts" class="photo-tile photo-tile--offset">
+            <div class="photo-tile__frame">
+              <img
+                src="/assets/photography-images/Highway_Of_Fenceposts.webp"
+                alt="Highway fence posts"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <span class="photo-tile__caption">Highway fence posts</span>
+          </a>
+        </div>
+
+        <div class="about-grid">
+          <p class="about-text">
+            I got really into photography in the past year, and I take my
+            Nikon camera with me everywhere I can. I usually take photos of
+            whatever I see and like, mostly nature.
+          </p>
+          <div>
             <p class="about-text">
-              Birds, landscapes, whatever catches my eye. I'm getting better one
-              shot at a time. Digital downloads available if you want one.
+              I am still learning photography, but here are some of my
+              photos. There are more on the photography page.
             </p>
-            <a href="/photography/" class="link-arrow">
-              View Gallery
-              <span class="link-arrow__icon" aria-hidden="true">→</span>
-            </a>
+            <div class="about-cta">
+              <div class="skills-inline">
+                <span class="skill-pill">Birds</span>
+                <span class="skill-pill">Landscapes</span>
+                <span class="skill-pill">Wildlife</span>
+              </div>
+              <a href="/photography/" class="btn btn--cta">
+                View Gallery
+              </a>
+            </div>
           </div>
         </div>
       </section>

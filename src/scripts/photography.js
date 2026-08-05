@@ -1,6 +1,7 @@
 import "../styles/variables.css";
 import "../styles/components.css";
 import "../styles/photography.css";
+import "@fortawesome/fontawesome-free/css/all.css";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { initMobileMenu, initActiveNav } from "./nav.js";
@@ -14,20 +15,34 @@ import { initThemeToggle } from "./theme.js";
 
 const photos = [
   // ── 2025 ──
-  { src: "/assets/photography-images/Sun_Looking_Down.webp", alt: "Sun looking down through the trees", year: 2025 },
-  { src: "/assets/photography-images/Trail_Tree_Framing.webp", alt: "Tree framing a trail", year: 2025 },
-  { src: "/assets/photography-images/Trail_Behind_Leaves.webp", alt: "Trail seen through leaves", year: 2025 },
+  { src: "/assets/photography-images/sun_looking_down.webp", alt: "Sun peering through the trees", year: 2025 },
+  { src: "/assets/photography-images/trail_tree_framing.webp", alt: "Portal to a trail", year: 2025 },
+  { src: "/assets/photography-images/trail_behind_leaves.webp", alt: "Trail in a park", year: 2025 },
   { src: "/assets/photography-images/Weird_Looking_Tree.webp", alt: "Weird looking tree", year: 2025 },
-  { src: "/assets/photography-images/A_Trail_(sky_clipping).webp", alt: "A trail through the bush", year: 2025 },
-  { src: "/assets/photography-images/Landscape_of_rocks.webp", alt: "Rocky landscape", year: 2025 },
-  { src: "/assets/photography-images/Wallaby_(Could_have_been_closer).webp", alt: "Wallaby in the wild", year: 2025 },
-  { src: "/assets/photography-images/Greta_rocks_(right_face_dark).webp", alt: "Greta at the rocks", year: 2025 },
-  { src: "/assets/photography-images/Greta_sus_(jacket_clipping).webp", alt: "Greta in a jacket", year: 2025 },
+  { src: "/assets/photography-images/a_trail_sky_clipping.webp", alt: "A trail to the open", year: 2025 },
+  { src: "/assets/photography-images/landscape_of_rocks.webp", alt: "Rocks surfing the water", year: 2025 },
+  { src: "/assets/photography-images/wallaby_could_have_been_closer.webp", alt: "Wallaby that's camouflaging", year: 2025 },
+  { src: "/assets/photography-images/greta_rocks_right_face_dark.webp", alt: "Portrait of my sister", year: 2025 },
+  { src: "/assets/photography-images/greta_sus_jacket_clipping.webp", alt: "My sister in front of some mountains", year: 2025 },
   { src: "/assets/photography-images/Highway_Of_Fenceposts.webp", alt: "Highway fence posts", year: 2025 },
-  { src: "/assets/photography-images/Motorbike_(DSC_0048).webp", alt: "Motorbike parked", year: 2025 },
+  { src: "/assets/photography-images/motorbike_dsc_0048.webp", alt: "Person on a motorbike", year: 2025 },
   { src: "/assets/photography-images/Bird_On_Telephone_(DSC_0043).webp", alt: "Bird on a telephone wire", year: 2025 },
-  { src: "/assets/photography-images/dsc_0012 bird phillip island large.webp", alt: "Bird at Phillip Island", year: 2025 },
+  { src: "/assets/photography-images/dsc_0012-bird-phillip-island-large.webp", alt: "Bird at Phillip Island", year: 2025 },
+  { src: "/assets/photography-images/dsc_0095-wilsn-prom-large.webp", alt: "Seagull flying through the sky", year: 2025 },
+  { src: "/assets/photography-images/dsc_0108-flower-large.webp", alt: "Pink flowers", year: 2026 },
 ];
+
+// Stable anchor id per photo, e.g. photo-sun-looking-down
+function photoId(src) {
+  const base = src.split("/").pop().replace(/\.webp$/i, "");
+  return (
+    "photo-" +
+    base
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-+|-+$/g, "")
+  );
+}
 
 function initGallery() {
   const container = document.getElementById("gallery");
@@ -58,6 +73,10 @@ function initGallery() {
     for (const photo of groups[year]) {
       const item = document.createElement("div");
       item.className = "gallery-item";
+      item.id = photoId(photo.src);
+
+      const frame = document.createElement("div");
+      frame.className = "gallery-item__frame";
 
       const img = document.createElement("img");
       img.src = photo.src;
@@ -65,7 +84,14 @@ function initGallery() {
       img.loading = "lazy";
       img.decoding = "async";
 
-      item.appendChild(img);
+      frame.appendChild(img);
+      item.appendChild(frame);
+
+      const caption = document.createElement("span");
+      caption.className = "gallery-item__caption";
+      caption.textContent = photo.alt;
+      item.appendChild(caption);
+
       masonry.appendChild(item);
     }
 
@@ -110,7 +136,9 @@ function initLightbox() {
   }
 
   document.getElementById("gallery").addEventListener("click", (e) => {
-    const img = e.target.closest(".gallery-item img");
+    const item = e.target.closest(".gallery-item");
+    if (!item) return;
+    const img = item.querySelector("img");
     if (!img) return;
     const images = getImages();
     const index = Array.from(images).indexOf(img);
@@ -132,6 +160,31 @@ function initLightbox() {
 }
 
 initLightbox();
+
+// Scroll to a photo when landing with a #photo-... hash (front page deep links).
+function scrollToPhoto() {
+  const raw = decodeURIComponent(location.hash.slice(1));
+  if (!raw.startsWith("photo-")) return;
+  const el = document.getElementById(raw);
+  if (!el) return;
+
+  const flash = () => {
+    el.classList.remove("gallery-item--highlight");
+    void el.offsetWidth;
+    el.classList.add("gallery-item--highlight");
+    setTimeout(() => el.classList.remove("gallery-item--highlight"), 2000);
+  };
+  const center = () => el.scrollIntoView({ behavior: "smooth", block: "center" });
+
+  // First pass instant (starts lazy image loads), then re-center as the
+  // gallery layout settles so the target lands truly centered.
+  el.scrollIntoView({ behavior: "auto", block: "center" });
+  flash();
+  [300, 650, 1100].forEach((ms) => setTimeout(center, ms));
+}
+
+window.addEventListener("hashchange", scrollToPhoto);
+scrollToPhoto();
 
 initActiveNav();
 

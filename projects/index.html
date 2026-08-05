@@ -79,21 +79,13 @@
         document.documentElement.classList.add("dark");
     </script>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-
     <link
       rel="preload"
-      as="style"
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      href="/fonts/inter-latin-variable.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
     />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-      rel="stylesheet"
-      media="print"
-      onload="this.media = 'all'"
-    />
-
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="shortcut icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
@@ -103,20 +95,26 @@
     <!-- @partial nav -->
 
     <main class="container page-content">
-      <section
-        class="card hero-card"
-        data-aos="fade-up"
-        data-aos-duration="1000"
-      >
-        <h1 class="hero-heading hero-heading--compact">
-          <span class="text-accent">Projects.</span>
+      <section class="page-hero" data-aos="fade-up" data-aos-duration="1000">
+        <span class="section-label">Projects</span>
+        <h1 class="page-hero__title">
+          Everything I've built, from scratch.
         </h1>
-        <p class="hero-subtitle" style="max-width: 36rem">
-          Everything I've built, from scratch — design, product, and code.
+        <p class="page-hero__sub">
+          Design, product, and code, all done by me.
         </p>
       </section>
 
       <div id="projects" class="projects"></div>
+
+      <section class="page-cta" data-aos="fade-up">
+        <h2 class="page-hero__title">Want one of your own?</h2>
+        <p class="page-hero__sub">
+          I build websites and products for people. If you have an idea, let's
+          talk.
+        </p>
+        <a href="/contact/" class="btn btn--cta">Get in touch</a>
+      </section>
     </main>
 
     <!-- @partial footer -->

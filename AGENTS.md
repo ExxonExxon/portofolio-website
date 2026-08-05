@@ -59,6 +59,16 @@ To add a photo:
 1. Drop the `.webp` in `assets/photography-images/`
 2. Add one line to the `photos` array in `photography.js`
 
+### Photo Renamer dev tool
+
+With `npm run dev` running, open `http://localhost:3000/dev/photo-renamer.html`
+to see every gallery photo with a live preview and rename them (or add
+unlisted photos) in one click. The tool renames files in BOTH
+`assets/photography-images/` and `public/assets/photography-images/` (the
+served copy lives in `public/`) and updates every reference
+(`photography.js`, `index.html`, `photography/index.html`). Dev-only, never
+deployed.
+
 Uses CSS `column-count` for the waterfall layout; no JS layout calculations.
 Images use native `loading="lazy"` + `decoding="async"`.
 

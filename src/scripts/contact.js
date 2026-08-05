@@ -1,6 +1,7 @@
 import "../styles/variables.css";
 import "../styles/components.css";
 import "../styles/contact.css";
+import "@fortawesome/fontawesome-free/css/all.css";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { initMobileMenu, initActiveNav } from "./nav.js";
