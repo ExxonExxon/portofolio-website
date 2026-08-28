@@ -3,37 +3,54 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
     <meta
       name="description"
-      content="Projects by Tomas Gorjux — Tradsiee and more, built from scratch."
+      content="Projects by Tomas Gorjux, a web developer in Melbourne. Tradsiee brings video leads to Australian tradies, plus websites built from scratch."
     />
-    <title>Tomas Gorjux | Projects</title>
-    <link rel="canonical" href="https://tomasgorjux.net/projects/" />
+    <title>Projects — Tomas Gorjux | Melbourne Web Developer</title>
+    <link rel="canonical" href="https://tomas.gorjux.net/projects/" />
     <meta property="og:locale" content="en_AU" />
     <meta property="og:site_name" content="Tomas Gorjux" />
     <meta name="author" content="Tomas Gorjux" />
 
-    <meta property="og:title" content="Tomas Gorjux | Projects" />
+    <meta
+      property="og:title"
+      content="Projects — Tomas Gorjux | Melbourne Web Developer"
+    />
     <meta
       property="og:description"
-      content="Projects by Tomas Gorjux — Tradsiee and more, built from scratch."
+      content="Projects by Tomas Gorjux, a Melbourne web developer and product builder. Tradsiee video lead generation for Australian tradies, plus websites built from scratch."
     />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://tomasgorjux.net/projects/" />
+    <meta property="og:url" content="https://tomas.gorjux.net/projects/" />
     <meta
       property="og:image"
-      content="https://tomasgorjux.net/assets/scr-20260218-tzib.webp"
+      content="https://tomas.gorjux.net/assets/og-image.webp"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="A new website in days, free if you use Tradsiee."
     />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Tomas Gorjux | Projects" />
+    <meta
+      name="twitter:title"
+      content="Projects — Tomas Gorjux | Melbourne Web Developer"
+    />
     <meta
       name="twitter:description"
-      content="Projects by Tomas Gorjux — Tradsiee and more, built from scratch."
+      content="Projects by Tomas Gorjux, a Melbourne web developer and product builder. Tradsiee video lead generation for Australian tradies, plus websites built from scratch."
     />
     <meta
       name="twitter:image"
-      content="https://tomasgorjux.net/assets/scr-20260218-tzib.webp"
+      content="https://tomas.gorjux.net/assets/og-image.webp"
+    />
+    <meta
+      name="twitter:image:alt"
+      content="A new website in days, free if you use Tradsiee."
     />
 
     <script type="application/ld+json">
@@ -41,12 +58,35 @@
         "@context": "https://schema.org",
         "@type": "CollectionPage",
         "name": "Projects by Tomas Gorjux",
-        "url": "https://tomasgorjux.net/projects/",
-        "description": "Projects by Tomas Gorjux — Tradsiee and more, built from scratch.",
+        "url": "https://tomas.gorjux.net/projects/",
+        "description": "Projects by Tomas Gorjux, a Melbourne web developer and product builder. Tradsiee video lead generation for Australian tradies, plus websites built from scratch.",
         "inLanguage": "en-AU",
         "isPartOf": {
-          "@id": "https://tomasgorjux.net/"
+          "@id": "https://tomas.gorjux.net/"
         }
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "name": "Projects by Tomas Gorjux",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "url": "https://tradsiee.com",
+            "name": "Tradsiee",
+            "description": "Video lead generation for Australian tradies — less time on dead-end quotes, more time on the job."
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "url": "https://adambeaumonttiling.com.au",
+            "name": "Adam Beaumont Tiling",
+            "description": "A Melbourne tiler using Tradsiee, renovating bathrooms across the eastern suburbs since 1993."
+          }
+        ]
       }
     </script>
     <script type="application/ld+json">
@@ -58,30 +98,35 @@
             "@type": "ListItem",
             "position": 1,
             "name": "Home",
-            "item": "https://tomasgorjux.net/"
+            "item": "https://tomas.gorjux.net/"
           },
           {
             "@type": "ListItem",
             "position": 2,
             "name": "Projects",
-            "item": "https://tomasgorjux.net/projects/"
+            "item": "https://tomas.gorjux.net/projects/"
           }
         ]
       }
     </script>
 
-    <script>
-      if (
-        localStorage.getItem("theme") === "dark" ||
-        (!localStorage.getItem("theme") &&
-          matchMedia("(prefers-color-scheme:dark)").matches)
-      )
-        document.documentElement.classList.add("dark");
-    </script>
-
     <link
       rel="preload"
       href="/fonts/inter-latin-variable.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/fraunces-latin-variable.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/rouge-script-latin.woff2"
       as="font"
       type="font/woff2"
       crossorigin
@@ -95,24 +140,113 @@
     <!-- @partial nav -->
 
     <main class="container page-content">
+      <!-- Hero — type only, like the home page -->
       <section class="page-hero" data-aos="fade-up" data-aos-duration="1000">
-        <span class="section-label">Projects</span>
         <h1 class="page-hero__title">
-          Everything I've built, from scratch.
+          Everything I've built,<br />
+          <span class="text-accent">from scratch.</span>
         </h1>
-        <p class="page-hero__sub">
-          Design, product, and code, all done by me.
-        </p>
+        <p class="page-hero__sub">Design, product, and code. All mine.</p>
       </section>
 
-      <div id="projects" class="projects"></div>
+      <!-- Two project boxes, in the home-page style -->
+      <section
+        id="projects"
+        class="project-grid project-grid--museum project-grid--prints"
+        data-aos="fade-up"
+      >
+        <a
+          href="https://tradsiee.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="project-feature"
+        >
+          <div class="project-feature__media">
+            <img
+              src="/assets/tradsiee.webp"
+              alt="Tradsiee — video lead generation for tradies"
+              width="1200"
+              height="722"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+          <div class="project-feature__top">
+            <div>
+              <h2 class="project-feature__title">Tradsiee</h2>
+              <p class="project-feature__desc">
+                Video lead generation for Australian tradies: less time on
+                dead-end quotes, more time on the job.
+              </p>
+              <ul class="project-feature__details">
+                <li>Real-time video lead system</li>
+                <li>Live at tradsiee.com</li>
+              </ul>
+            </div>
+          </div>
+        </a>
 
+        <a
+          href="https://adambeaumonttiling.com.au"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="project-feature"
+        >
+          <div class="project-feature__media">
+            <img
+              src="/assets/adam-beaumont.webp"
+              alt="Adam Beaumont Tiling — bathroom renovations in Melbourne's eastern suburbs"
+              width="1200"
+              height="853"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+          <div class="project-feature__top">
+            <div>
+              <h2 class="project-feature__title">Adam Beaumont Tiling</h2>
+              <p class="project-feature__desc">
+                A Melbourne tiler using Tradsiee. Renovating bathrooms across
+                the eastern suburbs since 1993.
+              </p>
+              <ul class="project-feature__details">
+                <li>Real tradie, real business</li>
+                <li>Uses Tradsiee</li>
+              </ul>
+            </div>
+          </div>
+        </a>
+      </section>
+
+      <!-- How I work — the process and the quality bar -->
+      <section class="projects-essay" data-aos="fade-up">
+        <h2 class="projects-essay__heading">
+          How I <span class="text-accent">work.</span>
+        </h2>
+
+        <div class="projects-essay__grid">
+          <div>
+            <p class="projects-essay__text">
+              I start with the problem, not the design: who it's for, what it
+              has to do. Then I build it.
+            </p>
+          </div>
+          <div>
+            <p class="projects-essay__text">
+              The build has to be fast and clean, not merely work. If it doesn't
+              hold up, I don't call it done.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Compact CTA -->
       <section class="page-cta" data-aos="fade-up">
-        <h2 class="page-hero__title">Want one of your own?</h2>
-        <p class="page-hero__sub">
-          I build websites and products for people. If you have an idea, let's
-          talk.
-        </p>
+        <span class="section-label">Next step</span>
+        <h2 class="section-heading">
+          Want one of your <span class="section-heading__accent">own?</span>
+        </h2>
+        <p class="page-cta__sub">Got something in mind? Say hi.</p>
         <a href="/contact/" class="btn btn--cta">Get in touch</a>
       </section>
     </main>

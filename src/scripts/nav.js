@@ -1,8 +1,15 @@
-import { DOM } from "./constants.js";
+const MENU_BTN_ID = "menuBtn";
+const MOBILE_MENU_ID = "mobileMenu";
+const LINE_1_ID = "line1";
+const LINE_2_ID = "line2";
+const LINE_3_ID = "line3";
 
 export function initActiveNav() {
   const current = window.location.pathname;
-  document.querySelectorAll(".nav-link").forEach((link) => {
+  const scope = document.querySelectorAll(
+    ".nav-bar .nav-link, .mobile-menu .mobile-link",
+  );
+  scope.forEach((link) => {
     if (link.getAttribute("href") === current) {
       link.classList.add("nav-link--active");
     }
@@ -16,16 +23,16 @@ export function initActiveNav() {
  * @param {string} mobileMenuId - ID of the mobile menu container
  */
 export function initMobileMenu(
-  menuBtnId = DOM.MENU_BTN,
-  mobileMenuId = DOM.MOBILE_MENU,
+  menuBtnId = MENU_BTN_ID,
+  mobileMenuId = MOBILE_MENU_ID,
 ) {
   const menuBtn = document.getElementById(menuBtnId);
   const mobileMenu = document.getElementById(mobileMenuId);
   if (!menuBtn || !mobileMenu) return;
 
-  const line1 = document.getElementById(DOM.LINE_1);
-  const line2 = document.getElementById(DOM.LINE_2);
-  const line3 = document.getElementById(DOM.LINE_3);
+  const line1 = document.getElementById(LINE_1_ID);
+  const line2 = document.getElementById(LINE_2_ID);
+  const line3 = document.getElementById(LINE_3_ID);
 
   let isOpen = false;
 

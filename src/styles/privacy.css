@@ -1,0 +1,81 @@
+/* ─── Privacy page — text-only editorial layout ───
+   A quiet reading column: warm paper background, serif headings,
+   generous leading. No widgets, no cards — just type. */
+
+.privacy-hero__meta {
+  margin-top: 1.25rem;
+  font-size: 1rem;
+  color: var(--color-text-soft);
+}
+
+.privacy-doc {
+  max-width: 42rem;
+  margin: 0 auto;
+  padding-bottom: clamp(3rem, 8vw, 6rem);
+  text-align: left;
+}
+
+.privacy-doc__h {
+  margin: 0 0 1rem;
+  padding-top: clamp(2.5rem, 6vw, 3.5rem);
+  border-top: 1px solid var(--color-border);
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3vw, 1.875rem);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--color-text-heading);
+}
+
+.privacy-doc p {
+  margin: 0 0 1.25rem;
+  font-size: var(--text-body);
+  line-height: 1.75;
+  color: var(--color-text-soft);
+}
+
+.privacy-doc ul {
+  margin: 0 0 1.5rem;
+  padding-left: 1.25rem;
+  list-style: none;
+}
+
+.privacy-doc li {
+  position: relative;
+  margin-bottom: 0.75rem;
+  padding-left: 1rem;
+  font-size: var(--text-body);
+  line-height: 1.7;
+  color: var(--color-text-soft);
+}
+
+.privacy-doc li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.7em;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: var(--color-text-soft);
+}
+
+.privacy-doc strong {
+  font-weight: 700;
+  color: var(--color-text-heading);
+}
+
+.privacy-doc a {
+  color: var(--color-accent);
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1px solid var(--color-accent-border);
+  transition:
+    color var(--transition-base),
+    border-color var(--transition-base);
+}
+
+.privacy-doc a:hover {
+  color: var(--color-accent-dark);
+  border-color: var(--color-accent-dark);
+}

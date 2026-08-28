@@ -3,81 +3,37 @@
 .gallery {
   display: flex;
   flex-direction: column;
-  gap: 3rem;
+  gap: 3.5rem;
 }
 
 .gallery-section {
   width: 100%;
 }
 
+/* Year heading — centred editorial rule */
 .gallery-year {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
   font-size: 0.75rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.4em;
+  letter-spacing: 0.45em;
   color: var(--color-text-muted);
-  margin-bottom: 1.5rem;
-  padding-bottom: 0.75rem;
-  border-bottom: 1px solid var(--color-border);
+  margin: 0 0 2.5rem;
 }
 
-.gallery-masonry {
-  column-count: 1;
-  column-gap: 1.25rem;
+.gallery-year::before,
+.gallery-year::after {
+  content: "";
+  height: 1px;
+  width: clamp(2rem, 8vw, 5rem);
+  background: var(--color-border);
 }
 
-@media (min-width: 640px) {
-  .gallery-masonry {
-    column-count: 2;
-  }
-}
-
-@media (min-width: 1024px) {
-  .gallery-masonry {
-    column-count: 3;
-  }
-}
-
-.gallery-item {
-  break-inside: avoid;
-  margin-bottom: 1.25rem;
-  border-radius: 1rem;
-  cursor: pointer;
-}
-
-.gallery-item__frame {
-  border-radius: 1rem;
-  overflow: hidden;
-  transition:
-    transform 0.3s ease-out,
-    box-shadow var(--transition-base);
-}
-
-.gallery-item:hover .gallery-item__frame {
-  transform: translateY(-4px) rotate(-1.5deg);
-  box-shadow: var(--shadow-card-hover);
-}
-
-.gallery-item__frame img {
-  display: block;
-  width: 100%;
-  height: auto;
-  transition: transform 0.4s ease-out;
-}
-
-.gallery-item:hover .gallery-item__frame img {
-  transform: scale(1.05);
-}
-
-.gallery-item__caption {
-  display: block;
-  padding: 0.75rem 0.5rem 0.5rem;
-  font-size: 0.6875rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--color-text-muted);
-}
+/* Masonry base (.gallery-masonry / .gallery-column) is defined in
+   components.css. Photo cards themselves are defined in photo-card.css. */
 
 @keyframes photo-flash {
   0%,
@@ -90,7 +46,7 @@
   }
 }
 
-.gallery-item--highlight {
+.photo-card--highlight {
   outline: 2px solid transparent;
   outline-offset: 4px;
   animation: photo-flash 1.8s ease-out;
@@ -191,8 +147,20 @@
   display: block;
   max-width: 100%;
   max-height: 90vh;
-  border-radius: 0.75rem;
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+  border-radius: 0.5rem;
+  box-shadow: 0 25px 60px rgb(0 0 0 / 0.6);
+}
+
+/* Caption underneath the enlarged print, like a wall label */
+.photo-modal__caption {
+  display: block;
+  margin-top: 1rem;
+  text-align: center;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 0.9375rem;
+  letter-spacing: 0.005em;
+  color: var(--color-modal-heading);
 }
 
 .photo-modal__close {
@@ -210,10 +178,4 @@
 
 .photo-modal__close:hover {
   opacity: 1;
-}
-
-/* ─── CTA Card ─── */
-
-.cta-card {
-  margin-top: 1rem;
 }

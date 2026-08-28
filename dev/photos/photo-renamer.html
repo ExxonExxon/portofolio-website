@@ -22,7 +22,10 @@
         margin: 0;
         background: var(--bg);
         color: var(--text);
-        font: 14px/1.5 Inter, system-ui, sans-serif;
+        font:
+          14px/1.5 Inter,
+          system-ui,
+          sans-serif;
       }
       header {
         display: flex;
@@ -217,12 +220,16 @@
   <body>
     <header>
       <h1>Photo Renamer</h1>
-      <span class="hint">dev tool · renames photo files and updates every reference</span>
+      <span class="hint"
+        >dev tool · renames photo files and updates every reference</span
+      >
       <span id="status" class="status">loading…</span>
     </header>
 
     <main>
-      <div class="section-title">Gallery photos <span id="galleryCount"></span></div>
+      <div class="section-title">
+        Gallery photos <span id="galleryCount"></span>
+      </div>
       <div id="gallery" class="grid"></div>
 
       <div class="section-title" id="unlistedTitle" style="display: none">
@@ -341,7 +348,8 @@
       function updateReadyCount() {
         const n =
           document.querySelectorAll("#gallery .card .inc:checked").length +
-          document.querySelectorAll("#unlisted .card .add-check:checked").length;
+          document.querySelectorAll("#unlisted .card .add-check:checked")
+            .length;
         document.getElementById("readyCount").textContent = n
           ? `${n} change${n === 1 ? "" : "s"} ready`
           : "";
@@ -354,13 +362,16 @@
         unlisted.innerHTML = state.unlisted.length
           ? state.unlisted.map(unlistedCard).join("")
           : '<p class="empty">No unlisted photos.</p>';
-        document.getElementById("galleryCount").textContent = state.photos.length
+        document.getElementById("galleryCount").textContent = state.photos
+          .length
           ? `(${state.photos.length})`
           : "";
-        document.getElementById("unlistedCount").textContent = state.unlisted.length
+        document.getElementById("unlistedCount").textContent = state.unlisted
+          .length
           ? `(${state.unlisted.length})`
           : "";
-        document.getElementById("unlistedTitle").style.display = state.unlisted.length
+        document.getElementById("unlistedTitle").style.display = state.unlisted
+          .length
           ? ""
           : "none";
       }
@@ -407,7 +418,11 @@
           const oldAlt = photo.alt ?? "";
           const oldYear = Number(photo.year ?? 0);
           if (!safe) continue;
-          if (safe !== name || alt !== oldAlt || (year !== null && year !== oldYear)) {
+          if (
+            safe !== name ||
+            alt !== oldAlt ||
+            (year !== null && year !== oldYear)
+          ) {
             const entry = { from: name, to: safe, alt, oldAlt };
             if (year !== null && year !== oldYear) {
               entry.year = year;
@@ -447,7 +462,8 @@
           ...res.renamed.map((r) => "renamed " + r),
           ...res.added.map((a) => "added " + a),
           ...res.files.map(
-            (f) => `updated ${f.path}: ${f.renames} rename(s), ${f.adds} add(s)`,
+            (f) =>
+              `updated ${f.path}: ${f.renames} rename(s), ${f.adds} add(s)`,
           ),
         ];
         showResult(lines.join("\n"), "ok");
@@ -456,7 +472,12 @@
 
       document.getElementById("gallery").addEventListener("input", (e) => {
         const card = e.target.closest(".card");
-        if (card && (e.target.matches(".name") || e.target.matches(".alt") || e.target.matches(".year"))) {
+        if (
+          card &&
+          (e.target.matches(".name") ||
+            e.target.matches(".alt") ||
+            e.target.matches(".year"))
+        ) {
           refreshCard(card);
         }
       });

@@ -1,5 +1,6 @@
-/* ─── Fonts — self-hosted Inter (variable, latin) ─── */
+/* ─── Fonts — self-hosted (variable, latin) ─── */
 
+/* Inter — body / UI text */
 @font-face {
   font-family: "Inter";
   font-style: normal;
@@ -8,33 +9,70 @@
   src: url("/fonts/inter-latin-variable.woff2") format("woff2-variations");
 }
 
+/* Fraunces — warm editorial display serif (headings) */
+@font-face {
+  font-family: "Fraunces";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("/fonts/fraunces-latin-variable.woff2") format("woff2-variations");
+}
+/* Rouge Script — flowy calligraphic script, used as the brand/signature font */
+@font-face {
+  font-family: "Rouge Script";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/rouge-script-latin.woff2") format("woff2");
+}
+
+/* ─── Font tokens ─── */
+
+:root {
+  --font-display: "Fraunces", Georgia, "Times New Roman", serif;
+  --font-body: "Inter", system-ui, -apple-system, sans-serif;
+  --font-signature:
+    "Rouge Script", "Snell Roundhand", "Brush Script MT", cursive;
+}
+
+/* ─── Type scale — single source of truth ─── */
+
+:root {
+  --text-display-xl: clamp(2.75rem, 7vw, 6.5rem); /* hero only */
+  --text-section: clamp(1.75rem, 3.5vw, 2.5rem); /* all section titles */
+  --text-body-lg: clamp(1.125rem, 2vw, 1.375rem); /* hero subtitle + quote */
+  --text-body: clamp(1rem, 1.5vw, 1.125rem); /* body copy */
+  --text-label: 0.75rem; /* eyebrows */
+}
+
 /* ─── Theme Variables ─── */
 
 :root {
-  /* Backgrounds */
-  --color-body-bg: #fafaf9; /* stone-50 */
+  /* Backgrounds — warm paper */
+  --color-body-bg: #f6f3ea; /* warm paper */
   --color-surface: #ffffff; /* white */
-  --color-surface-alt: #fafafa; /* neutral-50 */
-  --color-surface-hover: #f5f5f5; /* neutral-100 */
-  --color-surface-nav: rgb(255 255 255 / 0.8); /* white/80 */
+  --color-surface-alt: #faf7ef; /* warm cream */
+  --color-surface-hover: #efece0; /* warm sand */
+  --color-surface-card: #faf7ef; /* solid plaque surface (museum cards) */
+  --color-surface-nav: rgb(255 255 255 / 0.82); /* white/82 */
   --color-surface-mobile: rgb(255 255 255 / 0.95); /* white/95 */
 
-  /* Text */
-  --color-text: #262626; /* neutral-800 */
-  --color-text-heading: #171717; /* neutral-900 */
-  --color-text-muted: #a3a3a3; /* neutral-400 */
-  --color-text-soft: #737373; /* neutral-500 */
-  --color-text-dark: #404040; /* neutral-700 */
+  /* Text — warm ink */
+  --color-text: #332e27; /* warm brown-gray */
+  --color-text-heading: #1e1a13; /* deep warm ink */
+  --color-text-muted: #a39a8a; /* warm taupe */
+  --color-text-soft: #6d6558; /* warm stone */
+  --color-text-dark: #4a443a; /* warm gray-brown */
 
-  /* Accent - Indigo */
-  --color-accent: #6366f1; /* indigo-500 */
-  --color-accent-light: #818cf8; /* indigo-400 */
-  --color-accent-dark: #4f46e5; /* indigo-600 */
-  --color-accent-darker: #4338ca; /* indigo-700 */
-  --color-accent-bg: #eef2ff; /* indigo-50 */
-  --color-accent-bg-light: #e0e7ff; /* indigo-100 */
-  --color-accent-border: #c7d2fe; /* indigo-200 */
-  --color-accent-text-muted: #a5b4fc; /* indigo-300 */
+  /* Accent — oxide / burnt red (earthy, photographic) */
+  --color-accent: #a63c28; /* burnt sienna */
+  --color-accent-light: #c06a4f;
+  --color-accent-dark: #8a2d1c;
+  --color-accent-darker: #6f2315;
+  --color-accent-bg: #f8ece6; /* warm red tint */
+  --color-accent-bg-light: #f3ddd2;
+  --color-accent-border: #e6ccc0;
+  --color-accent-text-muted: #d99a85;
 
   /* Accent - Emerald */
   --color-emerald: #10b981; /* emerald-500 */
@@ -54,67 +92,30 @@
   --color-blue-400: #60a5fa;
   --color-cyan-400: #22d3ee;
 
-  /* Borders */
-  --color-border: #e5e5e5; /* neutral-200 */
-  --color-border-muted: rgb(229 229 229 / 0.6); /* neutral-200/60 */
+  /* Borders — warm hairline */
+  --color-border: #e6e0d2;
+  --color-border-muted: rgb(230 224 210 / 0.6);
 
   /* Shadows */
-  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-sm: 0 1px 2px 0 rgb(30 26 19 / 0.05);
   --shadow-lg:
-    0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-  --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
-  --shadow-card-hover: 0 20px 60px rgba(0 0 0 / 0.08);
+    0 10px 15px -3px rgb(30 26 19 / 0.08), 0 4px 6px -4px rgb(30 26 19 / 0.07);
+  --shadow-2xl: 0 25px 50px -12px rgb(30 26 19 / 0.2);
+  --shadow-card-hover: 0 20px 60px rgb(30 26 19 / 0.08);
 
   /* Modal */
-  --color-modal-bg: #09090b; /* zinc-950 */
-  --color-modal-surface: rgb(24 24 27 / 0.2); /* zinc-900/20 */
+  --color-modal-bg: #0f0d0a; /* warm near-black */
+  --color-modal-surface: rgb(28 25 20 / 0.2);
   --color-modal-text: #a1a1aa; /* zinc-400 */
   --color-modal-heading: #71717a; /* zinc-500 */
   --color-modal-border: rgb(255 255 255 / 0.05);
 
   /* Footer */
-  --color-footer-bg: #f5f5f5; /* neutral-100 */
-  --color-footer-muted: #525252; /* neutral-600 */
+  --color-footer-bg: #ece7d8;
+  --color-footer-muted: #5c554a;
 
   /* Transitions */
   --transition-base: 300ms;
   --transition-slow: 700ms;
   --ease-out: cubic-bezier(0, 0, 0.2, 1);
-}
-
-.dark {
-  --color-body-bg: #0a0a0a; /* neutral-950 */
-  --color-surface: #171717; /* neutral-900 */
-  --color-surface-alt: rgb(38 38 38 / 0.5); /* neutral-800/50 */
-  --color-surface-hover: #262626; /* neutral-800 */
-  --color-surface-nav: rgb(23 23 23 / 0.8); /* neutral-900/80 */
-  --color-surface-mobile: rgb(23 23 23 / 0.95); /* neutral-900/95 */
-
-  --color-text: #d4d4d4; /* neutral-300 */
-  --color-text-heading: #ffffff; /* white */
-  --color-text-muted: #737373; /* neutral-500 */
-  --color-text-soft: #a3a3a3; /* neutral-400 */
-  --color-text-dark: #d4d4d4; /* neutral-300 */
-
-  --color-accent-bg: rgb(99 102 241 / 0.05); /* indigo-500/5 */
-  --color-accent-bg-light: rgb(99 102 241 / 0.1); /* indigo-500/10 */
-  --color-accent-border: rgb(99 102 241 / 0.1); /* indigo-500/10 */
-  --color-accent-border-accent: rgb(99 102 241 / 0.2); /* indigo-500/20 */
-
-  --color-emerald-bg: rgb(16 185 129 / 0.05); /* emerald-500/5 */
-  --color-emerald-bg-light: rgb(16 185 129 / 0.1); /* emerald-500/10 */
-  --color-emerald-border: rgb(16 185 129 / 0.1);
-
-  --color-orange-bg: rgb(249 115 22 / 0.05); /* orange-500/5 */
-  --color-orange-bg-light: rgb(249 115 22 / 0.1); /* orange-500/10 */
-  --color-orange-border: rgb(249 115 22 / 0.1);
-
-  --color-border: #262626; /* neutral-800 */
-  --color-border-muted: rgb(38 38 38 / 0.6); /* neutral-800/60 */
-
-  --shadow-sm: none;
-  --shadow-card-hover: 0 20px 60px rgba(0 0 0 / 0.4);
-
-  --color-footer-bg: rgb(23 23 23 / 0.5); /* neutral-900/50 */
-  --color-footer-muted: #525252; /* neutral-600 */
 }

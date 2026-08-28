@@ -2,3 +2,14 @@ node_modules/
 dist/
 .DS_Store
 *.local
+
+# Tooling artifacts
+.omo/
+.playwright-mcp/
+.pi/
+.ruff_cache/
+
+# One-off QA screenshot evidence (root level)
+/services-cards-cleaned.png
+/testimonials-cards-cleaned.png
+/verify-services-cleaned.png

@@ -2,39 +2,28 @@ import "../styles/variables.css";
 import "../styles/components.css";
 import "../styles/photography.css";
 import "@fortawesome/fontawesome-free/css/all.css";
-import AOS from "aos";
 import "aos/dist/aos.css";
-import { initMobileMenu, initActiveNav } from "./nav.js";
-import { initThemeToggle } from "./theme.js";
+import { initSite } from "./initSite.js";
+import { createPhotoCard } from "./photo-card.js";
+import photosData from "../data/photos.json";
 
 /*
  * To add a new photo:
  *   1. Drop the .webp file in assets/photography-images/
- *   2. Add one line to the array below with the filename and year
+ *   2. Add one line to src/data/photos.json with the filename and year
+ *
+ * `photos` is the full gallery (src/alt/year). `featured` photos are the ones
+ * shown in the homepage photo strip (max 4), injected at build/dev time.
  */
 
-const photos = [
-  // ── 2025 ──
-  { src: "/assets/photography-images/sun_looking_down.webp", alt: "Sun peering through the trees", year: 2025 },
-  { src: "/assets/photography-images/trail_tree_framing.webp", alt: "Portal to a trail", year: 2025 },
-  { src: "/assets/photography-images/trail_behind_leaves.webp", alt: "Trail in a park", year: 2025 },
-  { src: "/assets/photography-images/Weird_Looking_Tree.webp", alt: "Weird looking tree", year: 2025 },
-  { src: "/assets/photography-images/a_trail_sky_clipping.webp", alt: "A trail to the open", year: 2025 },
-  { src: "/assets/photography-images/landscape_of_rocks.webp", alt: "Rocks surfing the water", year: 2025 },
-  { src: "/assets/photography-images/wallaby_could_have_been_closer.webp", alt: "Wallaby that's camouflaging", year: 2025 },
-  { src: "/assets/photography-images/greta_rocks_right_face_dark.webp", alt: "Portrait of my sister", year: 2025 },
-  { src: "/assets/photography-images/greta_sus_jacket_clipping.webp", alt: "My sister in front of some mountains", year: 2025 },
-  { src: "/assets/photography-images/Highway_Of_Fenceposts.webp", alt: "Highway fence posts", year: 2025 },
-  { src: "/assets/photography-images/motorbike_dsc_0048.webp", alt: "Person on a motorbike", year: 2025 },
-  { src: "/assets/photography-images/Bird_On_Telephone_(DSC_0043).webp", alt: "Bird on a telephone wire", year: 2025 },
-  { src: "/assets/photography-images/dsc_0012-bird-phillip-island-large.webp", alt: "Bird at Phillip Island", year: 2025 },
-  { src: "/assets/photography-images/dsc_0095-wilsn-prom-large.webp", alt: "Seagull flying through the sky", year: 2025 },
-  { src: "/assets/photography-images/dsc_0108-flower-large.webp", alt: "Pink flowers", year: 2026 },
-];
+const photos = photosData.photos;
 
 // Stable anchor id per photo, e.g. photo-sun-looking-down
 function photoId(src) {
-  const base = src.split("/").pop().replace(/\.webp$/i, "");
+  const base = src
+    .split("/")
+    .pop()
+    .replace(/\.webp$/i, "");
   return (
     "photo-" +
     base
@@ -42,6 +31,35 @@ function photoId(src) {
       .replace(/[^a-z0-9]+/g, "-")
       .replace(/^-+|-+$/g, "")
   );
+}
+
+// Approximate relative height of one card from its photo ratio (width/height).
+// Taller photos have a smaller ratio → bigger card. Used only to balance the
+// columns roughly; the final sizes come from the browser once images load.
+function cardHeight(photo, cardWidth) {
+  const ratio = Number(photo.ratio);
+  if (ratio > 0) return cardWidth / ratio;
+  return cardWidth * 1.5; // fallback for a missing ratio
+}
+
+function columnCount() {
+  if (window.matchMedia("(min-width: 1024px)").matches) return 3;
+  if (window.matchMedia("(min-width: 640px)").matches) return 2;
+  return 1;
+}
+
+// Greedy-balance a list of photos into `n` columns by cumulative height.
+function splitIntoColumns(photos, n) {
+  const columns = Array.from({ length: n }, () => ({
+    photos: [],
+    height: 0,
+  }));
+  for (const photo of photos) {
+    const shortest = columns.reduce((a, b) => (a.height <= b.height ? a : b));
+    shortest.photos.push(photo);
+    shortest.height += cardHeight(photo, 333);
+  }
+  return columns.map((c) => c.photos);
 }
 
 function initGallery() {
@@ -70,29 +88,21 @@ function initGallery() {
     const masonry = document.createElement("div");
     masonry.className = "gallery-masonry";
 
-    for (const photo of groups[year]) {
-      const item = document.createElement("div");
-      item.className = "gallery-item";
-      item.id = photoId(photo.src);
+    const colCount = Math.min(columnCount(), groups[year].length);
+    const columns = splitIntoColumns(groups[year], colCount);
 
-      const frame = document.createElement("div");
-      frame.className = "gallery-item__frame";
-
-      const img = document.createElement("img");
-      img.src = photo.src;
-      img.alt = photo.alt;
-      img.loading = "lazy";
-      img.decoding = "async";
-
-      frame.appendChild(img);
-      item.appendChild(frame);
-
-      const caption = document.createElement("span");
-      caption.className = "gallery-item__caption";
-      caption.textContent = photo.alt;
-      item.appendChild(caption);
-
-      masonry.appendChild(item);
+    for (const colPhotos of columns) {
+      const column = document.createElement("div");
+      column.className = "gallery-column";
+      for (const photo of colPhotos) {
+        const item = createPhotoCard(photo, {
+          mode: "natural",
+          href: `#${photoId(photo.src)}`,
+        });
+        item.id = photoId(photo.src);
+        column.appendChild(item);
+      }
+      masonry.appendChild(column);
     }
 
     section.appendChild(masonry);
@@ -107,6 +117,7 @@ function initLightbox() {
   if (!modal) return;
 
   const modalImg = modal.querySelector(".photo-modal__img");
+  const modalCaption = modal.querySelector(".photo-modal__caption");
   const closeBtn = modal.querySelector(".photo-modal__close");
   const backdrop = modal.querySelector(".photo-modal__backdrop");
   const prevBtn = modal.querySelector(".photo-modal__prev");
@@ -115,7 +126,7 @@ function initLightbox() {
   let currentIndex = -1;
 
   function getImages() {
-    return document.querySelectorAll("#gallery .gallery-item img");
+    return document.querySelectorAll("#gallery .photo-card img");
   }
 
   function open(index) {
@@ -125,6 +136,7 @@ function initLightbox() {
     const img = images[index];
     modalImg.src = img.src;
     modalImg.alt = img.alt;
+    modalCaption.textContent = img.alt;
     modal.classList.add("photo-modal--open");
     document.body.style.overflow = "hidden";
   }
@@ -136,8 +148,9 @@ function initLightbox() {
   }
 
   document.getElementById("gallery").addEventListener("click", (e) => {
-    const item = e.target.closest(".gallery-item");
+    const item = e.target.closest(".photo-card");
     if (!item) return;
+    e.preventDefault();
     const img = item.querySelector("img");
     if (!img) return;
     const images = getImages();
@@ -169,12 +182,13 @@ function scrollToPhoto() {
   if (!el) return;
 
   const flash = () => {
-    el.classList.remove("gallery-item--highlight");
+    el.classList.remove("photo-card--highlight");
     void el.offsetWidth;
-    el.classList.add("gallery-item--highlight");
-    setTimeout(() => el.classList.remove("gallery-item--highlight"), 2000);
+    el.classList.add("photo-card--highlight");
+    setTimeout(() => el.classList.remove("photo-card--highlight"), 2000);
   };
-  const center = () => el.scrollIntoView({ behavior: "smooth", block: "center" });
+  const center = () =>
+    el.scrollIntoView({ behavior: "smooth", block: "center" });
 
   // First pass instant (starts lazy image loads), then re-center as the
   // gallery layout settles so the target lands truly centered.
@@ -186,15 +200,4 @@ function scrollToPhoto() {
 window.addEventListener("hashchange", scrollToPhoto);
 scrollToPhoto();
 
-initActiveNav();
-
-AOS.init({
-  once: true,
-  offset: 80,
-  duration: 600,
-  easing: "ease-out-cubic",
-  disable: "mobile",
-});
-
-initMobileMenu();
-initThemeToggle();
+initSite();
