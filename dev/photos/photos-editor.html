@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Homepage Photos — dev tool</title>
+    <style>
+      :root {
+        --bg: #0d0d0f;
+        --panel: #17171b;
+        --border: #26262c;
+        --text: #e6e6e9;
+        --muted: #8b8b94;
+        --accent: #6366f1;
+        --ok: #34d399;
+        --err: #f87171;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        font:
+          14px/1.5 Inter,
+          system-ui,
+          sans-serif;
+      }
+      header {
+        display: flex;
+        align-items: baseline;
+        gap: 12px;
+        padding: 20px 32px;
+        border-bottom: 1px solid var(--border);
+      }
+      header h1 {
+        margin: 0;
+        font-size: 17px;
+      }
+      header .hint {
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .status {
+        margin-left: auto;
+        font-size: 12px;
+        color: var(--muted);
+      }
+      main {
+        max-width: 1240px;
+        margin: 0 auto;
+        padding: 24px 32px 140px;
+      }
+      .count {
+        color: var(--muted);
+        font-size: 13px;
+        margin: 0 0 16px;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: 16px;
+      }
+      .card {
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 12px;
+      }
+      .thumb {
+        aspect-ratio: 4 / 5;
+        border-radius: 8px;
+        overflow: hidden;
+        background: #000;
+        margin-bottom: 10px;
+      }
+      .thumb img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      label {
+        display: block;
+        margin: 10px 0 4px;
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--muted);
+      }
+      input[type="text"],
+      input[type="number"] {
+        width: 100%;
+        background: #101013;
+        border: 1px solid var(--border);
+        color: var(--text);
+        border-radius: 8px;
+        padding: 8px 10px;
+        font-size: 13px;
+      }
+      input:focus {
+        outline: none;
+        border-color: var(--accent);
+      }
+      .check-row {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin: 12px 0 0;
+      }
+      .check-row input {
+        accent-color: var(--accent);
+      }
+      .check-row span {
+        font-size: 13px;
+      }
+      .toolbar {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(transparent, var(--bg) 35%);
+        padding: 16px 32px 24px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        z-index: 10;
+      }
+      .toolbar-inner {
+        max-width: 1240px;
+        margin: 0 auto;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+      button {
+        background: var(--accent);
+        color: #fff;
+        border: 0;
+        border-radius: 999px;
+        padding: 10px 22px;
+        font-weight: 700;
+        font-size: 13px;
+        cursor: pointer;
+      }
+      button:disabled {
+        opacity: 0.4;
+        cursor: default;
+      }
+      .result {
+        font-size: 12px;
+        white-space: pre-wrap;
+        color: var(--muted);
+        max-height: 90px;
+        overflow: auto;
+      }
+      .result .ok {
+        color: var(--ok);
+      }
+      .result .err {
+        color: var(--err);
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Homepage Photos</h1>
+      <span class="hint">dev tool · tick up to 4 to show on the homepage</span>
+      <span id="status" class="status">loading…</span>
+    </header>
+
+    <main>
+      <p class="count" id="current"></p>
+      <div id="grid" class="grid"></div>
+    </main>
+
+    <div class="toolbar">
+      <div class="toolbar-inner">
+        <button id="save">Save</button>
+        <button id="reload" class="cancel">Reload</button>
+        <div id="result" class="result"></div>
+      </div>
+    </div>
+
+    <script>
+      const state = { photos: [] };
+      const MAX = 4;
+
+      const esc = (s) =>
+        String(s)
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;");
+
+      async function api(path, opts = {}) {
+        const res = await fetch(path, opts);
+        return res.json().catch(() => ({}));
+      }
+
+      function card(p, i) {
+        return `
+        <article class="card" data-src="${esc(p.src)}">
+          <div class="thumb"><img src="${esc(p.src)}" alt="" loading="lazy" /></div>
+          <label>Name</label>
+          <input class="alt" type="text" value="${esc(p.alt)}" />
+          <label>Year</label>
+          <input class="year" type="number" value="${p.year}" min="2000" max="2100" />
+          <div class="check-row">
+            <input class="feat" type="checkbox" data-i="${i}" ${p.featured ? "checked" : ""} />
+            <span>Show on homepage</span>
+          </div>
+        </article>`;
+      }
+
+      function updateCurrent() {
+        const n = state.photos.filter((p) => p.featured).length;
+        document.getElementById("current").textContent =
+          `${n} of ${MAX} featured slots used.`;
+      }
+
+      function render() {
+        document.getElementById("grid").innerHTML = state.photos
+          .map(card)
+          .join("");
+        updateCurrent();
+      }
+
+      function setStatus(text, cls) {
+        const el = document.getElementById("status");
+        el.textContent = text;
+        el.className = "status" + (cls ? " " + cls : "");
+      }
+
+      function showResult(text, cls) {
+        const el = document.getElementById("result");
+        el.innerHTML = text;
+        el.className = "result" + (cls ? " " + cls : "");
+      }
+
+      async function load() {
+        setStatus("loading…");
+        const data = await api("/api/home-photos");
+        if (data.error) {
+          setStatus("error: " + data.error, "err");
+          return;
+        }
+        state.photos = data.photos || [];
+        render();
+        setStatus(`connected · ${state.photos.length} photos`, "ok");
+      }
+
+      // Enforce max 4 featured by unchecking the oldest when a 5th is ticked.
+      function onToggle(e) {
+        const cb = e.target;
+        if (!cb.matches(".feat")) return;
+        const cards = [...document.querySelectorAll("#grid .card")];
+        if (!cb.checked) {
+          state.photos[Number(cb.dataset.i)].featured = false;
+          updateCurrent();
+          return;
+        }
+        const checked = cards.filter((c) => c.querySelector(".feat").checked);
+        if (checked.length <= MAX) {
+          state.photos[Number(cb.dataset.i)].featured = true;
+          updateCurrent();
+          return;
+        }
+        // Dim oldest checked, force uncheck newest
+        const newest = cb;
+        newest.checked = false;
+        state.photos[Number(cb.dataset.i)].featured = false;
+        showResult(
+          `Only ${MAX} photos can be featured on the homepage.`,
+          "err",
+        );
+      }
+
+      async function save() {
+        const photos = [...document.querySelectorAll("#grid .card")].map(
+          (c) => ({
+            src: c.dataset.src,
+            alt: c.querySelector(".alt").value.trim(),
+            year: c.querySelector(".year").value.trim(),
+            featured: c.querySelector(".feat").checked,
+          }),
+        );
+        const res = await api("/api/home-photos", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ photos }),
+        });
+        if (res.error) {
+          showResult((res.errors || [res.error]).join("\n"), "err");
+          return;
+        }
+        state.photos = photos;
+        showResult(`Saved. ${res.featured} photo(s) on homepage.`, "ok");
+        setStatus("saved · reload the homepage to see changes", "ok");
+      }
+
+      document.getElementById("grid").addEventListener("change", onToggle);
+
+      document.getElementById("save").addEventListener("click", save);
+      document.getElementById("reload").addEventListener("click", () => {
+        showResult("");
+        load();
+      });
+
+      load();
+    </script>
+  </body>
+</html>

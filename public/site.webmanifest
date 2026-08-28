@@ -1,6 +1,8 @@
 {
   "name": "Tomas Gorjux",
   "short_name": "TG",
+  "description": "Portfolio of Tomas Gorjux, a product builder and photographer in Melbourne.",
+  "start_url": "/",
   "icons": [
     {
       "src": "/web-app-manifest-192x192.png",
@@ -15,7 +17,7 @@
       "purpose": "maskable"
     }
   ],
-  "theme_color": "#6366f1",
-  "background_color": "#6366f1",
+  "theme_color": "#f6f3ea",
+  "background_color": "#f6f3ea",
   "display": "standalone"
 }

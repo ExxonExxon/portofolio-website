@@ -1,0 +1,96 @@
+/* ═══ Shared photo card — "mounted print" ═══
+   Used by the homepage photo strip and the photography gallery.
+   Two modes:
+     .photo-card--cover   → fixed 4/5 printed box, image fills it (homepage row)
+     .photo-card--natural → masonry, full composition preserved (gallery)
+   Hover is a gentle tilt + lift. No box-shadow and no CSS `filter`, so large
+   photos never flash blank while the browser re-rasterises mid-transform. */
+
+.photo-card {
+  display: block;
+  text-decoration: none;
+  border-radius: 0.875rem;
+  cursor: pointer;
+}
+
+.photo-card__frame {
+  display: block;
+  border-radius: 0.875rem;
+  padding: clamp(0.5rem, 1.4vw, 0.875rem);
+  background-color: var(--color-surface-card);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+  transition:
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color var(--transition-base);
+}
+
+/* Tilt directions — 50/50 assigned in JS. */
+.photo-card--tilt-left:hover .photo-card__frame {
+  transform: translateY(-5px) rotate(-1.5deg);
+  border-color: var(--color-accent-border);
+}
+
+.photo-card--tilt-right:hover .photo-card__frame {
+  transform: translateY(-5px) rotate(1.5deg);
+  border-color: var(--color-accent-border);
+}
+
+.photo-card__frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 0.375rem;
+  /* Keep the image on its own compositor layer so the frame's tilt on hover
+     never re-rasterises it (the "blank flash for a second" on large photos).
+     This only misbehaved on the two photos that shipped with a non-standard
+     VP8X+EXIF container — those were re-encoded to plain VP8 so every image
+     now uses the same decode path. */
+  transform: translateZ(0);
+}
+
+/* Cover mode — uniform 4/5 printed box (homepage strip) */
+.photo-card--cover .photo-card__frame {
+  aspect-ratio: 4 / 5;
+}
+
+.photo-card--cover .photo-card__frame img {
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Natural mode — never crops the composition (gallery). Spacing between cards
+   comes from the flex-column `gap` in the gallery's JS-built columns. */
+.photo-card--natural {
+  min-width: 0;
+}
+
+/* Offset — staggers alternate rows on the homepage strip */
+@media (min-width: 768px) {
+  .photo-card--offset {
+    margin-top: 2.25rem;
+  }
+}
+
+/* Caption — italic editorial serif, centred like a gallery label */
+.photo-card__caption {
+  display: block;
+  padding: 0.875rem 0.25rem 0;
+  text-align: center;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 0.9375rem;
+  letter-spacing: 0.005em;
+  color: var(--color-text-soft);
+  transition: color var(--transition-base);
+}
+
+.photo-card:hover .photo-card__caption {
+  color: var(--color-accent-dark);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .photo-card__frame {
+    transition: border-color var(--transition-base);
+  }
+}

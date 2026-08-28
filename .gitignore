@@ -6,6 +6,8 @@ dist/
 # Tooling artifacts
 .omo/
 .playwright-mcp/
+.pi/
+.ruff_cache/
 
 # One-off QA screenshot evidence (root level)
 /services-cards-cleaned.png

@@ -2,10 +2,9 @@
 
 # Tomas Gorjux — Portfolio Website
 
-**Personal portfolio & photography showcase** — built with Vite, Tailwind CSS, and vanilla JavaScript.
+**Personal portfolio & photography showcase** — built with Vite, vanilla CSS, and vanilla JavaScript.
 
 [![Vite](https://img.shields.io/badge/Vite-8.0-646CFF?logo=vite&logoColor=white)](https://vite.dev)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4-06B6D4?logo=tailwindcss&logoColor=white)](https://tailwindcss.com)
 [![License](https://img.shields.io/badge/License-ISC-blue)](#)
 
 [Live Site](https://tomas.gorjux.net) · [Report Bug](https://github.com/ExxonExxon/portofolio-website/issues)
@@ -16,25 +15,21 @@
 
 ## Features
 
-- **Multi-page layout** — home page with hero, skills, projects, and photography gallery; dedicated contact page
-- **Dark mode** — system-aware with manual toggle, persisted in `localStorage`
-- **Photography lightbox** — click any gallery image to open a fullscreen modal with details
-- **Interactive UI clones** — Spotify, Facebook, and Wikipedia refined interfaces
+- **Multi-page layout** — home page with hero, projects, testimonials, and a photography strip; dedicated projects, photography, and contact pages
+- **Photography lightbox** — click any gallery image for a fullscreen viewer with prev/next and keyboard support
+- **Deep-linked gallery** — home-page photo cards link into the gallery with `#photo-*` anchors that scroll and highlight
 - **Contact form** — sends to Formspree, no backend required
 - **Animated scroll** — AOS (Animate On Scroll) throughout
-- **Responsive** — fully mobile-optimized with hamburger menu
+- **Responsive** — fully mobile-optimized with a clip-path hamburger menu
 
 ## Tech Stack
 
-| Tool                                                                                     | Purpose                       |
-| ---------------------------------------------------------------------------------------- | ----------------------------- |
-| [Vite](https://vite.dev)                                                                 | Build tool & dev server       |
-| [Tailwind CSS](https://tailwindcss.com)                                                  | Utility-first styling         |
-| [PostCSS](https://postcss.org) + [Autoprefixer](https://github.com/postcss/autoprefixer) | CSS processing                |
-| [AOS](https://michalsnik.github.io/aos/)                                                 | Scroll animations             |
-| [Font Awesome](https://fontawesome.com)                                                  | Icons (main & Facebook pages) |
-| [Lucide](https://lucide.dev)                                                             | Icons (Spotify page)          |
-| [Formspree](https://formspree.io)                                                        | Contact form backend          |
+| Tool                                     | Purpose                 |
+| ---------------------------------------- | ----------------------- |
+| [Vite](https://vite.dev)                 | Build tool & dev server |
+| [AOS](https://michalsnik.github.io/aos/) | Scroll animations       |
+| [Font Awesome](https://fontawesome.com)  | Icons                   |
+| [Formspree](https://formspree.io)        | Contact form backend    |
 
 ## Getting Started
 
@@ -54,38 +49,29 @@ npm run preview    # preview production build
 
 ```
 ├── index.html              # Home page entry
-├── contact.html            # Contact page entry
+├── photography/index.html  # Photography gallery entry
+├── contact/index.html      # Contact page entry
+├── projects/index.html     # Projects page entry
 ├── src/
+│   ├── partials/           # Nav & footer, injected at build time
+│   ├── data/photos.json    # Single source of truth for the gallery
 │   ├── scripts/
-│   │   ├── main.js         # Home page JS (AOS, nav, typewriter, modal)
-│   │   ├── contact.js      # Contact page JS
-│   │   ├── nav.js          # Shared mobile menu logic
-│   │   ├── modal.js        # Photography lightbox
-│   │   ├── typewriter.js   # Hero typewriter effect
-│   │   ├── spotify.js      # Spotify clone entry
-│   │   ├── facebook.js     # Facebook clone entry
-│   │   └── wikipedia.js    # Wikipedia clone entry
+│   │   ├── initSite.js     # Shared bootstrap (nav, AOS, mobile menu)
+│   │   ├── nav.js          # Active nav link + mobile menu logic
+│   │   ├── photo-card.js   # Shared "mounted print" photo card
+│   │   ├── photography.js  # Gallery render, lightbox, deep links
+│   │   └── main/contact/projects.js  # Page entries
 │   └── styles/
-│       ├── main.css        # Home page styles
-│       ├── contact.css     # Contact page styles
-│       ├── spotify.css     # Spotify clone styles
-│       ├── facebook.css    # Facebook clone styles
-│       └── wikipedia.css   # Wikipedia clone styles
+│       ├── variables.css   # Fonts + CSS custom properties
+│       ├── components.css  # Shared components (nav, cards, buttons, forms, footer)
+│       ├── photo-card.css  # Shared photo card styles
+│       └── main/photography/contact/projects.css  # Page-specific styles
+├── dev/photos/             # Dev-only photo tools (renamer, editor) + Vite plugin
 ├── public/                 # Static assets (served at /)
-├── assets/                 # Photography images (WebP)
+├── assets/                 # Photography source images (WebP)
 ├── dist/                   # Build output (gitignored)
 └── vite.config.js          # Vite configuration
 ```
-
-## Sub-projects
-
-The site includes three UI clone demonstrations served at:
-
-- **Spotify Clone** — `https://tomas.gorjux.net/spotify-clone/`
-- **Facebook Clone** — `https://tomas.gorjux.net/facebook-clone/`
-- **Wikipedia Refined** — `https://tomas.gorjux.net/wikipedia-refined/`
-
-Their source files live under `src/scripts/` and `src/styles/`. The HTML entry points are in `dist/` (not version-controlled) and are picked up by Vite's rollup code splitting.
 
 ## Author
 

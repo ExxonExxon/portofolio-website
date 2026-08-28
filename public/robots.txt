@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://tomasgorjux.net/sitemap.xml
+Sitemap: https://tomas.gorjux.net/sitemap.xml

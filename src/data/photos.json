@@ -1,0 +1,102 @@
+{
+  "photos": [
+    {
+      "src": "/assets/photography-images/sun_looking_down.webp",
+      "alt": "Sun peering through the trees",
+      "year": 2026,
+      "featured": true,
+      "ratio": "0.6635"
+    },
+    {
+      "src": "/assets/photography-images/trail_tree_framing.webp",
+      "alt": "A trail seen through the trees",
+      "year": 2026,
+      "featured": false,
+      "ratio": "0.6635"
+    },
+    {
+      "src": "/assets/photography-images/trail_behind_leaves.webp",
+      "alt": "Trail in a park",
+      "year": 2026,
+      "featured": false,
+      "ratio": "0.6635"
+    },
+    {
+      "src": "/assets/photography-images/Weird_Looking_Tree.webp",
+      "alt": "Weird-looking tree",
+      "year": 2026,
+      "featured": false,
+      "ratio": "0.6635"
+    },
+    {
+      "src": "/assets/photography-images/a_trail_sky_clipping.webp",
+      "alt": "A trail into the fields",
+      "year": 2026,
+      "featured": false,
+      "ratio": "1.5071"
+    },
+    {
+      "src": "/assets/photography-images/landscape_of_rocks.webp",
+      "alt": "Rocks breaking the surf",
+      "year": 2026,
+      "featured": true,
+      "ratio": "1.5071"
+    },
+    {
+      "src": "/assets/photography-images/wallaby_could_have_been_closer.webp",
+      "alt": "A wallaby disguised in the bush",
+      "year": 2026,
+      "featured": false,
+      "ratio": "1.1476"
+    },
+    {
+      "src": "/assets/photography-images/greta_rocks_right_face_dark.webp",
+      "alt": "Portrait of my sister",
+      "year": 2026,
+      "featured": false,
+      "ratio": "1.5071"
+    },
+    {
+      "src": "/assets/photography-images/greta_sus_jacket_clipping.webp",
+      "alt": "My sister against the mountains",
+      "year": 2026,
+      "featured": false,
+      "ratio": "1.5071"
+    },
+    {
+      "src": "/assets/photography-images/Highway_Of_Fenceposts.webp",
+      "alt": "Highway fence posts",
+      "year": 2026,
+      "featured": false,
+      "ratio": "0.6211"
+    },
+    {
+      "src": "/assets/photography-images/motorbike_dsc_0048.webp",
+      "alt": "Person on a motorbike",
+      "year": 2026,
+      "featured": true,
+      "ratio": "0.6635"
+    },
+    {
+      "src": "/assets/photography-images/Bird_On_Telephone_(DSC_0043).webp",
+      "alt": "Bird on a telephone wire",
+      "year": 2026,
+      "featured": false,
+      "ratio": "0.6635"
+    },
+    {
+      "src": "/assets/photography-images/dsc_0012-bird-phillip-island-large.webp",
+      "alt": "Bird at Phillip Island",
+      "year": 2025,
+      "featured": true,
+      "ratio": "1.5077"
+    },
+    {
+      "src": "/assets/photography-images/dsc_0095-wilsn-prom-large.webp",
+      "alt": "A seagull in flight",
+      "year": 2025,
+      "featured": false,
+      "ratio": "1.5077"
+    }
+  ]
+}

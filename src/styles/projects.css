@@ -1,30 +1,49 @@
-/* ─── Projects page — year-grouped project list ─── */
+/* ══════════════════════════════════════════════════════════════
+   Projects page — editorial SEO essay
+   The museum project cards now live in components.css (shared with
+   the home page). This file holds only page-specific content.
+   ══════════════════════════════════════════════════════════════ */
 
-.projects-section {
-  margin-bottom: 3rem;
+/* ─── SEO editorial essay ─── */
+
+.projects-essay {
+  text-align: center;
+  margin-top: clamp(2.5rem, 5vw, 4rem);
 }
 
-.projects-year {
-  margin: 0 0 1.5rem;
-  padding-bottom: 0.75rem;
-  border-bottom: 1px solid var(--color-border);
-  font-size: 0.75rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.4em;
-  color: var(--color-text-muted);
+.projects-essay__heading {
+  margin: 0 auto clamp(1.5rem, 3vw, 2.25rem);
+  max-width: 46rem;
+  font-size: var(--text-section);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+  color: var(--color-text-heading);
 }
 
-.projects-stack {
-  display: flex;
-  flex-direction: column;
+.projects-essay__grid {
+  display: grid;
+  grid-template-columns: 1fr;
   gap: 1.5rem;
+  max-width: 62rem;
+  margin: 0 auto;
 }
 
-/* Cards match the front-page feature cards: image, type, small arrow */
+@media (min-width: 768px) {
+  .projects-essay__grid {
+    grid-template-columns: 1fr 1fr;
+    column-gap: 3rem;
+  }
+}
 
-.projects-stack .project-feature {
-  justify-content: flex-start;
-  gap: 2.5rem;
-  padding: clamp(1.75rem, 4vw, 2.75rem);
+.projects-essay__text {
+  margin: 0 0 1rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--color-text-dark);
+}
+
+.projects-essay__text:last-child {
+  margin-bottom: 0;
 }
