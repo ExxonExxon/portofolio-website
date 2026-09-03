@@ -960,6 +960,14 @@ h6,
   color: var(--color-accent);
 }
 
+.footer-abn {
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-text-muted);
+}
+
 /* ─── Contact Page ─── */
 
 .contact-grid {
