@@ -71,3 +71,13 @@
   from = "/projects.html"
   to = "/projects/"
   status = 301
+
+[[redirects]]
+  from = "/privacy"
+  to = "/privacy/"
+  status = 301
+
+[[redirects]]
+  from = "/privacy.html"
+  to = "/privacy/"
+  status = 301
