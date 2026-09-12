@@ -9,7 +9,11 @@ dist/
 .pi/
 .ruff_cache/
 
+# Internal planning docs (repo is public)
+plan.md
+
 # One-off QA screenshot evidence (root level)
 /services-cards-cleaned.png
 /testimonials-cards-cleaned.png
 /verify-services-cleaned.png
+/web-design-desktop.png

@@ -172,78 +172,7 @@
 
 /* ─── Testimonials — one signed word, a single voice ─── */
 
-/* The card: warm mat, hairline, offset shadow, gentle tilt — a matched print */
-.testimonial {
-  max-width: 56rem;
-  margin: 0 auto;
-  padding: clamp(2rem, 5vw, 3.25rem);
-  text-align: center;
-  background-color: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: 0.25rem;
-  box-shadow: var(--shadow-lg);
-  transition:
-    transform var(--transition-base) var(--ease-out),
-    box-shadow var(--transition-base) var(--ease-out);
-}
-
-@media (min-width: 768px) {
-  .testimonial {
-    transform: rotate(-0.6deg);
-  }
-
-  .testimonial:hover {
-    transform: rotate(0deg) translateY(-3px);
-    box-shadow: var(--shadow-card-hover);
-  }
-}
-
-/* Editorial serif voice, warm ink — matches the site's display type */
-.testimonial blockquote {
-  margin: 0 auto;
-  max-width: 42rem;
-}
-
-.testimonial blockquote p {
-  margin: 0;
-  font-family: var(--font-display);
-  font-size: clamp(1.375rem, 2.5vw, 1.875rem);
-  font-weight: 500;
-  line-height: 1.5;
-  letter-spacing: -0.01em;
-  color: var(--color-text-dark);
-}
-
-.testimonial figcaption {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
-  margin-top: clamp(1.5rem, 4vw, 2.25rem);
-}
-
-/* The signature is the single accent statement */
-.testimonial__name {
-  font-family: var(--font-signature);
-  font-weight: 400;
-  font-size: clamp(1.5rem, 3.5vw, 1.875rem);
-  line-height: 1;
-  color: var(--color-accent);
-}
-
-.testimonial__link {
-  margin-top: 0.25rem;
-  font-size: 0.8125rem;
-  font-weight: 700;
-  color: var(--color-accent);
-  text-decoration: none;
-  border-bottom: 1px solid currentColor;
-  transition: color var(--transition-base);
-}
-
-.testimonial__link:hover {
-  color: var(--color-accent-dark);
-}
+/* The card styles are shared: see .testimonial in components.css. */
 
 /* Tighten TESTIMONIAL → heading, loosen heading → card */
 #testimonials .section-head {

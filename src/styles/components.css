@@ -60,7 +60,7 @@ h6,
   top: 1.25rem;
   z-index: 50;
   width: 94%;
-  max-width: 36rem;
+  max-width: 42rem;
   transform: translateX(-50%);
   display: flex;
   align-items: center;
@@ -68,7 +68,7 @@ h6,
   border-radius: 9999px;
   border: 1px solid var(--color-border-muted);
   background-color: var(--color-surface-nav);
-  padding: 1rem 1.5rem;
+  padding: 1rem 1.75rem;
   box-shadow: var(--shadow-sm);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
@@ -93,7 +93,7 @@ h6,
 .nav-links-desktop {
   display: none;
   align-items: center;
-  column-gap: 1.5rem;
+  column-gap: 2rem;
   font-family: var(--font-display);
   font-size: 1rem;
   font-weight: 500;
@@ -627,6 +627,19 @@ h6,
   color: var(--color-text-soft);
 }
 
+.section-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: clamp(1.75rem, 4vw, 2.5rem);
+}
+
+.section-actions .btn {
+  margin: 0;
+}
+
 /* ─── Buttons ─── */
 
 .btn {
@@ -697,6 +710,7 @@ h6,
   cursor: pointer;
   border: 0;
   will-change: transform;
+  position: relative;
 }
 
 .btn--submit .fas {
@@ -1242,4 +1256,166 @@ h6,
 
 .text-accent {
   color: var(--color-accent);
+}
+
+/* ─── Testimonial — a matched print ───
+   Warm mat, hairline, offset shadow, gentle tilt. Shared by the home page
+   and the web-design proof section. */
+
+.testimonial {
+  max-width: 56rem;
+  margin: 0 auto;
+  padding: clamp(2rem, 5vw, 3.25rem);
+  text-align: center;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 0.25rem;
+  box-shadow: var(--shadow-lg);
+  transition:
+    transform var(--transition-base) var(--ease-out),
+    box-shadow var(--transition-base) var(--ease-out);
+}
+
+@media (min-width: 768px) {
+  .testimonial {
+    transform: rotate(-0.6deg);
+  }
+
+  .testimonial:hover {
+    transform: rotate(0deg) translateY(-3px);
+    box-shadow: var(--shadow-card-hover);
+  }
+}
+
+/* Editorial serif voice, warm ink — matches the site's display type */
+.testimonial blockquote {
+  margin: 0 auto;
+  max-width: 42rem;
+}
+
+.testimonial blockquote p {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.375rem, 2.5vw, 1.875rem);
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+  color: var(--color-text-dark);
+}
+
+.testimonial figcaption {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: clamp(1.5rem, 4vw, 2.25rem);
+}
+
+/* The signature is the single accent statement */
+.testimonial__name {
+  font-family: var(--font-signature);
+  font-weight: 400;
+  font-size: clamp(1.5rem, 3.5vw, 1.875rem);
+  line-height: 1;
+  color: var(--color-accent);
+}
+
+.testimonial__link {
+  margin-top: 0.25rem;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--color-accent);
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+  transition: color var(--transition-base);
+}
+
+.testimonial__link:hover {
+  color: var(--color-accent-dark);
+}
+
+/* ─── FAQ accordion ─── */
+
+.faq {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  max-width: 46rem;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.faq__item {
+  border: 1px solid var(--color-border);
+  border-radius: 0.25rem;
+  background-color: var(--color-surface);
+  box-shadow: var(--shadow-sm);
+  transition:
+    border-color var(--transition-base),
+    box-shadow var(--transition-base);
+}
+
+.faq__item:hover,
+.faq__item[open] {
+  border-color: var(--color-accent-border);
+  box-shadow: var(--shadow-lg);
+}
+
+.faq__q {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.125rem 1.375rem;
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--color-text-heading);
+  list-style: none;
+}
+
+.faq__q::-webkit-details-marker {
+  display: none;
+}
+
+.faq__q::after {
+  content: "+";
+  flex-shrink: 0;
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: var(--color-accent);
+  transition: transform var(--transition-base);
+}
+
+.faq__item[open] .faq__q::after {
+  transform: rotate(45deg);
+}
+
+.faq__a {
+  padding: 0 1.375rem;
+  overflow: hidden;
+}
+
+.faq__a p {
+  margin: 0;
+  padding-bottom: 1.25rem;
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: var(--color-text-soft);
+}
+
+.faq__a a {
+  font-weight: 600;
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+.faq__a a:hover {
+  color: var(--color-accent-dark);
+}
+
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
 }

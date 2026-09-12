@@ -1,27 +1,35 @@
 import { defineConfig } from "vite";
 import { resolve } from "path";
-import { readFileSync } from "fs";
+import { readFileSync, readdirSync } from "fs";
 import { photosPlugins } from "./dev/photos/photos-plugin.js";
 
-// HTML partials (nav/footer) injected at build + dev time.
-const partials = {
-  nav: readFileSync(
-    resolve(import.meta.dirname, "src/partials/nav.html"),
-    "utf-8",
-  ).trim(),
-  footer: readFileSync(
-    resolve(import.meta.dirname, "src/partials/footer.html"),
-    "utf-8",
-  ).trim(),
-};
+// Every src/partials/*.html is injected wherever <!-- @partial <name> -->
+// appears. Unknown names fail the build instead of shipping silently.
+const partialsDir = resolve(import.meta.dirname, "src/partials");
+const partials = Object.fromEntries(
+  readdirSync(partialsDir)
+    .filter((file) => file.endsWith(".html"))
+    .map((file) => [
+      file.replace(/\.html$/, ""),
+      readFileSync(resolve(partialsDir, file), "utf-8").trim(),
+    ]),
+);
 
 function htmlPartialsPlugin() {
   return {
     name: "html-partials",
     transformIndexHtml(html) {
-      return html
-        .replace("<!-- @partial nav -->", partials.nav)
-        .replace("<!-- @partial footer -->", partials.footer);
+      return html.replace(
+        /<!--\s*@partial\s+([\w-]+)\s*-->/g,
+        (match, name) => {
+          if (!(name in partials)) {
+            throw new Error(
+              `Unknown partial "${name}". Available: ${Object.keys(partials).join(", ")}`,
+            );
+          }
+          return partials[name];
+        },
+      );
     },
   };
 }
@@ -39,6 +47,7 @@ export default defineConfig({
         contact: resolve(import.meta.dirname, "contact/index.html"),
         projects: resolve(import.meta.dirname, "projects/index.html"),
         privacy: resolve(import.meta.dirname, "privacy/index.html"),
+        webDesign: resolve(import.meta.dirname, "web-design/index.html"),
       },
     },
     cssMinify: true,

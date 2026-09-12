@@ -18,18 +18,18 @@
 - **Multi-page layout** — home page with hero, projects, testimonials, and a photography strip; dedicated projects, photography, and contact pages
 - **Photography lightbox** — click any gallery image for a fullscreen viewer with prev/next and keyboard support
 - **Deep-linked gallery** — home-page photo cards link into the gallery with `#photo-*` anchors that scroll and highlight
-- **Contact form** — sends to Formspree, no backend required
+- **Contact form** — sends via Netlify Forms, no backend required
 - **Animated scroll** — AOS (Animate On Scroll) throughout
 - **Responsive** — fully mobile-optimized with a clip-path hamburger menu
 
 ## Tech Stack
 
-| Tool                                     | Purpose                 |
-| ---------------------------------------- | ----------------------- |
-| [Vite](https://vite.dev)                 | Build tool & dev server |
-| [AOS](https://michalsnik.github.io/aos/) | Scroll animations       |
-| [Font Awesome](https://fontawesome.com)  | Icons                   |
-| [Formspree](https://formspree.io)        | Contact form backend    |
+| Tool                                                     | Purpose                 |
+| -------------------------------------------------------- | ----------------------- |
+| [Vite](https://vite.dev)                                 | Build tool & dev server |
+| [AOS](https://michalsnik.github.io/aos/)                 | Scroll animations       |
+| [Font Awesome](https://fontawesome.com)                  | Icons                   |
+| [Netlify Forms](https://www.netlify.com/products/forms/) | Contact form backend    |
 
 ## Getting Started
 

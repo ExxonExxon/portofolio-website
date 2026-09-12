@@ -94,8 +94,6 @@
         ]
       }
     </script>
-    <link rel="dns-prefetch" href="https://formspree.io" />
-
     <link
       rel="preload"
       href="/fonts/inter-latin-variable.woff2"
@@ -121,6 +119,7 @@
     <link rel="shortcut icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
+    <!-- @partial analytics -->
   </head>
   <body class="page">
     <!-- @partial nav -->
@@ -145,56 +144,94 @@
             within a day.
           </p>
 
-          <form
-            action="https://formspree.io/f/mnjbaeag"
-            method="POST"
-            class="form-stack"
-          >
-            <div class="form-group">
-              <label for="name" class="form-label"
-                >What should I call you?</label
-              >
-              <input
-                type="text"
-                id="name"
-                name="name"
-                required
-                aria-required="true"
-                placeholder="e.g. John Doe"
-                class="form-input"
-              />
-            </div>
+          <div class="contact-form-wrap">
+            <form
+              id="contact-form"
+              name="contact"
+              method="POST"
+              action="/contact/"
+              data-netlify="true"
+              netlify-honeypot="bot-field"
+              class="form-stack"
+            >
+              <p class="hidden-field" aria-hidden="true">
+                <label
+                  >Don't fill this out if you're human:
+                  <input name="bot-field" tabindex="-1" autocomplete="off"
+                /></label>
+              </p>
+              <input type="hidden" name="form-name" value="contact" />
+              <input type="hidden" name="plan" id="plan" value="" />
 
-            <div class="form-group">
-              <label for="email" class="form-label">Where can I reply?</label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                required
-                aria-required="true"
-                placeholder="yourname@example.com"
-                class="form-input"
-              />
-            </div>
+              <div class="form-group">
+                <label for="name" class="form-label"
+                  >What should I call you?</label
+                >
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  required
+                  aria-required="true"
+                  placeholder="e.g. John Doe"
+                  class="form-input"
+                />
+              </div>
 
-            <div class="form-group">
-              <label for="message" class="form-label">Your message</label>
-              <textarea
-                id="message"
-                rows="5"
-                name="message"
-                required
-                aria-required="true"
-                placeholder="Tell me what's on your mind..."
-                class="form-input form-input--textarea resize-none"
-              ></textarea>
-            </div>
+              <div class="form-group">
+                <label for="email" class="form-label">Where can I reply?</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  required
+                  aria-required="true"
+                  placeholder="yourname@example.com"
+                  class="form-input"
+                />
+              </div>
 
-            <button type="submit" class="btn btn--submit">
-              <span>Send it</span><i class="fas fa-arrow-right"></i>
-            </button>
-          </form>
+              <div class="form-group">
+                <label for="message" class="form-label">Your message</label>
+                <textarea
+                  id="message"
+                  rows="5"
+                  name="message"
+                  required
+                  aria-required="true"
+                  placeholder="Tell me what's on your mind..."
+                  class="form-input form-input--textarea resize-none"
+                ></textarea>
+              </div>
+
+              <p class="form-error" id="form-error" role="alert" hidden></p>
+
+              <button type="submit" class="btn btn--submit">
+                <span class="btn--submit__content">
+                  <span>Send it</span><i class="fas fa-arrow-right"></i>
+                </span>
+              </button>
+            </form>
+
+            <div
+              class="form-success"
+              id="form-success"
+              role="status"
+              aria-live="polite"
+              hidden
+            >
+              <span class="form-success__icon" aria-hidden="true">
+                <i class="fas fa-check"></i>
+              </span>
+              <h3 class="form-success__title">Message sent</h3>
+              <p class="form-success__text" id="form-success-text">
+                Thanks — I'll get back to you within a day.
+              </p>
+              <button type="button" class="form-success__reset" id="form-reset">
+                Send another message
+              </button>
+            </div>
+          </div>
 
           <p class="contact-plaque__note contact-plaque__note--consent">
             By sending this message, you agree to the

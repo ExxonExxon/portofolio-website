@@ -18,13 +18,14 @@ npm run format   # prettier across all files
 
 ## Multi-page structure
 
-Five HTML entry points defined in `vite.config.js`:
+Six HTML entry points defined in `vite.config.js`:
 
 - `index.html` → entry `src/scripts/main.js`
 - `photography/index.html` → entry `src/scripts/photography.js` — served at `/photography/`
 - `contact/index.html` → entry `src/scripts/contact.js` — served at `/contact/`
 - `projects/index.html` → entry `src/scripts/projects.js` — served at `/projects/`
 - `privacy/index.html` → entry `src/scripts/privacy.js` — served at `/privacy/` (text-only legal page, linked from the footer)
+- `web-design/index.html` → entry `src/scripts/web-design.js` — served at `/web-design/` (the free-website offer and published pricing; `/web-design/pricing/` 301s here)
 
 All entries call the shared `initSite.js` bootstrap (active nav link, AOS
 setup, mobile menu); `nav.js` holds that menu logic. `initSite` skips AOS on
@@ -108,13 +109,50 @@ project, add another `project-feature` block to both `projects/index.html` and
 
 ## Contact form
 
-Submits to Formspree (`https://formspree.io/f/mnjbaeag`). No backend code in repo.
+Submits via Netlify Forms. The static markup in `contact/index.html` carries
+`data-netlify="true"`, `name="contact"` and a hidden `form-name` field; Netlify
+registers it at deploy time. `contact.js` posts it with `fetch` for an inline
+success/error state, with a no-JS fallback to Netlify's default page. No
+backend code in repo.
 
 ## Assets
 
 - `public/` — served as static root by Vite
 - `assets/photography-images/` — photography gallery images (not under `public/`; referenced from `index.html` via `/assets/...`)
 - Photography images are WebP for performance
+
+## Pricing source of truth
+
+The real offer and pricing live outside this repo, in the Obsidian vault:
+
+`/Users/tomas/Library/Mobile Documents/com~apple~CloudDocs/Obsidian/idelorean_vault/copilot/projects/Client Website Building`
+
+That vault is the **source of truth for all pricing**. If published copy
+disagrees with it, the vault wins — update the site, never the other way round.
+`Offer Structure.md` is the master and overrides the other files on conflicts.
+
+Invariants that must always match the vault:
+
+- Website build, hosting and basic maintenance are **free with no lock-in**. Avoid
+  absolute time promises ("forever", "no expiry") in client-facing copy — the site
+  stays free while it's hosted with us.
+- WebCare+ is **$49 AUD/mo**; Standard is **$0**.
+- Standard small change is **$40 AUD flat** — never a range, never "from".
+- WebCare+ includes **5 small changes a month**; extras are **$10 each**,
+  no rollover. Joining after the 10-day window runs the first **3 months at 3
+  small changes a month**, then 5.
+- The bigger-work rate (WebCare+ **$99 base + $39/page**, restyle **50% off**) unlocks
+  after **3 continuous months** — or from day one if the client joins within
+  **10 days of go-live**. Until then, bigger work bills at Standard rates. Cancelling
+  and rejoining restarts the 3-month clock. This is a WebCare+ vesting period only —
+  the website itself has **no lock-in, ever**.
+- Bigger work on Standard: **$200 base + $100/page**.
+- Complete restyle is quoted separately; **50% off on WebCare+** (same 3-month/10-day rule).
+- Prices are fixed. Never quote "from".
+- Never publish legacy client names, terms or pricing (Adam Beaumont, Paul).
+
+Published pricing lives in ONE place — `src/partials/pricing.html`, injected into
+`/web-design/` — so the site cannot drift.
 
 ## Notable conventions
 

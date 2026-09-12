@@ -1,0 +1,104 @@
+<section
+  id="pricing"
+  class="section pricing-block"
+  data-plan-picker
+  data-aos="fade-up"
+>
+  <div class="section-head">
+    <span class="section-label">Plans</span>
+  </div>
+  <h2 class="section-heading">
+    Free to run.
+    <span class="section-heading__accent">You only pay for changes.</span>
+  </h2>
+  <p class="pricing-block__lead">
+    The build and the hosting are free on both plans, with no lock-in. The only
+    thing you choose is how changes get handled: pay $40 each time, or $49 a
+    month and I handle them for you.
+  </p>
+
+  <div class="plan-cards">
+    <article
+      id="standard"
+      class="plan-card"
+      data-plan="standard"
+      aria-labelledby="plan-standard-name"
+    >
+      <input
+        type="radio"
+        name="plan"
+        value="standard"
+        id="plan-standard"
+        class="plan-card__radio"
+        aria-label="Standard plan"
+      />
+      <header class="plan-card__head">
+        <h3 class="plan-card__name" id="plan-standard-name">Standard</h3>
+        <p class="plan-card__price">
+          $0 <span class="plan-card__unit">AUD / month</span>
+        </p>
+        <p class="plan-card__tagline">
+          For hands-on owners. The site runs, and you pay only when you want
+          something changed.
+        </p>
+      </header>
+      <ul class="plan-card__features">
+        <li>Built and hosted, free</li>
+        <li>Basic maintenance included</li>
+        <li>Checked every two weeks</li>
+        <li>Small changes: $40 flat each</li>
+        <li>Bigger work: $200 base + $100 per page</li>
+      </ul>
+      <a
+        href="/contact/?plan=standard#contact-form"
+        class="btn btn--ghost plan-card__cta"
+        data-plan-cta
+      >
+        Start free <i class="fas fa-arrow-right" aria-hidden="true"></i>
+      </a>
+    </article>
+
+    <article
+      id="webcare"
+      class="plan-card"
+      data-plan="webcare"
+      aria-labelledby="plan-webcare-name"
+    >
+      <input
+        type="radio"
+        name="plan"
+        value="webcare"
+        id="plan-webcare"
+        class="plan-card__radio"
+        aria-label="WebCare+ plan"
+      />
+      <header class="plan-card__head">
+        <h3 class="plan-card__name" id="plan-webcare-name">WebCare+</h3>
+        <p class="plan-card__price">
+          $49 <span class="plan-card__unit">AUD / month</span>
+        </p>
+        <p class="plan-card__tagline">
+          For hands-off owners. Send me the change and I'll take care of it.
+        </p>
+      </header>
+      <ul class="plan-card__features">
+        <li>Everything in Standard</li>
+        <li>5 small changes a month</li>
+        <li>That's 3 a month for the first 3 months if you join later</li>
+        <li>Extra changes: $10 each, no rollover</li>
+        <li>Checked every day, not every two weeks</li>
+        <li>Priority support, so your fixes go first</li>
+        <li>Bigger work: $99 base + $39 per page*</li>
+        <li>Restyle: quoted upfront, half price*</li>
+      </ul>
+      <a
+        href="/contact/?plan=webcare#contact-form"
+        class="btn btn--ghost plan-card__cta"
+        data-plan-cta
+      >
+        Start with WebCare+
+        <i class="fas fa-arrow-right" aria-hidden="true"></i>
+      </a>
+    </article>
+  </div>
+</section>

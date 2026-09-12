@@ -10,7 +10,10 @@ export function initActiveNav() {
     ".nav-bar .nav-link, .mobile-menu .mobile-link",
   );
   scope.forEach((link) => {
-    if (link.getAttribute("href") === current) {
+    const href = link.getAttribute("href");
+    const isActive =
+      href === current || (href !== "/" && current.startsWith(href));
+    if (isActive) {
       link.classList.add("nav-link--active");
     }
   });
