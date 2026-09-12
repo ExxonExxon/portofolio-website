@@ -15,22 +15,20 @@
   margin: 0;
 }
 
+/* ─── Process — four mounted prints ───
+   The steps sit as tilted cards, matching the project prints on the home
+   page. Rotations live on the card itself, so the cards must not carry
+   data-aos (components.css forces transform: none on [data-aos]). */
+
 .steps {
   display: grid;
   grid-template-columns: 1fr;
   gap: 1.5rem;
-  max-width: 56rem;
+  max-width: 58rem;
   margin: 0 auto;
   padding: 0;
   list-style: none;
   text-align: left;
-}
-
-@media (min-width: 768px) {
-  .steps {
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-  }
 }
 
 .steps__item {
@@ -40,31 +38,30 @@
   background-color: var(--color-surface);
   box-shadow: var(--shadow-lg);
   transition:
-    border-color var(--transition-base),
-    box-shadow var(--transition-base),
-    transform var(--transition-base);
+    border-color var(--transition-base) var(--ease-out),
+    box-shadow var(--transition-base) var(--ease-out),
+    transform calc(var(--transition-base) + 0.2s) var(--ease-out) 0.15s;
 }
 
 .steps__item:hover {
   border-color: var(--color-accent-border);
   box-shadow: var(--shadow-card-hover);
   transform: translateY(-3px);
+  transition:
+    border-color var(--transition-base) var(--ease-out),
+    box-shadow var(--transition-base) var(--ease-out),
+    transform var(--transition-base) var(--ease-out) 0s;
 }
 
 .steps__number {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 2.5rem;
-  height: 2.5rem;
-  margin-bottom: 1rem;
-  border: 1px solid var(--color-accent-border);
-  border-radius: 9999px;
-  background-color: var(--color-accent-bg);
+  display: block;
+  margin-bottom: 0.75rem;
   font-family: var(--font-display);
-  font-size: 1.125rem;
+  font-size: clamp(2rem, 4vw, 2.75rem);
   font-weight: 800;
-  color: var(--color-accent-dark);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--color-accent);
 }
 
 .steps__title {
@@ -76,18 +73,91 @@
 
 .steps__text {
   margin: 0;
-  font-size: 0.9375rem;
-  line-height: 1.65;
+  font-size: 1rem;
+  line-height: 1.7;
   color: var(--color-text-soft);
 }
 
-/* ─── Proof — a real client, quoted ───
-   Uses the shared .testimonial component, kept flat (no tilt) here. */
+/* Mirrored tilt — one leans left, the other right */
+@media (min-width: 768px) {
+  .steps {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.75rem 2rem;
+  }
 
-.testimonial,
-.testimonial:hover {
-  transform: none;
+  .steps__item:nth-child(odd) {
+    transform: rotate(-1.1deg);
+  }
+
+  .steps__item:nth-child(even) {
+    transform: rotate(1.1deg);
+  }
+
+  .steps__item:nth-child(odd):hover,
+  .steps__item:nth-child(even):hover {
+    transform: rotate(0deg) translateY(-3px);
+  }
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .steps__item,
+  .steps__item:hover,
+  .steps__item:nth-child(odd),
+  .steps__item:nth-child(even),
+  .steps__item:nth-child(odd):hover,
+  .steps__item:nth-child(even):hover {
+    transform: none;
+  }
+}
+
+/* ─── What every build includes ───
+   A quiet two-column ledger under the process steps. */
+
+.included__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem 2.5rem;
+  max-width: 58rem;
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+  text-align: left;
+}
+
+.included__item {
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.included__title {
+  margin: 0 0 0.5rem;
+  font-size: 1.0625rem;
+  font-weight: 700;
+  color: var(--color-text-heading);
+}
+
+.included__title::before {
+  content: "✓";
+  margin-right: 0.5rem;
+  color: var(--color-accent);
+}
+
+.included__text {
+  margin: 0;
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: var(--color-text-soft);
+}
+
+@media (min-width: 768px) {
+  .included__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* ─── Proof — a real client, quoted ───
+   Uses the shared .testimonial component, tilt and all, to match the
+   home page. */
 
 /* ─── Section rhythm — matches the home page ─── */
 
@@ -98,4 +168,10 @@
 .section-heading {
   margin-bottom: clamp(2.5rem, 5vw, 3.25rem);
   font-size: var(--text-section);
+}
+
+/* Breathing room between the final CTA and the footer. */
+
+.page-cta {
+  margin-bottom: clamp(4rem, 8vw, 6rem);
 }

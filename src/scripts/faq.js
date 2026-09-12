@@ -1,9 +1,11 @@
-const DURATION = 300;
-const EASING = "cubic-bezier(0, 0, 0.2, 1)";
+const DURATION = 260;
+const EASING = "cubic-bezier(0.25, 0.46, 0.45, 0.94)";
 
 /**
  * FAQ accordion shared by /web-design/ and /web-design/pricing/. Native
- * <details> snaps open, so the answer height is animated by hand.
+ * <details> snaps open, so the answer height is animated by hand. The
+ * closing animation holds the open state until it finishes, then releases
+ * it, so the panel collapses smoothly instead of snapping.
  * Respects prefers-reduced-motion.
  */
 export function initFaq() {
@@ -19,42 +21,41 @@ export function initFaq() {
     const answer = item.querySelector(".faq__a");
     if (!summary || !answer) return;
 
-    let expanded = item.open;
     let animation = null;
 
     summary.addEventListener("click", (event) => {
       event.preventDefault();
 
       if (reduceMotion) {
-        expanded = !expanded;
-        item.open = expanded;
+        item.open = !item.open;
         return;
       }
 
+      const wasOpen = item.open;
       const startHeight = answer.getBoundingClientRect().height;
-      const startOpacity = item.open
+      const startOpacity = wasOpen
         ? Number(getComputedStyle(answer).opacity)
         : 0;
+
       animation?.cancel();
       animation = null;
 
-      expanded = !expanded;
-      if (expanded) item.open = true;
+      if (!wasOpen) item.open = true;
 
-      const endHeight = expanded ? answer.scrollHeight : 0;
+      const endHeight = wasOpen ? 0 : answer.scrollHeight;
 
-      item.classList.add("faq__item--animating");
       animation = answer.animate(
         [
           { height: `${startHeight}px`, opacity: startOpacity },
-          { height: `${endHeight}px`, opacity: expanded ? 1 : 0 },
+          { height: `${endHeight}px`, opacity: wasOpen ? 0 : 1 },
         ],
-        { duration: DURATION, easing: EASING },
+        { duration: DURATION, easing: EASING, fill: "both" },
       );
+
       animation.onfinish = () => {
-        if (!expanded) item.open = false;
-        item.classList.remove("faq__item--animating");
+        animation?.cancel();
         animation = null;
+        if (wasOpen) item.open = false;
       };
     });
   });

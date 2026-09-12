@@ -1377,15 +1377,13 @@ h6,
 }
 
 .faq__a {
-  padding: 0 1.375rem 1.25rem;
-}
-
-.faq__item--animating .faq__a {
+  padding: 0 1.375rem;
   overflow: hidden;
 }
 
 .faq__a p {
   margin: 0;
+  padding-bottom: 1.25rem;
   font-size: 0.9375rem;
   line-height: 1.7;
   color: var(--color-text-soft);

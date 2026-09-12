@@ -116,6 +116,37 @@ Submits to Formspree (`https://formspree.io/f/mnjbaeag`). No backend code in rep
 - `assets/photography-images/` — photography gallery images (not under `public/`; referenced from `index.html` via `/assets/...`)
 - Photography images are WebP for performance
 
+## Pricing source of truth
+
+The real offer and pricing live outside this repo, in the Obsidian vault:
+
+`/Users/tomas/Library/Mobile Documents/com~apple~CloudDocs/Obsidian/idelorean_vault/copilot/projects/Client Website Building`
+
+That vault is the **source of truth for all pricing**. If published copy
+disagrees with it, the vault wins — update the site, never the other way round.
+`Offer Structure.md` is the master and overrides the other files on conflicts.
+
+Invariants that must always match the vault:
+
+- Website build, hosting and basic maintenance are **free with no lock-in**. Avoid
+  absolute time promises ("forever", "no expiry") in client-facing copy — the site
+  stays free while it's hosted with us.
+- WebCare+ is **$49 AUD/mo**; Standard is **$0**.
+- Standard small change is **$40 AUD flat** — never a range, never "from".
+- WebCare+ includes **5 small changes a month from day one**; extras are **$10 each**,
+  no rollover.
+- The bigger-work rate (WebCare+ **$99 base + $39/page**, restyle **50% off**) unlocks
+  after **3 continuous months** — or from day one if the client joins within
+  **10 days of go-live**. Until then, bigger work bills at Standard rates. Cancelling
+  and rejoining restarts the 3-month clock.
+- Bigger work on Standard: **$200 base + $100/page**.
+- Complete restyle is quoted separately; **50% off on WebCare+** (same 3-month/10-day rule).
+- Prices are fixed. Never quote "from".
+- Never publish legacy client names, terms or pricing (Adam Beaumont, Paul).
+
+Published pricing lives in ONE place — `src/partials/pricing.html`, injected into
+both `/web-design/` and `/web-design/pricing/` — so the site cannot drift.
+
 ## Notable conventions
 
 - Font Awesome (free) via `@fortawesome/fontawesome-free` npm dependency
