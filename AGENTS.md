@@ -109,7 +109,11 @@ project, add another `project-feature` block to both `projects/index.html` and
 
 ## Contact form
 
-Submits to Formspree (`https://formspree.io/f/mnjbaeag`). No backend code in repo.
+Submits via Netlify Forms. The static markup in `contact/index.html` carries
+`data-netlify="true"`, `name="contact"` and a hidden `form-name` field; Netlify
+registers it at deploy time. `contact.js` posts it with `fetch` for an inline
+success/error state, with a no-JS fallback to Netlify's default page. No
+backend code in repo.
 
 ## Assets
 

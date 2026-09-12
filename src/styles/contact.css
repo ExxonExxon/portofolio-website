@@ -29,3 +29,184 @@
   color: var(--color-accent-dark);
   border-color: var(--color-accent-dark);
 }
+
+/* ─── Netlify Forms — submit flow ─── */
+
+/* Honeypot: hidden from humans, still submitted when a bot fills it. */
+.hidden-field {
+  display: none;
+}
+
+.contact-form-wrap {
+  width: 100%;
+}
+
+#contact-form {
+  transition:
+    opacity 250ms var(--ease-out),
+    transform 250ms var(--ease-out);
+}
+
+#contact-form[hidden] {
+  display: none;
+}
+
+#contact-form.is-leaving {
+  opacity: 0;
+  transform: translateY(-6px);
+  pointer-events: none;
+}
+
+.btn--submit__content {
+  display: inline-flex;
+  align-items: center;
+  column-gap: 0.75rem;
+  transition: opacity var(--transition-base);
+}
+
+.btn--submit.is-loading {
+  cursor: progress;
+}
+
+.btn--submit.is-loading .btn--submit__content {
+  opacity: 0;
+}
+
+.btn--submit.is-loading::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1.15rem;
+  height: 1.15rem;
+  margin: -0.575rem 0 0 -0.575rem;
+  border: 2px solid rgb(255 255 255 / 0.35);
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: form-spin 0.7s linear infinite;
+}
+
+@keyframes form-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.form-error {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin: 0;
+  border-radius: 0.875rem;
+  border: 1px solid var(--color-accent-border);
+  background-color: var(--color-accent-bg);
+  padding: 0.875rem 1rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--color-accent-darker);
+}
+
+.form-error::before {
+  content: "\f071";
+  font-family: "Font Awesome 7 Free";
+  font-weight: 900;
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  flex-shrink: 0;
+}
+
+.form-error[hidden] {
+  display: none;
+}
+
+.form-success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: clamp(1rem, 3vw, 2rem) 0;
+  text-align: center;
+  animation: form-success-in 500ms var(--ease-out) both;
+}
+
+.form-success[hidden] {
+  display: none;
+}
+
+.form-success__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  margin-bottom: 1.25rem;
+  border-radius: 50%;
+  border: 1px solid var(--color-emerald-border);
+  background-color: var(--color-emerald-bg);
+  color: var(--color-emerald);
+  font-size: 1.375rem;
+  animation: form-success-pop 500ms var(--ease-out) 100ms both;
+}
+
+.form-success__title {
+  margin: 0 0 0.5rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3vw, 1.875rem);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--color-text-heading);
+}
+
+.form-success__text {
+  max-width: 26rem;
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--color-text-soft);
+}
+
+.form-success__reset {
+  margin-top: 1.5rem;
+  border: 0;
+  border-bottom: 1px solid transparent;
+  background: none;
+  padding: 0.25rem;
+  font-family: inherit;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--color-accent);
+  cursor: pointer;
+  transition:
+    color var(--transition-base),
+    border-color var(--transition-base);
+}
+
+.form-success__reset:hover,
+.form-success__reset:focus-visible {
+  color: var(--color-accent-dark);
+  border-bottom-color: var(--color-accent-dark);
+}
+
+@keyframes form-success-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+@keyframes form-success-pop {
+  from {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #contact-form,
+  .btn--submit__content,
+  .form-success,
+  .form-success__icon {
+    transition: none;
+    animation: none;
+  }
+}
