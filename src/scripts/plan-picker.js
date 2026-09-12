@@ -1,7 +1,7 @@
 import { trackEvent } from "./analytics.js";
 
 /**
- * Plan picker shared by /web-design/ and /web-design/pricing/. Clicking a
+ * Plan picker for /web-design/. Clicking a
  * card highlights it; the CTA links carry the chosen plan into the contact
  * form. Deep links like #webcare preselect.
  */

@@ -1,7 +1,6 @@
 /* ─── Web Design cluster ───
-   Shared by /web-design/ and /web-design/pricing/. Page sections (process
-   steps, hero actions); the plans block itself is styled in
-   plan-picker.css. */
+   Used by /web-design/. Page sections (process steps, hero actions); the
+   plans block itself is styled in plan-picker.css. */
 
 .hero-actions {
   display: flex;
@@ -155,6 +154,27 @@
   }
 }
 
+/* ─── Tradsiee — an optional extra ───
+   One quiet card, offered as a possibility rather than a pitch. */
+
+.tradsiee-note {
+  max-width: 46rem;
+  margin: 0 auto;
+  padding: clamp(1.5rem, 3vw, 2rem);
+  border: 1px solid var(--color-border);
+  border-radius: 0.25rem;
+  background-color: var(--color-surface);
+  box-shadow: var(--shadow-sm);
+  text-align: left;
+}
+
+.tradsiee-note p {
+  margin: 0 0 1.25rem;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--color-text-soft);
+}
+
 /* ─── Proof — a real client, quoted ───
    Uses the shared .testimonial component, tilt and all, to match the
    home page. */
@@ -174,4 +194,38 @@
 
 .page-cta {
   margin-bottom: clamp(4rem, 8vw, 6rem);
+}
+
+/* ─── Trust — the honest explanation of why the site is free ─── */
+
+.trust__note {
+  max-width: 46rem;
+  margin: 0 auto;
+  padding: clamp(1.5rem, 3vw, 2rem);
+  border: 1px solid var(--color-border);
+  border-radius: 0.25rem;
+  background-color: var(--color-surface);
+  box-shadow: var(--shadow-sm);
+  text-align: left;
+}
+
+.trust__note p {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--color-text-soft);
+}
+
+.trust__note p + p {
+  margin-top: 1rem;
+}
+
+/* ─── Fine print — the shared terms card, parked at the page bottom ─── */
+
+.fine-print {
+  padding: 0 clamp(1.25rem, 3vw, 2.5rem) clamp(3rem, 6vw, 4.5rem);
+}
+
+.fine-print .plan-terms {
+  margin-top: 0;
 }

@@ -1,11 +1,16 @@
-const DURATION = 260;
-const EASING = "cubic-bezier(0.25, 0.46, 0.45, 0.94)";
+const OPEN_DURATION = 320;
+const OPEN_EASING = "cubic-bezier(0.22, 1, 0.36, 1)";
+const CLOSE_DURATION = 240;
+const CLOSE_EASING = "cubic-bezier(0.4, 0, 0.2, 1)";
 
 /**
- * FAQ accordion shared by /web-design/ and /web-design/pricing/. Native
- * <details> snaps open, so the answer height is animated by hand. The
- * closing animation holds the open state until it finishes, then releases
- * it, so the panel collapses smoothly instead of snapping.
+ * FAQ accordion for /web-design/. Native
+ * <details> snaps, so the answer height is animated by hand.
+ *
+ * A closed <details> keeps a remembered content height (content-visibility),
+ * so the measured height can't be trusted as a start value — the open
+ * animation always grows from 0 instead. Logical open state is tracked
+ * separately from `item.open` so a click mid-animation still behaves.
  * Respects prefers-reduced-motion.
  */
 export function initFaq() {
@@ -22,40 +27,56 @@ export function initFaq() {
     if (!summary || !answer) return;
 
     let animation = null;
+    let open = item.open;
 
     summary.addEventListener("click", (event) => {
       event.preventDefault();
 
       if (reduceMotion) {
-        item.open = !item.open;
+        open = !open;
+        item.open = open;
         return;
       }
 
-      const wasOpen = item.open;
-      const startHeight = answer.getBoundingClientRect().height;
-      const startOpacity = wasOpen
-        ? Number(getComputedStyle(answer).opacity)
-        : 0;
+      const wasOpen = open;
+      open = !open;
 
       animation?.cancel();
       animation = null;
 
-      if (!wasOpen) item.open = true;
+      if (wasOpen) {
+        const startHeight = answer.getBoundingClientRect().height;
 
-      const endHeight = wasOpen ? 0 : answer.scrollHeight;
+        animation = answer.animate(
+          [
+            { height: `${startHeight}px`, opacity: 1 },
+            { height: "0px", opacity: 0 },
+          ],
+          { duration: CLOSE_DURATION, easing: CLOSE_EASING, fill: "both" },
+        );
+
+        animation.onfinish = () => {
+          animation?.cancel();
+          animation = null;
+          item.open = false;
+        };
+        return;
+      }
+
+      item.open = true;
+      const endHeight = answer.scrollHeight;
 
       animation = answer.animate(
         [
-          { height: `${startHeight}px`, opacity: startOpacity },
-          { height: `${endHeight}px`, opacity: wasOpen ? 0 : 1 },
+          { height: "0px", opacity: 0 },
+          { height: `${endHeight}px`, opacity: 1 },
         ],
-        { duration: DURATION, easing: EASING, fill: "both" },
+        { duration: OPEN_DURATION, easing: OPEN_EASING, fill: "both" },
       );
 
       animation.onfinish = () => {
         animation?.cancel();
         animation = null;
-        if (wasOpen) item.open = false;
       };
     });
   });

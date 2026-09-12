@@ -60,7 +60,7 @@ h6,
   top: 1.25rem;
   z-index: 50;
   width: 94%;
-  max-width: 36rem;
+  max-width: 42rem;
   transform: translateX(-50%);
   display: flex;
   align-items: center;
@@ -68,7 +68,7 @@ h6,
   border-radius: 9999px;
   border: 1px solid var(--color-border-muted);
   background-color: var(--color-surface-nav);
-  padding: 1rem 1.5rem;
+  padding: 1rem 1.75rem;
   box-shadow: var(--shadow-sm);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
@@ -93,7 +93,7 @@ h6,
 .nav-links-desktop {
   display: none;
   align-items: center;
-  column-gap: 1.5rem;
+  column-gap: 2rem;
   font-family: var(--font-display);
   font-size: 1rem;
   font-weight: 500;
@@ -625,6 +625,19 @@ h6,
   font-size: clamp(1.125rem, 2vw, 1.375rem);
   line-height: 1.65;
   color: var(--color-text-soft);
+}
+
+.section-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: clamp(1.75rem, 4vw, 2.5rem);
+}
+
+.section-actions .btn {
+  margin: 0;
 }
 
 /* ─── Buttons ─── */

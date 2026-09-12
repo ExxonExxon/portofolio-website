@@ -9,8 +9,8 @@ import { initPlanPicker } from "./plan-picker.js";
 import { initFaq } from "./faq.js";
 
 /*
- * The plans block is the same partial on /web-design/ and
- * /web-design/pricing/, so both entries share plan-picker.js.
+ * The plans block lives in src/partials/pricing.html and is driven by
+ * plan-picker.js.
  */
 
 initSite();

@@ -94,10 +94,15 @@
 
 [[redirects]]
   from = "/web-design/pricing"
-  to = "/web-design/pricing/"
+  to = "/web-design/"
+  status = 301
+
+[[redirects]]
+  from = "/web-design/pricing/"
+  to = "/web-design/"
   status = 301
 
 [[redirects]]
   from = "/web-design/pricing.html"
-  to = "/web-design/pricing/"
+  to = "/web-design/"
   status = 301

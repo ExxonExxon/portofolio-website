@@ -1,8 +1,8 @@
 /* ─── Plans block ───
-   Shared by /web-design/ and /web-design/pricing/. Both pages render the
-   same src/partials/pricing.html block, so the styles ship together with
-   plan-picker.js. The cards are set as mounted prints to match the home
-   page; the terms below read as an editorial footnote. */
+   Used by /web-design/. The page renders the same src/partials/pricing.html
+   block, so the styles ship together with plan-picker.js. The cards are set
+   as mounted prints to match the home page; the terms below read as an
+   editorial footnote. */
 
 .pricing-block {
   scroll-margin-top: 7rem;
