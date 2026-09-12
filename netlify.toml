@@ -81,3 +81,23 @@
   from = "/privacy.html"
   to = "/privacy/"
   status = 301
+
+[[redirects]]
+  from = "/web-design"
+  to = "/web-design/"
+  status = 301
+
+[[redirects]]
+  from = "/web-design.html"
+  to = "/web-design/"
+  status = 301
+
+[[redirects]]
+  from = "/web-design/pricing"
+  to = "/web-design/pricing/"
+  status = 301
+
+[[redirects]]
+  from = "/web-design/pricing.html"
+  to = "/web-design/pricing/"
+  status = 301

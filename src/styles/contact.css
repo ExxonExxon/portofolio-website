@@ -7,6 +7,10 @@
   min-height: 9rem;
 }
 
+#contact-form {
+  scroll-margin-top: 7rem;
+}
+
 .contact-plaque__note--consent {
   margin-top: 0.75rem;
 }

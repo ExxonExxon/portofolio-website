@@ -1,0 +1,101 @@
+/* ─── Web Design cluster ───
+   Shared by /web-design/ and /web-design/pricing/. Page sections (process
+   steps, hero actions); the plans block itself is styled in
+   plan-picker.css. */
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2.25rem;
+}
+
+.page-cta .hero-actions .btn {
+  margin: 0;
+}
+
+.steps {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  max-width: 56rem;
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+  text-align: left;
+}
+
+@media (min-width: 768px) {
+  .steps {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+}
+
+.steps__item {
+  padding: clamp(1.5rem, 3vw, 2rem);
+  border: 1px solid var(--color-border);
+  border-radius: 0.25rem;
+  background-color: var(--color-surface);
+  box-shadow: var(--shadow-lg);
+  transition:
+    border-color var(--transition-base),
+    box-shadow var(--transition-base),
+    transform var(--transition-base);
+}
+
+.steps__item:hover {
+  border-color: var(--color-accent-border);
+  box-shadow: var(--shadow-card-hover);
+  transform: translateY(-3px);
+}
+
+.steps__number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  margin-bottom: 1rem;
+  border: 1px solid var(--color-accent-border);
+  border-radius: 9999px;
+  background-color: var(--color-accent-bg);
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  font-weight: 800;
+  color: var(--color-accent-dark);
+}
+
+.steps__title {
+  margin: 0 0 0.5rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-text-heading);
+}
+
+.steps__text {
+  margin: 0;
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  color: var(--color-text-soft);
+}
+
+/* ─── Proof — a real client, quoted ───
+   Uses the shared .testimonial component, kept flat (no tilt) here. */
+
+.testimonial,
+.testimonial:hover {
+  transform: none;
+}
+
+/* ─── Section rhythm — matches the home page ─── */
+
+.section-head {
+  margin-bottom: 0.75rem;
+}
+
+.section-heading {
+  margin-bottom: clamp(2.5rem, 5vw, 3.25rem);
+  font-size: var(--text-section);
+}

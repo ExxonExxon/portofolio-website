@@ -47,6 +47,8 @@ export default defineConfig({
         contact: resolve(import.meta.dirname, "contact/index.html"),
         projects: resolve(import.meta.dirname, "projects/index.html"),
         privacy: resolve(import.meta.dirname, "privacy/index.html"),
+        webDesign: resolve(import.meta.dirname, "web-design/index.html"),
+        pricing: resolve(import.meta.dirname, "web-design/pricing/index.html"),
       },
     },
     cssMinify: true,
