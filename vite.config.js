@@ -48,6 +48,19 @@ export default defineConfig({
         projects: resolve(import.meta.dirname, "projects/index.html"),
         privacy: resolve(import.meta.dirname, "privacy/index.html"),
         webDesign: resolve(import.meta.dirname, "web-design/index.html"),
+        blog: resolve(import.meta.dirname, "blog/index.html"),
+        blogWhyBuiltTradsiee: resolve(
+          import.meta.dirname,
+          "blog/why-i-built-tradsiee-at-15/index.html",
+        ),
+        blogBlindQuotes: resolve(
+          import.meta.dirname,
+          "blog/why-tradies-lose-money-on-blind-quotes/index.html",
+        ),
+        blogFirstClient: resolve(
+          import.meta.dirname,
+          "blog/first-client-website-lessons/index.html",
+        ),
       },
     },
     cssMinify: true,
