@@ -114,3 +114,28 @@
   from = "/web-design/pricing.html"
   to = "/web-design/"
   status = 301
+
+[[redirects]]
+  from = "/blog"
+  to = "/blog/"
+  status = 301
+
+[[redirects]]
+  from = "/blog.html"
+  to = "/blog/"
+  status = 301
+
+[[redirects]]
+  from = "/blog/why-i-built-tradsiee-at-15.html"
+  to = "/blog/why-i-built-tradsiee-at-15/"
+  status = 301
+
+[[redirects]]
+  from = "/blog/why-tradies-lose-money-on-blind-quotes.html"
+  to = "/blog/why-tradies-lose-money-on-blind-quotes/"
+  status = 301
+
+[[redirects]]
+  from = "/blog/first-client-website-lessons.html"
+  to = "/blog/first-client-website-lessons/"
+  status = 301
