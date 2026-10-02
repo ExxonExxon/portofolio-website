@@ -1,7 +1,7 @@
 import { getStore } from "@netlify/blobs";
 
 const TOKEN_SHA256 =
-  "487f585f668b817118ea202ae62b5e4f3a36c02dc44a03cf4441068cd8796a94";
+  "62eac1113978851c8ec1dd23a20d6ee8400f17f44b06d8621a19a48190a08b3d";
 
 async function sha256Hex(value) {
   const digest = await crypto.subtle.digest(
