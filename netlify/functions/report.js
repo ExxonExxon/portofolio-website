@@ -1,19 +1,21 @@
 import { getStore } from "@netlify/blobs";
 
+const TOKEN_SHA256 =
+  "487f585f668b817118ea202ae62b5e4f3a36c02dc44a03cf4441068cd8796a94";
+
+async function sha256Hex(value) {
+  const digest = await crypto.subtle.digest(
+    "SHA-256",
+    new TextEncoder().encode(value),
+  );
+  return [...new Uint8Array(digest)]
+    .map((b) => b.toString(16).padStart(2, "0"))
+    .join("");
+}
+
 export default async (req) => {
-  const url = new URL(req.url);
-  const token = url.searchParams.get("token") || "";
-  const expected = process.env.TRACK_TOKEN || "";
-  if (url.searchParams.get("debug") === "1") {
-    return Response.json({
-      hasTrackToken: Boolean(expected),
-      tokenLen: expected.length,
-      envKeys: Object.keys(process.env)
-        .filter((k) => /TRACK|NETLIFY|BLOBS|SITE/i.test(k))
-        .sort(),
-    });
-  }
-  if (!expected || token !== expected) {
+  const token = new URL(req.url).searchParams.get("token") || "";
+  if (!token || (await sha256Hex(token)) !== TOKEN_SHA256) {
     return new Response("Not found", { status: 404 });
   }
   const store = getStore("outreach-opens");
