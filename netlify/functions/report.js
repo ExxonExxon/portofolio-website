@@ -19,6 +19,11 @@ export default async (req) => {
     return new Response("Not found", { status: 404 });
   }
   const store = getStore("outreach-opens");
+  if (new URL(req.url).searchParams.get("purge") === "1") {
+    const all = await store.list();
+    await Promise.all(all.blobs.map((b) => store.delete(b.key)));
+    return Response.json({ purged: all.blobs.length });
+  }
   const { blobs } = await store.list();
   const opens = {};
   for (const { key } of blobs) {
