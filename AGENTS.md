@@ -83,12 +83,6 @@ Ten HTML entry points defined in `vite.config.js`:
 - `projects/index.html` → entry `src/scripts/projects.js` — served at `/projects/`
 - `privacy/index.html` → entry `src/scripts/privacy.js` — served at `/privacy/` (text-only legal page, linked from the footer)
 - `web-design/index.html` → entry `src/scripts/web-design.js` — served at `/web-design/` (the free-website offer and published pricing; `/web-design/pricing/` 301s here)
-- `blog/index.html` → entry `src/scripts/blog.js` — served at `/blog/`
-- `blog/why-i-built-tradsiee-at-15/index.html` → entry `src/scripts/blog.js`
-- `blog/why-tradies-lose-money-on-blind-quotes/index.html` → entry `src/scripts/blog.js`
-- `blog/first-client-website-lessons/index.html` → entry `src/scripts/blog.js`
-
-All four blog pages share `src/scripts/blog.js`.
 
 All entries call the shared `initSite.js` bootstrap (active nav link, AOS
 setup, mobile menu); `nav.js` holds that menu logic. `initSite` skips AOS on
@@ -103,7 +97,7 @@ Shared JS modules (imported, never duplicated across pages):
 - `src/scripts/faq.js` — FAQ accordion on `/web-design/`
 
 Each page has its own CSS in
-`src/styles/{main,photography,contact,projects,privacy,web-design,blog}.css`.
+`src/styles/{main,photography,contact,projects,privacy,web-design}.css`.
 `plan-picker.css` is shared by `/web-design/` (loaded before `web-design.css`).
 
 Clean URLs are achieved via directory-based pages (e.g. `photography/index.html`).
@@ -115,7 +109,7 @@ Shared CSS architecture (loaded in this order, pages only refine, never duplicat
 - `src/styles/components.css` — all component classes (nav, cards, buttons, forms, footer, etc.)
 - `src/styles/photo-card.css` — the shared "mounted print" photo card
 - `src/styles/plan-picker.css` — plan-picker component used on `/web-design/`
-- page CSS (`main`/`photography`/`contact`/`projects`/`privacy`/`web-design`/`blog`) — loaded last, page-specific overrides
+- page CSS (`main`/`photography`/`contact`/`projects`/`privacy`/`web-design`) — loaded last, page-specific overrides
 
 ## HTML Partials
 
@@ -173,14 +167,6 @@ The project cards are hard-coded in `projects/index.html` (the same boxes as
 the home page) so the copy is real HTML for SEO — not injected by JS. To add a
 project, add another `project-feature` block to both `projects/index.html` and
 `index.html`.
-
-## Blog (`blog/index.html`)
-
-The blog index plus three launch posts (`why-i-built-tradsiee-at-15`,
-`why-tradies-lose-money-on-blind-quotes`, `first-client-website-lessons`).
-Posts are hard-coded HTML (SEO) and registered in `vite.config.js`
-`rollupOptions.input`. All four pages share `src/scripts/blog.js` and
-`src/styles/blog.css`.
 
 ## Contact form
 
