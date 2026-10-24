@@ -15,7 +15,7 @@
 
 ## Features
 
-- **Multi-page layout** — home page with hero, projects, testimonials, and a photography strip; dedicated projects, photography, contact, privacy, and web-design pages, plus a blog with three posts
+- **Multi-page layout**: home page with hero, projects, testimonials, and a photography strip; dedicated projects, photography, contact, privacy, and web-design pages
 - **Photography lightbox** — click any gallery image for a fullscreen viewer with prev/next and keyboard support
 - **Deep-linked gallery** — home-page photo cards link into the gallery with `#photo-*` anchors that scroll and highlight
 - **Contact form** — sends via Netlify Forms, no backend required
@@ -73,10 +73,6 @@ npm run preview    # preview production build
 ├── projects/index.html     # Projects page entry
 ├── privacy/index.html      # Privacy policy entry
 ├── web-design/index.html   # Free website offer + pricing entry
-├── blog/index.html         # Blog index
-├── blog/why-i-built-tradsiee-at-15/index.html      # Blog post
-├── blog/why-tradies-lose-money-on-blind-quotes/index.html  # Blog post
-├── blog/first-client-website-lessons/index.html    # Blog post
 ├── src/
 │   ├── partials/           # Nav, footer & pricing, injected at build time
 │   ├── data/photos.json    # Single source of truth for the gallery
@@ -87,13 +83,13 @@ npm run preview    # preview production build
 │   │   ├── plan-picker.js  # Pricing plan picker (/web-design/)
 │   │   ├── faq.js          # FAQ accordion (/web-design/)
 │   │   ├── photography.js  # Gallery render, lightbox, deep links
-│   │   └── main/contact/projects/privacy/web-design/blog.js  # Page entries
+│   │   └── main/contact/projects/privacy/web-design.js  # Page entries
 │   └── styles/
 │       ├── variables.css   # Fonts + CSS custom properties
 │       ├── components.css  # Shared components (nav, cards, buttons, forms, footer)
 │       ├── photo-card.css  # Shared photo card styles
 │       ├── plan-picker.css # Plan-picker component (/web-design/)
-│       └── main/photography/contact/projects/privacy/web-design/blog.css  # Page-specific styles
+│       └── main/photography/contact/projects/privacy/web-design.css  # Page-specific styles
 ├── dev/photos/             # Dev-only photo tools (renamer, editor) + Vite plugin
 ├── netlify/functions/      # Outreach open-tracking pixel/report (token-gated)
 ├── public/                 # Static assets (served at /)
