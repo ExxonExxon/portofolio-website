@@ -239,3 +239,9 @@ Published pricing lives in ONE place — `src/partials/pricing.html`, injected i
 - Mobile menu uses clip-path animation pattern
 - CSS custom properties handle all theming
 - Component classes named following BEM-inspired convention (`.photo-card__frame`, `.btn--cta`, `.project-feature__title`, etc.)
+
+### Website referral verification
+
+Run `node --test tests/website-referral.test.js`, `node --check src/scripts/website-referral.js`, `node --check src/scripts/plan-picker.js`, `node --check src/scripts/contact.js` and `npm run build`. Check formatting with Prettier on explicit changed paths. No standalone application type checker or general lint runner is configured. The inferred syntax/format/contract checks do not establish full static typing.
+
+Website-service requests must refer to `https://tradsiee.com/websites/request`. Keep the unrelated Netlify contact form. Every client site remains individually designed with ChatGPT/Codex and Astro, in its own GitHub repository, hosted on Netlify. Intake has no website generation, repository creation, deployment, invoice or payment actions.

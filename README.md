@@ -72,7 +72,7 @@ npm run preview    # preview production build
 ├── contact/index.html      # Contact page entry
 ├── projects/index.html     # Projects page entry
 ├── privacy/index.html      # Privacy policy entry
-├── web-design/index.html   # Free website offer + pricing entry
+├── web-design/index.html   # Website scope, pricing and Tradsiee referrals
 ├── blog/index.html         # Blog index
 ├── blog/why-i-built-tradsiee-at-15/index.html      # Blog post
 ├── blog/why-tradies-lose-money-on-blind-quotes/index.html  # Blog post
@@ -114,3 +114,13 @@ npm run preview    # preview production build
 ## License
 
 ISC
+
+## Website requests (Mission 3B-2 local review)
+
+Website-service enquiries belong to Tradsiee at `https://tradsiee.com/websites/request`. The portfolio is a referral surface; its unrelated Netlify contact form stays available. `src/scripts/website-referral.js` allows only plan/style identifiers and the fixed portfolio source. Pricing links work without JavaScript and carry the care-plan preference; design preferences are collected in the Tradsiee enquiry step. Unknown values fall back to undecided/unsure. No personal data enters referral URLs.
+
+Every client website remains individually designed and developed with ChatGPT/Codex and Astro, in its own GitHub repository, hosted on Netlify. Intake never generates a website, creates a client repository, deploys, invoices or takes payment. This portfolio keeps Vite.
+
+Check the central enquiry delivery configuration before any publication. New care sales also require operational readiness and legal/GST review. Local preview: `npm run dev -- --host 127.0.0.1`, then open `http://127.0.0.1:3000/web-design/`. Vite development rewrites every website-request CTA, including initial HTML fallbacks, to `http://127.0.0.1:8000/websites/request`; run the Tradsiee local review server alongside it. Production builds and `npm run preview` keep `https://tradsiee.com/websites/request`. The shared resolver fixes the destination during development/build, allows only plan/style preferences, and never reads the visitor’s hostname. The written-quote explanation is a separate `#website-quote` section.
+
+Verification: `node --test tests/website-referral.test.js`; after `npm run build`, run `node --test tests/website-referral-build.test.js` to verify public links and reject any localhost intake origin in output; `node --check src/scripts/website-referral.js`; `node --check src/scripts/plan-picker.js`; `node --check src/scripts/contact.js`; `npm run build`. Prettier can check the explicit changed paths. There is no configured application type checker or general lint runner; syntax, formatting and contract tests do not establish full static typing.
