@@ -2,6 +2,10 @@ import { defineConfig } from "vite";
 import { resolve } from "path";
 import { readFileSync, readdirSync } from "fs";
 import { photosPlugins } from "./dev/photos/photos-plugin.js";
+import {
+  rewriteWebsiteRequestLinks,
+  websiteRequestBase,
+} from "./src/scripts/website-referral.js";
 
 // Every src/partials/*.html is injected wherever <!-- @partial <name> -->
 // appears. Unknown names fail the build instead of shipping silently.
@@ -18,8 +22,8 @@ const partials = Object.fromEntries(
 function htmlPartialsPlugin() {
   return {
     name: "html-partials",
-    transformIndexHtml(html) {
-      return html.replace(
+    transformIndexHtml(html, context) {
+      const expanded = html.replace(
         /<!--\s*@partial\s+([\w-]+)\s*-->/g,
         (match, name) => {
           if (!(name in partials)) {
@@ -30,11 +34,22 @@ function htmlPartialsPlugin() {
           return partials[name];
         },
       );
+      return rewriteWebsiteRequestLinks(
+        expanded,
+        context.server ? "preview" : "production",
+      );
     },
   };
 }
 
-export default defineConfig({
+export default defineConfig(({ command, isPreview }) => ({
+  define: {
+    __TRADSIEE_REQUEST_URL__: JSON.stringify(
+      websiteRequestBase(
+        command === "serve" && isPreview !== true ? "preview" : "production",
+      ),
+    ),
+  },
   root: ".",
   publicDir: "public",
   build: {
@@ -59,4 +74,4 @@ export default defineConfig({
     port: 3000,
   },
   plugins: [...photosPlugins, htmlPartialsPlugin()],
-});
+}));
