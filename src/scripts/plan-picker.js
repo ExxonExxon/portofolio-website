@@ -1,15 +1,24 @@
 import { trackEvent } from "./analytics.js";
+import { buildWebsiteRequestUrl } from "./website-referral.js";
 
 /**
  * Plan picker for /web-design/. Clicking a
- * card highlights it; the CTA links carry the chosen plan into the contact
- * form. Deep links like #webcare preselect.
+ * card highlights it; links carry an allowed care-plan preference to
+ * Tradsiee. Deep links like #webcare preselect.
  */
 export function initPlanPicker() {
   const picker = document.querySelector("[data-plan-picker]");
   if (!picker) return;
 
   const cards = Array.from(picker.querySelectorAll("[data-plan]"));
+  function updateLinks() {
+    picker.querySelectorAll("[data-request-link]").forEach((link) => {
+      link.href = buildWebsiteRequestUrl({
+        plan: link.dataset.requestPlan,
+      });
+    });
+  }
+  updateLinks();
 
   function select(plan, { fireEvent = true } = {}) {
     const card = cards.find((candidate) => candidate.dataset.plan === plan);

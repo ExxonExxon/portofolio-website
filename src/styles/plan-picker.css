@@ -315,3 +315,58 @@
     transform: none;
   }
 }
+
+/* Pricing keeps the monthly choice visible and secondary logistics expandable. */
+.pricing-block__choice {
+  max-width: 42rem;
+  margin: 0 auto 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-text-heading);
+}
+.pricing-block__cost-note,
+.pricing-block__review {
+  max-width: 46rem;
+  margin: 1.25rem auto 0;
+  font-size: 0.875rem;
+  line-height: 1.65;
+  color: var(--color-text-soft);
+}
+.pricing-block__next {
+  max-width: 58rem;
+  margin: 0 auto;
+  text-align: center;
+}
+.pricing-block__next h2 {
+  margin: 0 0 0.75rem;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  color: var(--color-text-heading);
+}
+.pricing-block__next p {
+  max-width: 46rem;
+  margin: 0 auto 1.25rem;
+  color: var(--color-text-soft);
+}
+.pricing-block__details {
+  max-width: 46rem;
+  margin: 1.75rem auto 0;
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--color-border);
+  border-radius: 0.25rem;
+  text-align: left;
+  color: var(--color-text-soft);
+}
+.pricing-block__details summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--color-text-heading);
+}
+.pricing-block__details ul {
+  margin: 1rem 0 0;
+  padding-left: 1.25rem;
+  font-size: 0.9375rem;
+  line-height: 1.65;
+}
+.pricing-block__details li + li {
+  margin-top: 0.75rem;
+}

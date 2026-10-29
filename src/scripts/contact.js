@@ -5,27 +5,13 @@ import "@fortawesome/fontawesome-free/css/all.css";
 import "aos/dist/aos.css";
 import { initSite } from "./initSite.js";
 
-/*
- * /web-design/ CTAs link here with ?plan=standard or ?plan=webcare. Carry
- * that choice into the message so the enquiry arrives with context.
- */
-function initPlanPrefill() {
-  const plan = new URLSearchParams(window.location.search).get("plan");
-  if (!plan) return;
+import { buildWebsiteRequestUrl } from "./website-referral.js";
 
-  const labels = {
-    standard: "Standard (free)",
-    webcare: "WebCare+ ($49/month)",
-  };
-
-  const hidden = document.getElementById("plan");
-  if (hidden) hidden.value = plan;
-
-  const message = document.getElementById("message");
-  if (message) {
-    const label = labels[plan] ?? plan;
-    message.value = `Hi Tomas, I'm interested in the ${label} option for my website. `;
-  }
+const legacyPlan = new URLSearchParams(window.location.search).get("plan");
+const websiteReferral = document.getElementById("website-referral");
+if (websiteReferral && ["standard", "webcare"].includes(legacyPlan)) {
+  websiteReferral.href = buildWebsiteRequestUrl({ plan: legacyPlan });
+  websiteReferral.textContent = "Continue your website request on Tradsiee";
 }
 
 /*
@@ -88,7 +74,7 @@ function initWithContactForm() {
       const email = (data.email ?? "").trim();
       if (successText) {
         const greeting = name ? `, ${name}` : "";
-        successText.textContent = `Thanks${greeting} — I'll reply to ${
+        successText.textContent = `Thanks${greeting}. I'll reply to ${
           email || "your email"
         } within a day.`;
       }
@@ -111,12 +97,10 @@ function initWithContactForm() {
     form.hidden = false;
     form.classList.remove("is-leaving");
     form.reset();
-    initPlanPrefill();
     stopLoading();
     document.getElementById("name")?.focus();
   });
 }
 
-initPlanPrefill();
 initWithContactForm();
 initSite();
