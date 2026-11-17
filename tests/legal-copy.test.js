@@ -43,7 +43,7 @@ test("privacy matches GA4 code rather than claiming no analytics", () => {
 
 test("customer-hosted offer and age remain correct", () => {
   const pricing = normalise(read("src/partials/pricing.html"));
-  for (const price of ["$199", "$499", "$15", "$79", "$100", "$249.50"]) {
+  for (const price of ["$199", "$499", "$15", "$79", "$100", "$449"]) {
     assert.ok(pricing.includes(price));
   }
   assert.ok(pricing.includes("45 minutes per billing month, no request cap"));
