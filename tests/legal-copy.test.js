@@ -22,7 +22,9 @@ test("offer copy protects unpaid balances and removes unqualified defect warrant
   const pricing = normalise(read("src/partials/pricing.html"));
   assert.ok(pricing.includes("Plus $15/month Standard hosting."));
   assert.ok(pricing.includes("No monthly fee to Tradsiee for this route"));
-  assert.ok(pricing.includes("capacity to contract at 16"));
+  // Was asserting the internal review note that leaked to production. The
+  // pricing copy must state the offer, not our review status.
+  assert.equal(/lawyer confirmation|capacity to contract|remains open/i.test(pricing), false);
 });
 
 test("privacy matches GA4 code rather than claiming no analytics", () => {
