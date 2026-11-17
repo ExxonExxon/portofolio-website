@@ -36,19 +36,22 @@
 
 This repo is **private** — the real project context lives outside it:
 
-- **Obsidian is the source of truth.** The vault at
-  `/Users/tomas/Library/Mobile Documents/com~apple~CloudDocs/Obsidian/idelorean_vault/copilot`
-  holds project context, decisions, content plans and pricing. Read
-  `projects/Personal Website/project.md` (this repo's hub) and the relevant notes
-  before planning or writing copy. When repo docs or published copy disagree with
-  the vault, **the vault wins** — update the repo, never the other way round.
-- **Pricing lives in the vault** under `projects/Client Website Building/`
-  (`Offer Structure.md` is the master). Never publish legacy client names, terms
-  or pricing.
-- **Trello is the task command center.** Boards `Porotofolio Website` (this repo)
-  and `Outreach` live in the workspace `My own shit`. Check them before planning
-  work, move cards along `📥 Backlog → 🎯 To Do → 🚧 Doing → 👀 Needs Tomas → ✅ Done`,
-  and log non-trivial work as a card so Tomas sees the outcome without reading logs.
+- **Decisions and context:** start at vault
+  `/Users/tomas/Library/Mobile Documents/com~apple~CloudDocs/Obsidian/idelorean_vault/Home.md`,
+  then `10 Business/Personal Website/project.md`. The vault is the only memory store.
+- **Current offer:** `10 Business/Client Website Building/Offer & Pricing/Offer Structure.md`
+  and `WebCare+ Pricing.md`; the [onboarding pack](</Users/tomas/Business/docs/onboarding/README.md>)
+  owns operations. Existing accepted legacy terms remain protected.
+- **Current repair worktrees:** `/tmp/ws-personal` and `/tmp/ws-tradsiee`. Preserve the
+  separate older/dirty development checkouts. Code owns actual behaviour; dated live
+  observations do not prove intake delivery, service capability or legal compliance.
+- **Publication hold:** the local legality repairs are not deployed. Before revised terms
+  or paid proposals are issued, an Australian lawyer must confirm capacity at 16, signed
+  copyright, exact prescribed warranty wording and remaining legal/privacy terms. Two
+  conflicts with original owner approvals remain in the Mission 6 decision record.
+- **Checks:** `npm run build`, then `node --test tests/*.test.js`, and `git diff --check`.
+  Check local pages with Playwright at 390px and 1440px. Do not submit live forms for QA.
+  No deployment, message, commit or push follows from this documentation.
 
 ## Getting Started
 
@@ -72,7 +75,7 @@ npm run preview    # preview production build
 ├── contact/index.html      # Contact page entry
 ├── projects/index.html     # Projects page entry
 ├── privacy/index.html      # Privacy policy entry
-├── web-design/index.html   # Free website offer + pricing entry
+├── web-design/index.html   # Paid website routes + monthly hosting/care entry
 ├── src/
 │   ├── partials/           # Nav, footer & pricing, injected at build time
 │   ├── data/photos.json    # Single source of truth for the gallery
