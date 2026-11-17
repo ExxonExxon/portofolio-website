@@ -4,9 +4,10 @@
   "description": "This the website for tomas.gorjux.net",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "node scripts/check-public-copy.mjs && vite build",
     "preview": "vite preview",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "check:copy": "node scripts/check-public-copy.mjs"
   },
   "repository": {
     "type": "git",

@@ -2,6 +2,20 @@
 
 Personal portfolio site for Tomas Gorjux at `tomas.gorjux.net`.
 
+> **Public copy rule.** The page templates (`web-design/index.html`, `privacy/index.html`,
+> `index.html` and the rest) carry their own hardcoded copy of the offer, prices, payment steps,
+> FAQs and JSON-LD. `src/partials/*.html` is injected into them, so the same sentence can exist in
+> **two places**. On 17 November 2026 prices and a lawyer note were changed in the partials only and
+> the templates kept publishing the old wording live. Edit both, or the live page keeps the old
+> text. Never publish internal review state (lawyer holds, "not verified", readiness checks,
+> TODOs, the owner's age); it belongs in docs, the vault or a commit message. The guard is
+> `npm run check:copy`, which now runs automatically before `vite build`, so a leak fails the
+> Netlify build instead of going live.
+>
+> **Vault path.** The routes below name `idelorean_vault/copilot`, which no longer exists. Current
+> owners are `10 Business/Client Website Building/Offer & Pricing/` for the offer and prices, and
+> `10 Business/Personal Website/project.md` for this site.
+
 ## Obsidian is the source of truth
 
 The Obsidian vault is the authoritative source for project context, decisions,
