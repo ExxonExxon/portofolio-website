@@ -5,11 +5,16 @@
 // their own hardcoded copies of the same text. On 17 November 2026 a price and a
 // lawyer note were changed in the partials only, and the page templates kept
 // publishing the old wording because nobody edited both. Checking both closes it.
+//
+// Two tiers, because one list failed in both directions: too narrow let "awaiting
+// lawyer confirmation" go live, too broad would block an honest customer
+// sentence using the word "verification".
 
 import { readFileSync, readdirSync, statSync } from "node:fs";
 import { join } from "node:path";
 
-const MARKERS = [
+// Our own review state. Never a customer sentence.
+const HARD_MARKERS = [
   "do not publish",
   "lawyer confirmation",
   "lawyer review",
@@ -18,6 +23,14 @@ const MARKERS = [
   "awaits australian lawyer",
   "capacity to contract",
   "capacity to enter these agreements",
+  "release gate",
+  "remain held until",
+  "internal note",
+];
+
+// Wording about evidence and capability. Warned, not blocked, because the same
+// words can appear in honest customer copy. Set STRICT_COPY=1 to block on them.
+const SOFT_MARKERS = [
   "operational verification",
   "await verification",
   "remains outstanding",
@@ -26,13 +39,12 @@ const MARKERS = [
   "not been verified",
   "require verification",
   "requires verification",
-  "release gate",
-  "remain held until",
   "remain open",
-  "internal note",
 ];
 
 const AGE = [/\bis 16\b/i, /\bat 16\b/i, /\baged 16\b/i];
+
+const STRICT = process.env.STRICT_COPY === "1";
 
 const targets = [];
 
@@ -56,12 +68,16 @@ for (const page of ["index.html", "contact", "photography", "privacy", "projects
 }
 
 const findings = [];
+const warnings = [];
 for (const file of targets) {
   const lines = readFileSync(file, "utf8").split("\n");
   lines.forEach((line, index) => {
     const lower = line.toLowerCase();
-    for (const marker of MARKERS) {
+    for (const marker of HARD_MARKERS) {
       if (lower.includes(marker)) findings.push(`${file}:${index + 1}: ${marker}`);
+    }
+    for (const marker of SOFT_MARKERS) {
+      if (lower.includes(marker)) warnings.push(`${file}:${index + 1}: ${marker}`);
     }
     for (const pattern of AGE) {
       if (pattern.test(line)) findings.push(`${file}:${index + 1}: owner's age`);
@@ -74,9 +90,13 @@ if (targets.length === 0) {
   process.exit(1);
 }
 
-if (findings.length > 0) {
+warnings.forEach((warning) => console.error(`warning: ${warning}`));
+
+const blocking = STRICT ? [...findings, ...warnings] : findings;
+
+if (blocking.length > 0) {
   console.error("Build blocked: internal notes would go live.");
-  findings.forEach((finding) => console.error(`  ${finding}`));
+  blocking.forEach((finding) => console.error(`  ${finding}`));
   console.error("Move the note into docs or a commit message, then rebuild.");
   process.exit(1);
 }

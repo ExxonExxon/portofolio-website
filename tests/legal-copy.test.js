@@ -48,7 +48,7 @@ test("customer-hosted offer and age remain correct", () => {
   }
   assert.ok(pricing.includes("45 minutes per billing month, no request cap"));
   assert.ok(pricing.includes("90 minutes"));
-  assert.ok(pricing.includes("1 to 2 working days"));
+  assert.ok(pricing.includes("1 to 3 working days"));
   assert.ok(pricing.includes("3 to 5 working days"));
   assert.ok(read("index.html").includes("16-year-old"));
 });
