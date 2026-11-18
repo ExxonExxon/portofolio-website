@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { authorise } from "../netlify/functions/report.js";
+import { authorise, decide } from "../netlify/functions/report.js";
 
 const BASE = "https://tomas.gorjux.net/track/report";
 const FAKE = "not-the-real-token";
@@ -9,41 +9,41 @@ function req(path, { method = "GET", headers = {} } = {}) {
   return new Request(BASE + path, { method, headers });
 }
 
-test("a bad token is refused", async () => {
+test("no token in any form is refused", async () => {
+  assert.equal(await authorise(req("")), "denied");
   assert.equal(await authorise(req("?token=" + FAKE)), "denied");
+  assert.equal(await authorise(req("?purge=1", { method: "POST" })), "denied");
+});
+
+test("a wrong bearer token is refused", async () => {
   assert.equal(
     await authorise(req("", { headers: { authorization: "Bearer " + FAKE } })),
     "denied",
   );
-});
-
-test("a missing token is refused", async () => {
-  assert.equal(await authorise(req("")), "denied");
-  assert.equal(await authorise(req("?purge=1", { method: "POST" })), "denied");
-});
-
-test("purge is never reachable through a GET, even with a token", async () => {
-  assert.equal(await authorise(req("?token=" + FAKE + "&purge=1")), "denied");
-  assert.equal(await authorise(req("?purge=1")), "denied");
-});
-
-test("purge refuses a token that only exists in the query string", async () => {
   assert.equal(
-    await authorise(req("?token=" + FAKE + "&purge=1", { method: "POST" })),
+    await authorise(
+      req("?purge=1", {
+        method: "POST",
+        headers: { authorization: "Bearer " + FAKE },
+      }),
+    ),
     "denied",
   );
 });
 
-test("purge refuses a bearer header sent on a non-POST method", async () => {
-  for (const method of ["GET", "PUT", "DELETE", "HEAD"]) {
-    assert.equal(
-      await authorise(
-        req("?purge=1", {
-          method,
-          headers: { authorization: "Bearer " + FAKE },
-        }),
-      ),
-      "denied",
-    );
-  }
+test("a valid token reads, and only a POST can purge with it", () => {
+  assert.equal(decide("GET", false, true), "report");
+  assert.equal(decide("HEAD", false, true), "report");
+  assert.equal(decide("POST", false, true), "report");
+  assert.equal(decide("GET", true, true), "denied");
+  assert.equal(decide("HEAD", true, true), "denied");
+  assert.equal(decide("PUT", true, true), "denied");
+  assert.equal(decide("DELETE", true, true), "denied");
+  assert.equal(decide("POST", true, true), "purge");
+});
+
+test("purge needs both a POST and a valid token", () => {
+  assert.equal(decide("POST", true, false), "denied");
+  assert.equal(decide("GET", true, false), "denied");
+  assert.equal(decide("GET", false, false), "denied");
 });

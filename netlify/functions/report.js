@@ -27,27 +27,22 @@ async function tokenMatches(token) {
 /**
  * Decide what a report request may do.
  *
- * Deleting outreach records needs a POST and a token in the Authorization
- * header. A token in the query string is readable, because that is how the
- * report is opened by hand, but it can never delete anything: a URL in browser
- * history, a log line or a pasted link would otherwise wipe the store.
+ * The token is only ever read from the Authorization header. It is never
+ * accepted from the query string, because a URL ends up in browser history,
+ * log files, screenshots and shared links. Deleting also needs a POST, so a
+ * prefetch or a stray click cannot wipe the store.
  */
+export function decide(method, purge, tokenValid) {
+  if (!tokenValid) return "denied";
+  if (purge) return String(method || "GET").toUpperCase() === "POST" ? "purge" : "denied";
+  return "report";
+}
+
 export async function authorise(req) {
   const url = new URL(req.url);
-  const method = (req.method || "GET").toUpperCase();
   const purge = url.searchParams.get("purge") === "1";
-  const fromHeader = bearerToken(req);
-
-  if (purge) {
-    if (method !== "POST") return "denied";
-    return (await tokenMatches(fromHeader)) ? "purge" : "denied";
-  }
-
-  if (fromHeader && (await tokenMatches(fromHeader))) return "report";
-  if (method === "GET" && (await tokenMatches(url.searchParams.get("token") || ""))) {
-    return "report";
-  }
-  return "denied";
+  const token = bearerToken(req);
+  return decide(req.method, purge, await tokenMatches(token));
 }
 
 export default async (req) => {
