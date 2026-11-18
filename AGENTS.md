@@ -187,10 +187,9 @@ project, add another `project-feature` block to both `projects/index.html` and
 Submits via Netlify Forms. The static markup in `contact/index.html` carries
 `data-netlify="true"`, `name="contact"` and a hidden `form-name` field; Netlify
 registers it at deploy time. `contact.js` posts it with `fetch` for an inline
-success/error state, with a no-JS fallback to Netlify's default page. No backend
-for the form. The only Netlify functions in the repo
-(`netlify/functions/report.js`, `track.js`) are the token-gated outreach
-open-tracking pixel/report.
+success/error state, with a no-JS fallback to Netlify's default page. There are no
+Netlify functions in the repo: the outreach open-tracking pixel and report were
+retired on 18 November 2026.
 
 ## Assets
 

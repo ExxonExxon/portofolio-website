@@ -30,7 +30,6 @@
 | [AOS](https://michalsnik.github.io/aos/)                         | Scroll animations               |
 | [Font Awesome](https://fontawesome.com)                          | Icons                           |
 | [Netlify Forms](https://www.netlify.com/products/forms/)         | Contact form backend            |
-| [Netlify Functions](https://www.netlify.com/products/functions/) | Outreach open-tracking endpoint |
 
 ## Project Knowledge & Task Tracking
 
@@ -94,7 +93,6 @@ npm run preview    # preview production build
 │       ├── plan-picker.css # Plan-picker component (/web-design/)
 │       └── main/photography/contact/projects/privacy/web-design.css  # Page-specific styles
 ├── dev/photos/             # Dev-only photo tools (renamer, editor) + Vite plugin
-├── netlify/functions/      # Outreach open-tracking pixel/report (token-gated)
 ├── public/                 # Static assets (served at /)
 ├── assets/                 # Photography source images (WebP)
 ├── dist/                   # Build output (gitignored)
