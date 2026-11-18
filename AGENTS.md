@@ -202,31 +202,23 @@ open-tracking pixel/report.
 
 The real offer and pricing live outside this repo, in the Obsidian vault:
 
-`/Users/tomas/Library/Mobile Documents/com~apple~CloudDocs/Obsidian/idelorean_vault/copilot/projects/Client Website Building`
+`10 Business/Client Website Building/Offer & Pricing/Offer Structure.md` in the Obsidian vault is
+the pricing owner. `src/partials/pricing.html` is the single published implementation and is injected
+into `/web-design/`. If the two disagree, fix the site; never rewrite the vault note from memory.
 
-That vault is the **source of truth for all pricing**. If published copy
-disagrees with it, the vault wins — update the site, never the other way round.
-`Offer Structure.md` is the master and overrides the other files on conflicts.
+Current offer, after the 17 November 2026 pricing change (do not reintroduce older figures from
+history or from other repositories):
 
-Invariants that must always match the vault:
+- Two-page hosted build A$199, A$50 deposit, A$149 balance. Hosting A$15/month Standard or
+  A$79/month total WebCare+; the monthly plan is required on this route.
+- Four-page customer-hosted build A$499, A$50 deposit, A$449 balance. No monthly fee to Tradsiee;
+  the customer arranges hosting and domain. No care plan on this route.
+- Extra pages A$100 each. Prices are fixed and final in AUD, no GST.
+- Delivery targets: 1 to 3 working days for the two-page build, 3 to 5 for the four-page build,
+  each added page extending that.
 
-- Website build, hosting and basic maintenance are **free with no lock-in**. Avoid
-  absolute time promises ("forever", "no expiry") in client-facing copy — the site
-  stays free while it's hosted with us.
-- WebCare+ is **$49 AUD/mo**; Standard is **$0**.
-- Standard small change is **$40 AUD flat** — never a range, never "from".
-- WebCare+ includes **5 small changes a month**; extras are **$10 each**,
-  no rollover. Joining after the 10-day window runs the first **3 months at 3
-  small changes a month**, then 5.
-- The bigger-work rate (WebCare+ **$99 base + $39/page**, restyle **50% off**) unlocks
-  after **3 continuous months** — or from day one if the client joins within
-  **10 days of go-live**. Until then, bigger work bills at Standard rates. Cancelling
-  and rejoining restarts the 3-month clock. This is a WebCare+ vesting period only —
-  the website itself has **no lock-in, ever**.
-- Bigger work on Standard: **$200 base + $100/page**.
-- Complete restyle is quoted separately; **50% off on WebCare+** (same 3-month/10-day rule).
-- Prices are fixed. Never quote "from".
-- Never publish legacy client names, terms or pricing (Adam Beaumont, Paul).
+Anything that quotes a free website, A$49 care, A$40 changes, a ten-day joining window or a
+three-month care vesting period is pre-17-November material. It is superseded, not an alternative.
 
 Published pricing lives in ONE place — `src/partials/pricing.html`, injected into
 `/web-design/` — so the site cannot drift.
