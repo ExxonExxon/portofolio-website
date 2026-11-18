@@ -105,10 +105,10 @@ test("Vite rewrites every initial dev HTML referral after injecting partials", (
     }
     if (pageCount > 0) referralPages.push(page);
   }
-  assert.deepEqual(referralPages.sort(), ["contact", "projects", "webDesign"]);
+  assert.deepEqual(referralPages.sort(), ["contact", "projects"]);
   assert.ok(
-    count >= 8,
-    "remaining pages and injected pricing links must be covered",
+    count >= 2,
+    "remaining pages must keep their referral links",
   );
 });
 
@@ -126,7 +126,7 @@ test("Vite selects the public destination for production and build preview", () 
       (entry) => entry.name === "html-partials",
     );
     const html = plugin.transformIndexHtml(
-      readFileSync(config.build.rollupOptions.input.webDesign, "utf8"),
+      readFileSync(config.build.rollupOptions.input.projects, "utf8"),
       {},
     );
     assert.equal(html.includes("127.0.0.1:8000"), false);

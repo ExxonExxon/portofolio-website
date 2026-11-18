@@ -95,28 +95,21 @@
 
 [[redirects]]
   from = "/web-design"
-  to = "/web-design/"
+  to = "https://tradsiee.com/websites"
   status = 301
+  force = true
 
 [[redirects]]
   from = "/web-design.html"
-  to = "/web-design/"
+  to = "https://tradsiee.com/websites"
   status = 301
+  force = true
 
 [[redirects]]
-  from = "/web-design/pricing"
-  to = "/web-design/"
+  from = "/web-design/*"
+  to = "https://tradsiee.com/websites"
   status = 301
-
-[[redirects]]
-  from = "/web-design/pricing/"
-  to = "/web-design/"
-  status = 301
-
-[[redirects]]
-  from = "/web-design/pricing.html"
-  to = "/web-design/"
-  status = 301
+  force = true
 
 [[redirects]]
   from = "/blog"

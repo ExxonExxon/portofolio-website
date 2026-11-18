@@ -2,8 +2,8 @@
 
 Personal portfolio site for Tomas Gorjux at `tomas.gorjux.net`.
 
-> **Public copy rule.** The page templates (`web-design/index.html`, `privacy/index.html`,
-> `index.html` and the rest) carry their own hardcoded copy of the offer, prices, payment steps,
+> **Public copy rule.** The page templates (`privacy/index.html`, `index.html` and the rest; the
+> retired `web-design/index.html` is no longer built) carry their own hardcoded copy of the offer, prices, payment steps,
 > FAQs and JSON-LD. `src/partials/*.html` is injected into them, so the same sentence can exist in
 > **two places**. On 17 November 2026 prices and a lawyer note were changed in the partials only and
 > the templates kept publishing the old wording live. Edit both, or the live page keeps the old
@@ -96,7 +96,7 @@ Ten HTML entry points defined in `vite.config.js`:
 - `contact/index.html` → entry `src/scripts/contact.js` — served at `/contact/`
 - `projects/index.html` → entry `src/scripts/projects.js` — served at `/projects/`
 - `privacy/index.html` → entry `src/scripts/privacy.js` — served at `/privacy/` (text-only legal page, linked from the footer)
-- `web-design/index.html` → entry `src/scripts/web-design.js` — served at `/web-design/` (the free-website offer and published pricing; `/web-design/pricing/` 301s here)
+- `web-design/index.html` → entry `src/scripts/web-design.js` — retired from the build on 18 November 2026. The source is kept but not served; `/web-design` and everything under it 301 to `https://tradsiee.com/websites` in `netlify.toml`.
 
 All entries call the shared `initSite.js` bootstrap (active nav link, AOS
 setup, mobile menu); `nav.js` holds that menu logic. `initSite` skips AOS on
@@ -220,8 +220,8 @@ history or from other repositories):
 Anything that quotes a free website, A$49 care, A$40 changes, a ten-day joining window or a
 three-month care vesting period is pre-17-November material. It is superseded, not an alternative.
 
-Published pricing lives in ONE place — `src/partials/pricing.html`, injected into
-`/web-design/` — so the site cannot drift.
+Published pricing lives in ONE place — `src/partials/pricing.html`, retained for the retired
+`/web-design/` page — so the site cannot drift.
 
 ## Notable conventions
 

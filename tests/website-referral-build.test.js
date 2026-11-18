@@ -17,8 +17,10 @@ test("production build contains public request links and no local intake origin"
       filename,
     );
   }
-  const html = readFileSync(new URL("web-design/index.html", root), "utf8");
+  assert.equal(existsSync(new URL("web-design/", root)), false);
+  const html = readFileSync(new URL("index.html", root), "utf8");
   assert.ok(
-    html.includes("https://tradsiee.com/websites/request?source=portfolio"),
+    html.includes("https://tradsiee.com/websites"),
+    "the homepage must point at the live websites offer",
   );
 });

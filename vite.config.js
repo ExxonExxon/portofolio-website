@@ -62,7 +62,6 @@ export default defineConfig(({ command, isPreview }) => ({
         contact: resolve(import.meta.dirname, "contact/index.html"),
         projects: resolve(import.meta.dirname, "projects/index.html"),
         privacy: resolve(import.meta.dirname, "privacy/index.html"),
-        webDesign: resolve(import.meta.dirname, "web-design/index.html"),
       },
     },
     cssMinify: true,
